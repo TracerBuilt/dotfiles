@@ -1,0 +1,31 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+- link:
+    ~/.config/:
+      glob: true
+      path: config/*
+      relink: true
+
+- shell:
+    - description: install oh-my-zsh
+      command: $ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    - description: install homebrew
+      command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    - description: install homebrew formulas
+      command: bash -c "brew bundle"
+    - description: install paq-nvim
+      command: git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
+
+- link:
+    ~/.zshrc:
+      force: true
+
+- link:
+    ~/.gitconfig:
+      force: true
+
+- link:
+    ~/.zshrc:
+      force: true
