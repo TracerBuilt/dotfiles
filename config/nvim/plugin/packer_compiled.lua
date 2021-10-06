@@ -11,7 +11,7 @@ local no_errors, error_msg = pcall(function()
 
   local time
   local profile_info
-  local should_profile = false
+  local should_profile = true
   if should_profile then
     local hrtime = vim.loop.hrtime
     profile_info = {}
@@ -111,10 +111,20 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/thewildgander/.local/share/nvim/site/pack/packer/opt/cmp_luasnip"
   },
+  ["dashboard-nvim"] = {
+    config = { "require('configs.dashboard')" },
+    loaded = true,
+    path = "/Users/thewildgander/.local/share/nvim/site/pack/packer/start/dashboard-nvim"
+  },
   ["diffview.nvim"] = {
     config = { "require('configs.diffview')" },
     loaded = true,
     path = "/Users/thewildgander/.local/share/nvim/site/pack/packer/start/diffview.nvim"
+  },
+  ["feline.nvim"] = {
+    config = { "require('configs.feline')" },
+    loaded = true,
+    path = "/Users/thewildgander/.local/share/nvim/site/pack/packer/start/feline.nvim"
   },
   ["friendly-snippets"] = {
     loaded = true,
@@ -137,11 +147,6 @@ _G.packer_plugins = {
   ["lspkind-nvim"] = {
     loaded = true,
     path = "/Users/thewildgander/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
-  },
-  ["lualine.nvim"] = {
-    config = { "require('configs.lualine')" },
-    loaded = true,
-    path = "/Users/thewildgander/.local/share/nvim/site/pack/packer/start/lualine.nvim"
   },
   ["neoscroll.nvim"] = {
     config = { "require('configs.neoscroll')" },
@@ -267,22 +272,18 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require('configs.treesitter')
-time([[Config for nvim-treesitter]], false)
--- Config for: nvim-ts-autotag
-time([[Config for nvim-ts-autotag]], true)
-require('configs.ts-autotag')
-time([[Config for nvim-ts-autotag]], false)
--- Config for: diffview.nvim
-time([[Config for diffview.nvim]], true)
-require('configs.diffview')
-time([[Config for diffview.nvim]], false)
--- Config for: nvim-ts-rainbow
-time([[Config for nvim-ts-rainbow]], true)
-require('configs.treesitter')
-time([[Config for nvim-ts-rainbow]], false)
+-- Config for: feline.nvim
+time([[Config for feline.nvim]], true)
+require('configs.feline')
+time([[Config for feline.nvim]], false)
+-- Config for: toggleterm.nvim
+time([[Config for toggleterm.nvim]], true)
+require('configs.toggleterm')
+time([[Config for toggleterm.nvim]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+require('configs.trouble')
+time([[Config for trouble.nvim]], false)
 -- Config for: gitsigns.nvim
 time([[Config for gitsigns.nvim]], true)
 require('configs.gitsigns')
@@ -291,70 +292,78 @@ time([[Config for gitsigns.nvim]], false)
 time([[Config for indent-blankline.nvim]], true)
 require('configs.indent-blankline')
 time([[Config for indent-blankline.nvim]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require('configs.cmp')
-time([[Config for nvim-cmp]], false)
 -- Config for: Catppuccino.nvim
 time([[Config for Catppuccino.nvim]], true)
 require('configs.catppuccino')
 time([[Config for Catppuccino.nvim]], false)
--- Config for: spellsitter.nvim
-time([[Config for spellsitter.nvim]], true)
-require('configs.spellsitter')
-time([[Config for spellsitter.nvim]], false)
--- Config for: LuaSnip
-time([[Config for LuaSnip]], true)
-require('configs.luasnip')
-time([[Config for LuaSnip]], false)
--- Config for: neoscroll.nvim
-time([[Config for neoscroll.nvim]], true)
-require('configs.neoscroll')
-time([[Config for neoscroll.nvim]], false)
--- Config for: TrueZen.nvim
-time([[Config for TrueZen.nvim]], true)
-require('configs.truezen')
-time([[Config for TrueZen.nvim]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-require('configs.autopairs')
-time([[Config for nvim-autopairs]], false)
--- Config for: barbar.nvim
-time([[Config for barbar.nvim]], true)
-require('configs.barbar')
-time([[Config for barbar.nvim]], false)
--- Config for: toggleterm.nvim
-time([[Config for toggleterm.nvim]], true)
-require('configs.toggleterm')
-time([[Config for toggleterm.nvim]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-require('configs.colorizer')
-time([[Config for nvim-colorizer.lua]], false)
--- Config for: trouble.nvim
-time([[Config for trouble.nvim]], true)
-require('configs.trouble')
-time([[Config for trouble.nvim]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-require('configs.lspconfig')
-time([[Config for nvim-lspconfig]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require('configs.lualine')
-time([[Config for lualine.nvim]], false)
--- Config for: nvim-lsputils
-time([[Config for nvim-lsputils]], true)
-require('configs.lsputils')
-time([[Config for nvim-lsputils]], false)
 -- Config for: which-key.nvim
 time([[Config for which-key.nvim]], true)
 require('configs.which-key')
 time([[Config for which-key.nvim]], false)
+-- Config for: TrueZen.nvim
+time([[Config for TrueZen.nvim]], true)
+require('configs.truezen')
+time([[Config for TrueZen.nvim]], false)
+-- Config for: neoscroll.nvim
+time([[Config for neoscroll.nvim]], true)
+require('configs.neoscroll')
+time([[Config for neoscroll.nvim]], false)
+-- Config for: barbar.nvim
+time([[Config for barbar.nvim]], true)
+require('configs.barbar')
+time([[Config for barbar.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+require('configs.autopairs')
+time([[Config for nvim-autopairs]], false)
+-- Config for: nvim-ts-rainbow
+time([[Config for nvim-ts-rainbow]], true)
+require('configs.treesitter')
+time([[Config for nvim-ts-rainbow]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+require('configs.colorizer')
+time([[Config for nvim-colorizer.lua]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require('configs.lspconfig')
+time([[Config for nvim-lspconfig]], false)
+-- Config for: LuaSnip
+time([[Config for LuaSnip]], true)
+require('configs.luasnip')
+time([[Config for LuaSnip]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('configs.treesitter')
+time([[Config for nvim-treesitter]], false)
+-- Config for: nvim-lsputils
+time([[Config for nvim-lsputils]], true)
+require('configs.lsputils')
+time([[Config for nvim-lsputils]], false)
+-- Config for: diffview.nvim
+time([[Config for diffview.nvim]], true)
+require('configs.diffview')
+time([[Config for diffview.nvim]], false)
 -- Config for: nvim-tree.lua
 time([[Config for nvim-tree.lua]], true)
 require('configs.tree')
 time([[Config for nvim-tree.lua]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('configs.cmp')
+time([[Config for nvim-cmp]], false)
+-- Config for: spellsitter.nvim
+time([[Config for spellsitter.nvim]], true)
+require('configs.spellsitter')
+time([[Config for spellsitter.nvim]], false)
+-- Config for: dashboard-nvim
+time([[Config for dashboard-nvim]], true)
+require('configs.dashboard')
+time([[Config for dashboard-nvim]], false)
+-- Config for: nvim-ts-autotag
+time([[Config for nvim-ts-autotag]], true)
+require('configs.ts-autotag')
+time([[Config for nvim-ts-autotag]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
 require('configs.telescope')
@@ -362,10 +371,10 @@ time([[Config for telescope.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd telescope-frecency.nvim ]]
-vim.cmd [[ packadd cmp_luasnip ]]
 vim.cmd [[ packadd cmp-buffer ]]
+vim.cmd [[ packadd cmp_luasnip ]]
 time([[Sequenced loading]], false)
-if should_profile then save_profiles() end
+if should_profile then save_profiles(1) end
 
 end)
 

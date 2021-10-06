@@ -16,10 +16,10 @@ wk.register {
 wk.register({
 	f = {
 		name = 'File',
-		f = { ":lua require('telescope.builtin').find_files()", 'Find Files' },
-		g = { ":lua require('telescope.builtin').live_grep()", 'Live Grep' },
-		b = { ":lua require('telescope.builtin').buffers()", 'Find Buffers' },
-		h = { ":lua require('telescope.builtin').help_tags()", 'Help Tags' },
+		f = { ":lua require('telescope.builtin').find_files()<cr>", 'Find Files' },
+		g = { ":lua require('telescope.builtin').live_grep()<cr>", 'Live Grep' },
+		b = { ":lua require('telescope.builtin').buffers()<cr>", 'Find Buffers' },
+		h = { ":lua require('telescope.builtin').help_tags()<cr>", 'Help Tags' },
 	},
 }, {
 	prefix = '<leader>',
@@ -56,6 +56,7 @@ wk.register {
 -- Trouble
 wk.register {
 	['<leader>x'] = {
+		name = 'Diagnostics',
 		x = { ':Trouble<cr>', 'Open Diagnostics' },
 		w = { ':Trouble lsp_workspace_diagnostics<cr>', 'Open Workspace Diagnostics' },
 		d = { ':Trouble lsp_document_diagnostics<cr>', 'Open Document Diagnostics' },
@@ -69,15 +70,22 @@ wk.register {
 	['<leader>z'] = { ':TZA<cr>', 'Zen Mode' },
 }
 -- Git diffing
-
 wk.register {
-
 	['<leader>'] = {
 
 		d = { ':DiffviewOpen<cr>', 'Open Git Diff' },
 
 		dq = { ':DiffviewClose<cr>', 'Close Git Diff' },
-
 	},
-
+}
+-- Dashboard
+wk.register {
+	['<leader>'] = {
+		ss = { ':<C-u>SessionSave<cr>', 'Save Session' },
+		sl = { ':<C-u>SessionLoad<cr>', 'Load Session' },
+		tc = { ':DashboardChangeColorscheme<cr>', 'Change Colorscheme' },
+		fa = { ':DashboardFindWord<cr>', 'Find Word' },
+		fb = { ':DashboardJumpMark<cr>', 'Jump Mark' },
+		cn = { 'DashboardNewFile<cr>', 'New File' },
+	},
 }
