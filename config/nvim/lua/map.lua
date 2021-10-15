@@ -13,17 +13,51 @@ wk.register {
 	['<leader>n'] = { ':NvimTreeFocus<cr>', 'Focus File Tree' },
 }
 -- Telescope
-wk.register({
-	f = {
+wk.register {
+	['<leader>f'] = {
 		name = 'File',
-		f = { ":lua require('telescope.builtin').find_files()<cr>", 'Find Files' },
-		g = { ":lua require('telescope.builtin').live_grep()<cr>", 'Live Grep' },
-		b = { ":lua require('telescope.builtin').buffers()<cr>", 'Find Buffers' },
-		h = { ":lua require('telescope.builtin').help_tags()<cr>", 'Help Tags' },
+		f = { ':lua require("telescope.builtin").find_files()<cr>', 'Find Files' },
+		g = { ':lua require("telescope.builtin").live_grep()<cr>', 'Live Grep' },
+		b = { ':lua require("telescope.builtin").buffers()<cr>', 'Find Buffers' },
+		h = { ':lua require("telescope.builtin").help_tags()<cr>', 'Help Tags' },
+	},
+}
+-- GitSigns
+wk.register {
+	[']c'] = { expr = true, '&diff ? "]c" : ":lua require\'gitsigns.actions\'.next_hunk()<cr>"', 'Next Hunk' },
+	['[c'] = {
+		expr = true,
+		'&diff ? "[c" : ":lua require\'gitsigns.actions\'.prev_hunk()<cr>"',
+		'Previous Hunk',
+	},
+	['<leader>h'] = {
+		name = 'GitSigns Actions',
+		['s'] = { ':lua require("gitsigns").stage_hunk<cr>', 'Stage Hunk' },
+		['u'] = { ':lua require("gitsigns").undo_stage_hunk<cr>', 'Undo Stage Hunk' },
+		['r'] = { ':lua require("gitsigns").reset_hunk<cr>', 'Reset Hunk' },
+		['R'] = { ':lua require"gitsigns".reset_buffer()<cr>', 'Reset Buffer' },
+		['p'] = { ':lua require"gitsigns".preview_hunk()<cr>', 'Preview Hunk' },
+		['b'] = { ':lua require"gitsigns".blame_line(true)<cr>', 'Blame Line' },
+		['S'] = { ':lua require"gitsigns".stage_buffer()<cr>', 'Stage Buffer' },
+		['U'] = { ':lua require"gitsigns".reset_buffer_index()<cr>', 'Reset Buffer' },
+	},
+}
+wk.register({
+	['<leader>h'] = {
+		name = 'GitSigns Actions',
+		s = { ':lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<cr>', 'Stage Hunk' },
+		r = { ':lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<cr>', 'Reset Hunk' },
 	},
 }, {
-	prefix = '<leader>',
+	mode = 'v',
 })
+wk.register({
+	['ih'] = { ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>' },
+}, { mode = 'o' })
+wk.register({
+	['ih'] = { ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>' },
+}, { mode = 'x' })
+
 -- Barbar
 wk.register {
 	['<A-,>'] = { ':BufferPrevious<cr>', 'Previous Buffer' },
