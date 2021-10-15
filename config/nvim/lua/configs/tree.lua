@@ -1,4 +1,4 @@
-vim.g.nvim_tree_ignore = { '.git' }
+vim.g.nvim_tree_ignore = { '.git', '.DS_Store' }
 vim.g.nvim_tree_git_hl = 0
 vim.g.nvim_tree_highlight_opened_files = 1
 vim.g.nvim_tree_indent_markers = 1
