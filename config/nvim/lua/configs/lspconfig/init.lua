@@ -1,5 +1,4 @@
-local lspconfig = require 'lspconfig'
-local lspinstall = require 'lspinstall'
+local lsp_installer = require 'nvim-lsp-installer'
 local on_attach = require 'configs.lspconfig.on-attach'
 local format_config = require 'configs.lspconfig.format'
 
@@ -53,36 +52,39 @@ local servers = {
 }
 
 -- Setup servers
-local function setup_servers()
-	lspinstall.setup()
-	local installed = lspinstall.installed_servers()
-	for _, server in pairs(installed) do
-		local config = servers[server] or {}
-		config.capabilities = capabilities
-		config.on_attach = on_attach
-		lspconfig[server].setup(config)
+lsp_installer.on_server_ready(function(server)
+	local opts = {
+		capabilities = capabilities,
+		on_attach = on_attach,
+	}
+	if server.name == 'lua' then
+		opts.completion = { keywordSnippet = 'Both' }
+		opts.diagnostics = { globals = { 'vim' } }
+		opts.runtime = {
+			version = 'LuaJIT',
+			path = vim.split(package.path, ';'),
+		}
+		opts.workspace = {
+			libaray = {
+				[vim.fn.expand '$VIMRUNTIME/lua'] = true,
+				[vim.fn.expand '$VIMRUNTIME/lua/vim/lsp'] = true,
+			},
+		}
+	elseif server.name == 'efm' then
+		opts.init_options = {
+			documentFormatting = true,
+			hover = true,
+			documentSymbol = true,
+			codeAction = true,
+		}
+		opts.filetypes = vim.tbl_keys(format_config)
+		opts.settings = { languages = format_config }
 	end
-end
 
-require('lspconfig').efm.setup {
-	init_options = {
-		documentFormatting = true,
-		hover = true,
-		documentSymbol = true,
-		codeAction = true,
-	},
-	filetypes = vim.tbl_keys(format_config),
-	on_attach = on_attach,
-	settings = { languages = format_config },
-}
+	server:setup(opts)
 
-setup_servers()
-
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require('lspinstall').post_install_hook = function()
-	setup_servers() -- reload installed servers
-	vim.cmd 'bufdo e'
-end
+	vim.cmd [[ do User LspAttachBuffers ]]
+end)
 
 -- You will likely want to reduce updatetime which affects CursorHold
 -- note: this setting is global and should be set only once

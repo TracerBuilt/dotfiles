@@ -68,7 +68,7 @@ return require('packer').startup {
 				'neovim/nvim-lspconfig',
 				config = [[require('configs.lspconfig')]],
 			},
-			'kabouzeid/nvim-lspinstall',
+			'williamboman/nvim-lsp-installer',
 			{
 				'hrsh7th/nvim-cmp',
 				requires = {
@@ -174,6 +174,8 @@ return require('packer').startup {
 			'Pocco81/Catppuccino.nvim',
 			config = [[require('configs.catppuccino')]],
 		}
+		-- Commenting
+		use 'b3nj5m1n/kommentary'
 		-- Color highlighting
 		use {
 			'norcalli/nvim-colorizer.lua',
