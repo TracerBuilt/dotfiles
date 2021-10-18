@@ -25,7 +25,3 @@
 - link:
     ~/.gitconfig:
       force: true
-
-- link:
-    ~/.zshrc:
-      force: true
