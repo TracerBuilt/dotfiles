@@ -59,20 +59,6 @@ require('feline').setup {
 					right_sep = { 'slant_right_2', ' ' },
 				},
 				{
-					provider = 'file_size',
-					right_sep = {
-						' ',
-						{
-							str = 'vertical_bar_thin',
-							hl = {
-								fg = 'fg',
-								bg = 'bg',
-							},
-						},
-					},
-				},
-
-				{
 					provider = 'diagnostic_errors',
 					hl = { fg = 'red' },
 				},
