@@ -80,6 +80,7 @@ return require('packer').startup {
 					{ 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
 					{ 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
 					'rafamadriz/friendly-snippets',
+					{ 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp', after = 'nvim-cmp' },
 				},
 				config = [[require('configs.cmp')]],
 			},
@@ -142,6 +143,7 @@ return require('packer').startup {
 			{
 				'windwp/nvim-autopairs',
 				config = [[require('configs.autopairs')]],
+				after = 'nvim-cmp',
 			},
 			{
 				'windwp/nvim-ts-autotag',
@@ -158,21 +160,10 @@ return require('packer').startup {
 		-- Cheatsheet
 		use 'sudormrfbin/cheatsheet.nvim'
 		-- Motion
-		use 'ggandor/lightspeed.nvim'
-		-- Zen mode
+		use { 'ggandor/lightspeed.nvim', requires = 'tpope/vim-repeat' } -- Zen mode
 		use {
 			'Pocco81/TrueZen.nvim',
 			config = [[require('configs.truezen')]],
-		}
-		-- Dashboard
-		use {
-			'glepnir/dashboard-nvim',
-			config = [[require('configs.dashboard')]],
-		}
-		-- Color schemes
-		use {
-			'Pocco81/Catppuccino.nvim',
-			config = [[require('configs.catppuccino')]],
 		}
 		-- Commenting
 		use 'b3nj5m1n/kommentary'
@@ -181,6 +172,24 @@ return require('packer').startup {
 			'norcalli/nvim-colorizer.lua',
 			config = [[require('configs.colorizer')]],
 		}
+		use {
+			'nvim-neorg/neorg',
+			requires = 'nvim-lua/plenary.nvim',
+			config = [[require('configs.neorg')]],
+			after = 'nvim-treesitter',
+		}
+		-- Color schemes
+		use {
+			'Pocco81/Catppuccino.nvim',
+			config = [[require('configs.catppuccino')]],
+		}
+		use 'bluz71/vim-nightfly-guicolors'
+		use 'folke/tokyonight.nvim'
+		use 'sainnhe/sonokai'
+		use 'shaunsingh/nord.nvim'
+		use 'navarasu/onedark.nvim'
+		use 'sainnhe/everforest'
+		use 'EdenEast/nightfox.nvim'
 	end,
 	config = {
 		display = {

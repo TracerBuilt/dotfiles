@@ -14,6 +14,7 @@ o.linebreak = true
 o.undofile = true
 o.hlsearch = true
 o.updatetime = 500
+o.timeoutlen = 1000
 
 -- Search
 o.ignorecase = true
@@ -26,3 +27,4 @@ o.autoindent = true
 o.expandtab = false
 o.tabstop = 4
 o.shiftwidth = 4
+o.smartindent = true
