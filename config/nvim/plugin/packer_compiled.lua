@@ -89,10 +89,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/thewildgander/.local/share/nvim/site/pack/packer/start/barbar.nvim"
   },
-  ["cheatsheet.nvim"] = {
-    loaded = true,
-    path = "/Users/thewildgander/.local/share/nvim/site/pack/packer/start/cheatsheet.nvim"
-  },
   ["cmp-buffer"] = {
     after_files = { "/Users/thewildgander/.local/share/nvim/site/pack/packer/opt/cmp-buffer/after/plugin/cmp_buffer.lua" },
     load_after = {},
@@ -186,7 +182,7 @@ _G.packer_plugins = {
     path = "/Users/thewildgander/.local/share/nvim/site/pack/packer/opt/nvim-autopairs"
   },
   ["nvim-cmp"] = {
-    after = { "cmp-buffer", "cmp_luasnip", "nvim-autopairs", "cmp-tabnine" },
+    after = { "cmp-buffer", "cmp_luasnip", "cmp-tabnine", "nvim-autopairs" },
     loaded = true,
     only_config = true
   },
@@ -256,11 +252,6 @@ _G.packer_plugins = {
   sonokai = {
     loaded = true,
     path = "/Users/thewildgander/.local/share/nvim/site/pack/packer/start/sonokai"
-  },
-  ["spellsitter.nvim"] = {
-    config = { "require('configs.spellsitter')" },
-    loaded = true,
-    path = "/Users/thewildgander/.local/share/nvim/site/pack/packer/start/spellsitter.nvim"
   },
   ["sqlite.lua"] = {
     loaded = true,
@@ -359,10 +350,6 @@ time([[Config for feline.nvim]], false)
 time([[Config for nvim-tree.lua]], true)
 require('configs.tree')
 time([[Config for nvim-tree.lua]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require('configs.cmp')
-time([[Config for nvim-cmp]], false)
 -- Config for: nvim-ts-autotag
 time([[Config for nvim-ts-autotag]], true)
 require('configs.ts-autotag')
@@ -391,10 +378,10 @@ time([[Config for trouble.nvim]], false)
 time([[Config for TrueZen.nvim]], true)
 require('configs.truezen')
 time([[Config for TrueZen.nvim]], false)
--- Config for: spellsitter.nvim
-time([[Config for spellsitter.nvim]], true)
-require('configs.spellsitter')
-time([[Config for spellsitter.nvim]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('configs.cmp')
+time([[Config for nvim-cmp]], false)
 -- Config for: barbar.nvim
 time([[Config for barbar.nvim]], true)
 require('configs.barbar')

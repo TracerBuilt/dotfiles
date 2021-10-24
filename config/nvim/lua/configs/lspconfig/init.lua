@@ -30,31 +30,6 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 	},
 }
 
-local servers = {
-
-	lua = {
-		settings = {
-			Lua = {
-				completion = { keywordSnippet = 'Both' },
-				diagnostics = {
-					-- Get LSP to recognize 'vim' global
-					globals = { 'vim' },
-				},
-				runtime = {
-					version = 'LuaJIT',
-					path = vim.split(package.path, ';'),
-				},
-				workspace = {
-					library = {
-						[vim.fn.expand '$VIMRUNTIME/lua'] = true,
-						[vim.fn.expand '$VIMRUNTIME/lua/vim/lsp'] = true,
-					},
-				},
-			},
-		},
-	},
-}
-
 -- Setup servers
 lsp_installer.on_server_ready(function(server)
 	local opts = {

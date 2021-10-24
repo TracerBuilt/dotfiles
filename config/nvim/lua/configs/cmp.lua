@@ -6,6 +6,7 @@ local lspkind = require 'lspkind'
 
 cmp.setup {
 	formatting = {
+		---@diagnostic disable-next-line: unused-local
 		format = function(entry, vim_item)
 			vim_item.kind = lspkind.presets.default[vim_item.kind] .. ' ' .. vim_item.kind
 			vim_item.dup = 0

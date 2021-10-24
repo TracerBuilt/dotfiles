@@ -1,5 +1,3 @@
-local luasnip = require 'luasnip'
-
 require('luasnip.config').setup {
 	history = true,
 }

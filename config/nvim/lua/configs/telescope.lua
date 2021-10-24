@@ -1,4 +1,6 @@
-require('telescope').setup {
+local telescope = require 'telescope'
+
+telescope.setup {
 	extensions = {
 		fzf = {
 			fuzzy = true,
@@ -9,4 +11,4 @@ require('telescope').setup {
 	},
 }
 
-require('telescope').load_extension 'fzf'
+telescope.load_extension 'fzf'

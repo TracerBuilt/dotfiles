@@ -1,10 +1,7 @@
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
+---@diagnostic disable-next-line: unused-local
 return function(client, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
 	vim.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
-
-	-- See `:help vim.lsp.*` for documentation on any of the below functions
 
 	-- Only use efm formatting
 	if client.name ~= 'efm' then
