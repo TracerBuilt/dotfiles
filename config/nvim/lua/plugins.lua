@@ -150,15 +150,8 @@ return require('packer').startup {
 				config = [[require('configs.ts-autotag')]],
 			},
 		}
-		-- Spelling
-		use {
-			'lewis6991/spellsitter.nvim',
-			config = [[require('configs.spellsitter')]],
-		}
 		-- Surround
 		use 'tpope/vim-surround'
-		-- Cheatsheet
-		use 'sudormrfbin/cheatsheet.nvim'
 		-- Motion
 		use { 'ggandor/lightspeed.nvim', requires = 'tpope/vim-repeat' } -- Zen mode
 		use {
