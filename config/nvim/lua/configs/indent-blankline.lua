@@ -11,7 +11,7 @@ require('indent_blankline').setup {
 		'IndentBlanklineIndent5',
 		'IndentBlanklineIndent6',
 	},
-	filetype_exclude = { 'help', 'packer', 'dashboard', 'nofile' },
+	filetype_exclude = { 'help', 'packer', 'dashboard', 'nofile', 'lsp-installer' },
 	show_first_indent_level = true,
 	use_treesitter = true,
 }

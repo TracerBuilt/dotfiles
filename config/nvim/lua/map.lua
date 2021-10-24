@@ -6,11 +6,34 @@ local wk = require 'which-key'
 
 -- Remap ESC key
 map('i', 'jk', '<ESC>', { noremap = true })
+
+wk.register {
+	g = {
+		d = { ':lua require("telescope.builtin").lsp_definitions()<cr>', 'Go-To Defintion' },
+		D = { ':lua vim.lsp.buf.declaration()<cr>', 'Go-To Declaration' },
+		i = { ':lua require("telescope.builtin").lsp_implementations()<cr>', 'List All Implementations' },
+		r = { ':lua require("telescope.builtin").lsp_references()<cr>', 'List All References' },
+		t = { ':lua require("telescope.builtin").lsp_type_definitions()<cr>', 'Go-To Type Definition' },
+	},
+	K = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'Display Hover Info' },
+	['C-k'] = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Display Signature Info' },
+	['<leader>'] = {
+		w = {
+			a = { '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', 'Add Workspace Folder' },
+			r = { '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', 'Remove Workspace Folder' },
+			l = { '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', 'List Workspace Folders' },
+		},
+		rn = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename All References' },
+		ca = { ':lua require("telescope.builtin").lsp_code_actions()<cr>', 'Code Actions' },
+		f = { ':lua vim.lsp.buf.formatting()<cr>', 'Format File' },
+	},
+}
+
 -- nvim-tree
 wk.register {
 	['<C-n>'] = { ':lua require("configs.treetoggle").toggle()<cr>', 'Toggle File Tree' },
 	['<leader>r'] = { ':NvimTreeRefresh<cr>', 'Refresh File Tree' },
-	['<leader>n'] = { ':NvimTreeFocus<cr>', 'Focus File Tree' },
+	['<leader>n'] = { ':NvimTreeFindFile<cr>', 'Focus File Tree' },
 }
 -- Telescope
 wk.register {
@@ -20,6 +43,16 @@ wk.register {
 		g = { ':lua require("telescope.builtin").live_grep()<cr>', 'Live Grep' },
 		b = { ':lua require("telescope.builtin").buffers()<cr>', 'Find Buffers' },
 		h = { ':lua require("telescope.builtin").help_tags()<cr>', 'Help Tags' },
+		o = { ':lua require("telescope.builtin").vim_options()<cr>', 'Vim Options' },
+		t = { ':lua require("telescope.builtin").treesitter()<cr>', 'Vim Options' },
+		G = {
+			name = 'Git',
+			c = { ':lua require("telescope.builtin").git_commits()<cr>', 'List All Commits' },
+			C = { ':lua require("telescope.builtin").git_commits()<cr>', 'List Buffer Commits' },
+			b = { ':lua require("telescope.builtin").git_branches()<cr>', 'List Branches' },
+			s = { ':lua require("telescope.builtin").git_status()<cr>', 'List Current Changes' },
+			S = { ':lua require("telescope.builtin").git_stash()<cr>', 'List Stash Items' },
+		},
 	},
 }
 -- GitSigns
@@ -82,6 +115,7 @@ wk.register {
 	['<C-p>'] = { ':BufferPick<cr>', 'Pick Buffer' },
 	-- Sort automatically
 	['<leader>'] = {
+		name = 'Order Buffers',
 		bb = { ':BufferOrderByBufferNumber<cr>', 'Order Buffers By Number' },
 		bd = { ':BufferOrderByDirectory<cr>', 'Order Buffers By Directory' },
 		bl = { ':BufferOrderByLanguage<cr>', 'Order Buffers By Language' },
