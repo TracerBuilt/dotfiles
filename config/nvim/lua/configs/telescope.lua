@@ -1,6 +1,14 @@
 local telescope = require 'telescope'
 
 telescope.setup {
+	defaults = {
+		mappings = {
+			i = {
+				['<esc>'] = 'close',
+				['<C-h>'] = 'which_key',
+			},
+		},
+	},
 	extensions = {
 		fzf = {
 			fuzzy = true,

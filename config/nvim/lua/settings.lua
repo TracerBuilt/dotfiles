@@ -25,6 +25,21 @@ o.mousemodel = 'popup'
 -- Spacing
 o.autoindent = true
 o.expandtab = false
-o.tabstop = 4
-o.shiftwidth = 4
+o.tabstop = 3
+o.shiftwidth = 3
 o.smartindent = true
+
+-- Detect alternative file types
+vim.cmd [[
+	if exists("did_load_filetypes") 
+		finish
+	endif
+	augroup filetypedetect
+		au! BufRead,BufNewFile *.mdx setfiletype markdown
+		au! BufRead,BufNewFile *.svx setfiletype markdown
+	  au! BufRead,BufNewFile .prettierrc setfiletype json
+	  au! BufRead,BufNewFile .stylelintrc setfiletype json
+	  au! BufRead,BufNewFile .eslintrc setfiletype json
+	  au! BufRead,BufNewFile .babelrc setfiletype json
+	augroup END
+]]
