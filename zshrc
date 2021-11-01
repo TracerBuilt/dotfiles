@@ -42,7 +42,7 @@ ZSH_THEME="awesomepanda"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
@@ -87,6 +87,7 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+export TERM='xterm-kitty'
 export EDITOR='nvim'
 
 # Compilation flags
@@ -136,3 +137,4 @@ export NNN_PLUG='f:fzcd;o:fzopen;g:gutenread;i:ipinfo;l:launch;p:preview-tabbed;
 
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_OPENER=/User/thewildgander/.config/nnn/plugins/nuke
+export PATH="/usr/local/sbin:$PATH"
