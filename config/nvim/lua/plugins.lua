@@ -70,25 +70,32 @@ return require('packer').startup {
 			},
 			'williamboman/nvim-lsp-installer',
 			{
+				'jose-elias-alvarez/nvim-lsp-ts-utils',
+				requires = { 'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim', 'jose-elias-alvarez/null-ls.nvim' },
+			},
+			{
+				'jose-elias-alvarez/null-ls.nvim',
+				config = [[require('configs.lspconfig.null-ls')]],
+				requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+			},
+			{
 				'hrsh7th/nvim-cmp',
 				requires = {
+					'neovim/nvim-lspconfig',
+					'hrsh7th/cmp-nvim-lsp',
+					'hrsh7th/cmp-buffer',
+					'hrsh7th/cmp-path',
+					'hrsh7th/cmp-cmdline',
+					'saadparwaiz1/cmp_luasnip',
 					{
 						'L3MON4D3/LuaSnip',
 						config = [[require('configs.luasnip')]],
+						requires = { 'rafamadriz/friendly-snippets' },
 					},
-					'hrsh7th/cmp-nvim-lsp',
-					{ 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-					{ 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
-					'rafamadriz/friendly-snippets',
-					{ 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp', after = 'nvim-cmp' },
 				},
 				config = [[require('configs.cmp')]],
 			},
-			{
-				'RishabhRD/nvim-lsputils',
-				requires = 'RishabhRD/popfix',
-				config = [[require('configs.lsputils')]],
-			},
+			'github/copilot.vim',
 		}
 		-- Highlighting
 		use {
@@ -99,6 +106,13 @@ return require('packer').startup {
 			},
 			'nvim-treesitter/playground',
 		}
+		use {
+			'plasticboy/vim-markdown',
+			requires = 'godlygeek/tabular',
+			setup = [[require('configs.markdown')]],
+		}
+		-- Cursor line
+		use 'yamatsum/nvim-cursorline'
 		-- Diagnostics
 		use {
 			'folke/trouble.nvim',
@@ -174,15 +188,23 @@ return require('packer').startup {
 		-- Color schemes
 		use {
 			'Pocco81/Catppuccino.nvim',
-			config = [[require('configs.catppuccino')]],
+			config = [[require('configs.colorschemes.catppuccino')]],
 		}
 		use 'bluz71/vim-nightfly-guicolors'
-		use 'folke/tokyonight.nvim'
+
+		use {
+			'folke/tokyonight.nvim',
+			-- config = [[require('configs.colorschemes.tokyonight')]],
+		}
 		use 'sainnhe/sonokai'
 		use 'shaunsingh/nord.nvim'
 		use 'navarasu/onedark.nvim'
 		use 'sainnhe/everforest'
 		use 'EdenEast/nightfox.nvim'
+		use {
+			'mcchrish/zenbones.nvim',
+			requires = 'rktjmp/lush.nvim',
+		}
 	end,
 	config = {
 		display = {
