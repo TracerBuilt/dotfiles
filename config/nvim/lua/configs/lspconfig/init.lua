@@ -1,11 +1,11 @@
 local lsp_installer = require 'nvim-lsp-installer'
 local on_attach = require 'configs.lspconfig.on-attach'
-local format_config = require 'configs.lspconfig.format'
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 	signs = true,
 	virtual_text = false,
 	underline = true,
+	update_in_insert = false,
 })
 
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'single' })
@@ -36,28 +36,23 @@ lsp_installer.on_server_ready(function(server)
 		capabilities = capabilities,
 		on_attach = on_attach,
 	}
-	if server.name == 'lua' then
-		opts.completion = { keywordSnippet = 'Both' }
-		opts.diagnostics = { globals = { 'vim' } }
-		opts.runtime = {
-			version = 'LuaJIT',
-			path = vim.split(package.path, ';'),
-		}
-		opts.workspace = {
-			libaray = {
-				[vim.fn.expand '$VIMRUNTIME/lua'] = true,
-				[vim.fn.expand '$VIMRUNTIME/lua/vim/lsp'] = true,
+	if server.name == 'sumneko_lua' then
+		opts.settings = {
+			Lua = {
+				completion = { keywordSnippet = 'Both' },
+				diagnostics = { globals = { 'vim' } },
+				runtime = {
+					version = 'LuaJIT',
+					path = vim.split(package.path, ';'),
+				},
+				workspace = {
+					libaray = {
+						[vim.fn.expand '$VIMRUNTIME/lua'] = true,
+						[vim.fn.expand '$VIMRUNTIME/lua/vim/lsp'] = true,
+					},
+				},
 			},
 		}
-	elseif server.name == 'efm' then
-		opts.init_options = {
-			documentFormatting = true,
-			hover = true,
-			documentSymbol = true,
-			codeAction = true,
-		}
-		opts.filetypes = vim.tbl_keys(format_config)
-		opts.settings = { languages = format_config }
 	end
 
 	server:setup(opts)

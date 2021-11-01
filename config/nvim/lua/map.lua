@@ -10,22 +10,17 @@ map('i', 'jk', '<ESC>', { noremap = true })
 -- LSP
 wk.register {
 	g = {
-		d = { '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>', 'Go-To Defintion' },
+		d = { '<cmd>Telescope lsp_definitions<cr>', 'Go-To Defintion' },
 		D = { '<cmd>lua vim.lsp.buf.declaration()<cr>', 'Go-To Declaration' },
-		i = { '<cmd>lua require("telescope.builtin").lsp_implementations()<cr>', 'List All Implementations' },
-		r = { '<cmd>lua require("telescope.builtin").lsp_references()<cr>', 'List All References' },
-		t = { '<cmd>lua require("telescope.builtin").lsp_type_definitions()<cr>', 'Go-To Type Definition' },
+		i = { '<cmd>Telescope lsp_implementations<cr>', 'List All Implementations' },
+		r = { '<cmd>Telescope lsp_references<cr>', 'List All References' },
+		t = { '<cmd>Telescope lsp_type_definitions()<cr>', 'Go-To Type Definition' },
 	},
 	K = { '<cmd>lua vim.lsp.buf.hover()<cr>', 'Display Hover Info' },
 	['C-k'] = { '<cmd>lua vim.lsp.buf.signature_help()<cr>', 'Display Signature Info' },
 	['<leader>'] = {
-		w = {
-			a = { '<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>', 'Add Workspace Folder' },
-			r = { '<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>', 'Remove Workspace Folder' },
-			l = { '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>', 'List Workspace Folders' },
-		},
 		rn = { '<cmd>lua vim.lsp.buf.rename()<cr>', 'Rename All References' },
-		ca = { '<cmd>lua require("telescope.builtin").lsp_code_actions()<cr>', 'Code Actions' },
+		ca = { '<cmd>Telescope lsp_code_actions<cr>', 'Code Actions' },
 		F = { '<cmd>lua vim.lsp.buf.formatting()<cr>', 'Format File' },
 	},
 }
@@ -40,22 +35,22 @@ wk.register {
 wk.register {
 	['<leader>f'] = {
 		name = 'File',
-		f = { '<cmd>lua require("telescope.builtin").find_files()<cr>', 'Find Files' },
-		g = { '<cmd>lua require("telescope.builtin").live_grep()<cr>', 'Live Grep' },
-		b = { '<cmd>lua require("telescope.builtin").buffers()<cr>', 'Find Buffers' },
-		h = { '<cmd>lua require("telescope.builtin").help_tags()<cr>', 'Help Tags' },
-		o = { '<cmd>lua require("telescope.builtin").vim_options()<cr>', 'Vim Options' },
-		t = { '<cmd>lua require("telescope.builtin").treesitter()<cr>', 'Treesitter Symbols' },
-		c = { '<cmd>lua require("telescope.builtin").colorscheme()<cr>', 'Color Schemes' },
-		i = { '<cmd>lua require("telescope.builtin").highlights()<cr>', 'Color Schemes' },
+		f = { '<cmd>Telescope find_files<cr>', 'Find Files' },
+		g = { '<cmd> Telescope live_grep<cr>', 'Live Grep' },
+		b = { '<cmd>Telescope buffers<cr>', 'Find Buffers' },
+		h = { '<cmd>Telescope help_tags<cr>', 'Help Tags' },
+		o = { '<cmd>Telescope vim_options<cr>', 'Vim Options' },
+		t = { '<cmd>Telescope treesitter<cr>', 'Treesitter Symbols' },
+		c = { '<cmd>Telescope colorscheme<cr>', 'Color Schemes' },
+		i = { '<cmd>Telescope highlights<cr>', 'Color Schemes' },
 
 		G = {
 			name = 'Git',
-			c = { '<cmd>lua require("telescope.builtin").git_commits()<cr>', 'List All Commits' },
-			C = { '<cmd>lua require("telescope.builtin").git_commits()<cr>', 'List Buffer Commits' },
-			b = { '<cmd>lua require("telescope.builtin").git_branches()<cr>', 'List Branches' },
-			s = { '<cmd>lua require("telescope.builtin").git_status()<cr>', 'List Current Changes' },
-			S = { '<cmd>lua require("telescope.builtin").git_stash()<cr>', 'List Stash Items' },
+			c = { '<cmd>Telescope git_commits<cr>', 'List All Commits' },
+			C = { '<cmd>Telescope git_bcommits<cr>', 'List Buffer Commits' },
+			b = { '<cmd>Telescope git_branches<cr>', 'List Branches' },
+			s = { '<cmd>Telescope git_status<cr>', 'List Current Changes' },
+			S = { '<cmd>Telescope git_stash<cr>', 'List Stash Items' },
 		},
 	},
 }
