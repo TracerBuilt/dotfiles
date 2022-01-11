@@ -1,2 +1,3 @@
 **/*.DS_Store
 config/nnn/.lastd
+config/github-copilot
