@@ -1,3 +1,4 @@
 **/*.DS_Store
 config/nnn/.lastd
 config/github-copilot/
+config/github-copilot/hosts.json
