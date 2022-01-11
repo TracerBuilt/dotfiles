@@ -205,35 +205,31 @@ return require('packer').startup {
 		}
 
 		-- Color schemes
-		-- use {
-		-- 'catppuccin/nvim',
-		-- config = [[require('configs.colorschemes.catppuccin')]],
-		-- }
-		-- use 'bluz71/vim-nightfly-guicolors'
+		use {
+			'catppuccin/nvim',
+		}
+		use 'bluz71/vim-nightfly-guicolors'
 		use {
 			'bluz71/vim-moonfly-colors',
 			config = [[require('configs.colorschemes.moonfly')]],
 		}
-		-- use {
-		-- 'folke/tokyonight.nvim',
-		-- config = [[require('configs.colorschemes.tokyonight')]],
-		-- }
-		-- use {
-		-- 'sainnhe/sonokai',
-		-- config = [[require('configs.colorschemes.sonokai')]],
-		-- }
-		-- use 'shaunsingh/nord.nvim'
-		-- use {
-		-- 'navarasu/onedark.nvim',
-		-- config = [[require('configs.colorschemes.onedark')]],
-		-- }
-		-- use 'sainnhe/everforest'
-		-- use 'EdenEast/nightfox.nvim'
-		-- use 'pineapplegiant/spaceduck'
-		-- use {
-		-- 'mcchrish/zenbones.nvim',
-		-- requires = 'rktjmp/lush.nvim',
-		-- }
+		use {
+			'folke/tokyonight.nvim',
+		}
+		use {
+			'sainnhe/sonokai',
+		}
+		use 'shaunsingh/nord.nvim'
+		use {
+			'navarasu/onedark.nvim',
+		}
+		use 'sainnhe/everforest'
+		use 'EdenEast/nightfox.nvim'
+		use 'pineapplegiant/spaceduck'
+		use {
+			'mcchrish/zenbones.nvim',
+			requires = 'rktjmp/lush.nvim',
+		}
 	end,
 	config = {
 		display = {
