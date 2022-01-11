@@ -1,3 +1,5 @@
 **/*.DS_Store
 config/github-copilot/hosts.json
 config/nnn/.lastd
+config/nvim/vscode-chrome-debug/
+config/nvim/vscode-firefox-debug/
