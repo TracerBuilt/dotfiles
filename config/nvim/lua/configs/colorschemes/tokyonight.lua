@@ -3,4 +3,4 @@ vim.g.tokyonight_transparent = true
 vim.g.tokyonight_sidebars = { 'terminal', 'packer', 'NvimTree' }
 vim.g.tokyonight_transparent_sidebar = true
 
--- vim.cmd 'colorscheme tokyonight'
+vim.cmd 'colorscheme tokyonight'

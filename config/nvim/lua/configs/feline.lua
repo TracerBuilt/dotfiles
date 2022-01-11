@@ -1,43 +1,45 @@
 local vi_mode_utils = require 'feline.providers.vi_mode'
 
+local moonfly = {
+
+	bg = 'none',
+	bg_color = '#080808',
+	fg = '#b2b2b2',
+	bold = '#eeeeee',
+	cursor = '#9e9e9e',
+	selection = '#b2ceee',
+	black = '#323437',
+	red = '#ff5454',
+	green = '#8cc85f',
+	yellow = '#e3c78a',
+	blue = '#80a0ff',
+	magenta = '#d183e8',
+	cyan = '#79dac8',
+	white = '#de935f',
+	black_br = '#f09479',
+	red_br = '#ff5189',
+	green_br = '#36c692',
+	yellow_br = '#bfbf97',
+	blue_br = '#74b2ff',
+	magenta_br = '#ae81ff',
+	cyan_br = '#85dc85',
+	white_br = '#e2637f',
+}
+
 require('feline').setup {
-	colors = {
-		bg = '#0e171c',
-		fg = '#abb2bf',
-		fg_gutter = '#3b4261',
-		black = '#393b44',
-		gray = '#2a2e36',
-		red = '#c94f6d',
-		green = '#97c374',
-		yellow = '#dbc074',
-		blue = '#61afef',
-		magenta = '#c678dd',
-		cyan = '#63cdcf',
-		white = '#dfdfe0',
-		orange = '#F4A261',
-		pink = '#D67AD2',
-		black_br = '#7f8c98',
-		red_br = '#e06c75',
-		green_br = '#58cd8b',
-		yellow_br = '#FFE37E',
-		blue_br = '#84CEE4',
-		magenta_br = '#B8A1E3',
-		cyan_br = '#59F0FF',
-		white_br = '#FDEBC3',
-		orange_br = '#F6A878',
-		pink_br = '#DF97DB',
-		comment = '#526175',
-	},
+	theme = moonfly,
 	components = {
 		active = {
 			-- Left side
 			{
 				{
+
 					provider = 'vi_mode',
 					hl = function()
 						return {
 							name = vi_mode_utils.get_mode_highlight_name(),
 							fg = vi_mode_utils.get_mode_color(),
+							bg = 'bg',
 							style = 'bold',
 						}
 					end,
@@ -47,16 +49,20 @@ require('feline').setup {
 				{
 					provider = 'file_info',
 					hl = {
-						fg = 'white',
-						bg = 'fg_gutter',
+						fg = 'bg_color',
+						bg = 'fg',
 						style = 'bold',
 					},
 					left_sep = {
 						' ',
 						'slant_left_2',
-						{ str = ' ', hl = { bg = 'fg_gutter', fg = 'NONE' } },
+						{ str = ' ', hl = { bg = 'fg', fg = 'NONE' } },
 					},
-					right_sep = { 'slant_right_2', ' ' },
+					right_sep = {
+						{ str = ' ', hl = { bg = 'fg', fg = 'NONE' } },
+						'slant_right_2',
+						' ',
+					},
 				},
 				{
 					provider = 'diagnostic_errors',
@@ -72,7 +78,7 @@ require('feline').setup {
 				},
 				{
 					provider = 'diagnostic_info',
-					hl = { fg = 'white' },
+					hl = { fg = 'fg' },
 				},
 			},
 			-- Right side
@@ -87,7 +93,7 @@ require('feline').setup {
 				{
 					provider = 'git_diff_changed',
 					hl = {
-						fg = 'orange',
+						fg = 'yellow',
 					},
 				},
 				{
@@ -99,8 +105,7 @@ require('feline').setup {
 				{
 					provider = 'git_branch',
 					hl = {
-						fg = 'white',
-						style = 'bold',
+						fg = 'fg',
 					},
 					left_sep = {
 						str = ' ',
@@ -120,41 +125,35 @@ require('feline').setup {
 					provider = 'position',
 					left_sep = {
 						str = ' ',
-						hl = {
-							bg = 'black',
-						},
+						hl = {},
 					},
 					hl = {
-						fg = 'white',
-						bg = 'black',
+						fg = 'fg',
+
 						style = 'bold',
 					},
 				},
 				{
 					provider = 'line_percentage',
 					hl = {
-						fg = 'white',
-						bg = 'black',
+						fg = 'fg',
+
 						style = 'bold',
 					},
 					left_sep = {
 						str = ' ',
-						hl = {
-							bg = 'black',
-						},
+						hl = {},
 					},
 					right_sep = {
 						str = ' ',
-						hl = {
-							bg = 'black',
-						},
+						hl = {},
 					},
 				},
 				{
 					provider = 'scroll_bar',
 					hl = {
-						bg = 'black',
-						fg = 'blue',
+
+						fg = 'magenta',
 						style = 'bold',
 					},
 				},
@@ -165,30 +164,28 @@ require('feline').setup {
 				{
 					provider = 'file_type',
 					hl = {
-						fg = 'white',
-						bg = 'fg_gutter',
+						fg = 'bg_color',
+						bg = 'fg',
 						style = 'bold',
 					},
 					left_sep = {
 						str = ' ',
 						hl = {
-							fg = 'NONE',
-							bg = 'fg_gutter',
+							fg = 'bg',
+							bg = 'fg',
 						},
 					},
 					right_sep = {
 						{
 							str = ' ',
 							hl = {
-								fg = 'NONE',
-								bg = 'fg_gutter',
+								fg = 'bg',
+								bg = 'fg',
 							},
 						},
 						'slant_right',
 					},
 				},
-				-- Empty component to fix the highlight till the end of the statusline
-				{},
 			},
 		},
 	},

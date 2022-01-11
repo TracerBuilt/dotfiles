@@ -61,3 +61,12 @@ vim.g.bufferline = {
 	-- where X is the buffer number. But only a static string is accepted here.
 	no_name_title = nil,
 }
+
+vim.cmd [[
+	hi BufferTabPageFill guibg=none
+	hi BufferInactive guibg=none
+	hi BufferInactiveIndex guibg=none
+	hi BufferInactiveMod guibg=none
+	hi BufferInactiveSign guibg=none
+	hi BufferInactiveTarget guibg=none
+]]

@@ -10,138 +10,138 @@ map('i', 'jk', '<ESC>', { noremap = true })
 -- LSP
 wk.register {
 	g = {
-		d = { '<cmd>Telescope lsp_definitions<cr>', 'Go-To Defintion' },
-		D = { '<cmd>lua vim.lsp.buf.declaration()<cr>', 'Go-To Declaration' },
-		i = { '<cmd>Telescope lsp_implementations<cr>', 'List All Implementations' },
-		r = { '<cmd>Telescope lsp_references<cr>', 'List All References' },
-		t = { '<cmd>Telescope lsp_type_definitions()<cr>', 'Go-To Type Definition' },
+		d = { '<cmd>Telescope lsp_definitions<CR>', 'Go-To Defintion' },
+		D = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Go-To Declaration' },
+		i = { '<cmd>Telescope lsp_implementations<CR>', 'List All Implementations' },
+		r = { '<cmd>Telescope lsp_references<CR>', 'List All References' },
+		y = { '<cmd>Telescope lsp_type_definitions()<CR>', 'Go-To Type Definition' },
 	},
-	K = { '<cmd>lua vim.lsp.buf.hover()<cr>', 'Display Hover Info' },
-	['C-k'] = { '<cmd>lua vim.lsp.buf.signature_help()<cr>', 'Display Signature Info' },
+	K = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'Display Hover Info' },
+	['C-k'] = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Display Signature Info' },
 	['<leader>'] = {
-		rn = { '<cmd>lua vim.lsp.buf.rename()<cr>', 'Rename All References' },
-		ca = { '<cmd>Telescope lsp_code_actions<cr>', 'Code Actions' },
-		F = { '<cmd>lua vim.lsp.buf.formatting()<cr>', 'Format File' },
+		rn = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename All References' },
+		ca = { '<cmd>Telescope lsp_code_actions<CR>', 'Code Actions' },
+		F = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'Format File' },
 	},
 }
 
 -- nvim-tree
 wk.register {
-	['<C-n>'] = { '<cmd>lua require("ui.treetoggle").toggle()<cr>', 'Toggle File Tree' },
-	['<leader>r'] = { '<cmd>NvimTreeRefresh<cr>', 'Refresh File Tree' },
-	['<leader>n'] = { '<cmd>NvimTreeFindFile<cr>', 'Focus File Tree' },
+	['<C-n>'] = { '<cmd>lua require("ui.treetoggle").toggle()<CR>', 'Toggle File Tree' },
+	['<leader>r'] = { '<cmd>NvimTreeRefresh<CR>', 'Refresh File Tree' },
+	['<leader>n'] = { '<cmd>NvimTreeFindFile<CR>', 'Focus File Tree' },
 }
 -- Telescope
 wk.register {
 	['<leader>f'] = {
 		name = 'File',
-		f = { '<cmd>Telescope find_files<cr>', 'Find Files' },
-		g = { '<cmd> Telescope live_grep<cr>', 'Live Grep' },
-		b = { '<cmd>Telescope buffers<cr>', 'Find Buffers' },
-		h = { '<cmd>Telescope help_tags<cr>', 'Help Tags' },
-		o = { '<cmd>Telescope vim_options<cr>', 'Vim Options' },
-		t = { '<cmd>Telescope treesitter<cr>', 'Treesitter Symbols' },
-		c = { '<cmd>Telescope colorscheme<cr>', 'Color Schemes' },
-		i = { '<cmd>Telescope highlights<cr>', 'Color Schemes' },
+		f = { '<cmd>Telescope find_files<CR>', 'Find Files' },
+		g = { '<cmd> Telescope live_grep<CR>', 'Live Grep' },
+		b = { '<cmd>Telescope buffers<CR>', 'Find Buffers' },
+		h = { '<cmd>Telescope help_tags<CR>', 'Help Tags' },
+		o = { '<cmd>Telescope vim_options<CR>', 'Vim Options' },
+		t = { '<cmd>Telescope treesitter<CR>', 'Treesitter Symbols' },
+		c = { '<cmd>Telescope colorscheme<CR>', 'Color Schemes' },
+		i = { '<cmd>Telescope highlights<CR>', 'Color Schemes' },
 
 		G = {
 			name = 'Git',
-			c = { '<cmd>Telescope git_commits<cr>', 'List All Commits' },
-			C = { '<cmd>Telescope git_bcommits<cr>', 'List Buffer Commits' },
-			b = { '<cmd>Telescope git_branches<cr>', 'List Branches' },
-			s = { '<cmd>Telescope git_status<cr>', 'List Current Changes' },
-			S = { '<cmd>Telescope git_stash<cr>', 'List Stash Items' },
+			c = { '<cmd>Telescope git_commits<CR>', 'List All Commits' },
+			C = { '<cmd>Telescope git_bcommits<CR>', 'List Buffer Commits' },
+			b = { '<cmd>Telescope git_branches<CR>', 'List Branches' },
+			s = { '<cmd>Telescope git_status<CR>', 'List Current Changes' },
+			S = { '<cmd>Telescope git_stash<CR>', 'List Stash Items' },
 		},
 	},
 }
 -- GitSigns
 wk.register {
-	[']c'] = { expr = true, '&diff ? "]c" : "<cmd>lua require\'gitsigns.actions\'.next_hunk()<cr>"', 'Next Hunk' },
+	[']c'] = { expr = true, '&diff ? "]c" : "<cmd>lua require\'gitsigns.actions\'.next_hunk()<CR>"', 'Next Hunk' },
 	['[c'] = {
 		expr = true,
-		'&diff ? "[c" : "<cmd>lua require\'gitsigns.actions\'.prev_hunk()<cr>"',
+		'&diff ? "[c" : "<cmd>lua require\'gitsigns.actions\'.prev_hunk()<CR>"',
 		'Previous Hunk',
 	},
 	['<leader>h'] = {
 		name = 'GitSigns Actions',
-		['s'] = { '<cmd>lua require("gitsigns").stage_hunk<cr>', 'Stage Hunk' },
-		['u'] = { '<cmd>lua require("gitsigns").undo_stage_hunk<cr>', 'Undo Stage Hunk' },
-		['r'] = { '<cmd>lua require("gitsigns").reset_hunk<cr>', 'Reset Hunk' },
-		['R'] = { '<cmd>lua require"gitsigns".reset_buffer()<cr>', 'Reset Buffer' },
-		['p'] = { '<cmd>lua require"gitsigns".preview_hunk()<cr>', 'Preview Hunk' },
-		['b'] = { '<cmd>lua require"gitsigns".blame_line(true)<cr>', 'Blame Line' },
-		['S'] = { '<cmd>lua require"gitsigns".stage_buffer()<cr>', 'Stage Buffer' },
-		['U'] = { '<cmd>lua require"gitsigns".reset_buffer_index()<cr>', 'Reset Buffer' },
+		['s'] = { '<cmd>lua require("gitsigns").stage_hunk<CR>', 'Stage Hunk' },
+		['u'] = { '<cmd>lua require("gitsigns").undo_stage_hunk<CR>', 'Undo Stage Hunk' },
+		['r'] = { '<cmd>lua require("gitsigns").reset_hunk<CR>', 'Reset Hunk' },
+		['R'] = { '<cmd>lua require"gitsigns".reset_buffer()<CR>', 'Reset Buffer' },
+		['p'] = { '<cmd>lua require"gitsigns".preview_hunk()<CR>', 'Preview Hunk' },
+		['b'] = { '<cmd>lua require"gitsigns".blame_line(true)<CR>', 'Blame Line' },
+		['S'] = { '<cmd>lua require"gitsigns".stage_buffer()<CR>', 'Stage Buffer' },
+		['U'] = { '<cmd>lua require"gitsigns".reset_buffer_index()<CR>', 'Reset Buffer' },
 	},
 }
 wk.register({
 	['<leader>h'] = {
 		name = 'GitSigns Actions',
-		s = { '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<cr>', 'Stage Hunk' },
-		r = { '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<cr>', 'Reset Hunk' },
+		s = { '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>', 'Stage Hunk' },
+		r = { '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>', 'Reset Hunk' },
 	},
 }, {
 	mode = 'v',
 })
 wk.register({
-	['ih'] = { '<cmd>C-U>lua require"gitsigns.actions".select_hunk()<cr>' },
+	['ih'] = { '<cmd>C-U>lua require"gitsigns.actions".select_hunk()<CR>' },
 }, { mode = 'o' })
 wk.register({
-	['ih'] = { '<cmd>C-U>lua require"gitsigns.actions".select_hunk()<cr>' },
+	['ih'] = { '<cmd>C-U>lua require"gitsigns.actions".select_hunk()<CR>' },
 }, { mode = 'x' })
 
 -- Barbar
 wk.register {
-	['<A-,>'] = { '<cmd>BufferPrevious<cr>', 'Previous Buffer' },
-	['<A-.>'] = { '<cmd>BufferNext<cr>', 'Next Buffer' },
+	['<A-,>'] = { '<cmd>BufferPrevious<CR>', 'Previous Buffer' },
+	['<A-.>'] = { '<cmd>BufferNext<CR>', 'Next Buffer' },
 	-- Re-order
-	['<A-<>'] = { '<cmd>BufferMovePrevious<cr>', 'Re-Order Buffer To Previous' },
-	['<A->>'] = { '<cmd>BufferMoveNext<cr>', 'Re-Order Buffer To Next' },
+	['<A-<>'] = { '<cmd>BufferMovePrevious<CR>', 'Re-Order Buffer To Previous' },
+	['<A->>'] = { '<cmd>BufferMoveNext<CR>', 'Re-Order Buffer To Next' },
 	-- Goto
-	['<A-1>'] = { '<cmd>BufferGoto 1<cr>', 'Go To Buffer 1' },
-	['<A-2>'] = { '<cmd>BufferGoto 2<cr>', 'Go To Buffer 2' },
-	['<A-3>'] = { '<cmd>BufferGoto 3<cr>', 'Go To Buffer 3' },
-	['<A-4>'] = { '<cmd>BufferGoto 4<cr>', 'Go To Buffer 4' },
-	['<A-5>'] = { '<cmd>BufferGoto 5<cr>', 'Go To Buffer 5' },
-	['<A-6>'] = { '<cmd>BufferGoto 6<cr>', 'Go To Buffer 6' },
-	['<A-7>'] = { '<cmd>BufferGoto 7<cr>', 'Go To Buffer 7' },
-	['<A-8>'] = { '<cmd>BufferGoto 8<cr>', 'Go To Buffer 8' },
-	['<A-9>'] = { '<cmd>BufferGoto 9<cr>', 'Go To Buffer 9' },
-	['<A-0>'] = { '<cmd>BufferLast<cr>', 'Go To Last Buffer' },
+	['<A-1>'] = { '<cmd>BufferGoto 1<CR>', 'Go To Buffer 1' },
+	['<A-2>'] = { '<cmd>BufferGoto 2<CR>', 'Go To Buffer 2' },
+	['<A-3>'] = { '<cmd>BufferGoto 3<CR>', 'Go To Buffer 3' },
+	['<A-4>'] = { '<cmd>BufferGoto 4<CR>', 'Go To Buffer 4' },
+	['<A-5>'] = { '<cmd>BufferGoto 5<CR>', 'Go To Buffer 5' },
+	['<A-6>'] = { '<cmd>BufferGoto 6<CR>', 'Go To Buffer 6' },
+	['<A-7>'] = { '<cmd>BufferGoto 7<CR>', 'Go To Buffer 7' },
+	['<A-8>'] = { '<cmd>BufferGoto 8<CR>', 'Go To Buffer 8' },
+	['<A-9>'] = { '<cmd>BufferGoto 9<CR>', 'Go To Buffer 9' },
+	['<A-0>'] = { '<cmd>BufferLast<CR>', 'Go To Last Buffer' },
 	--
-	['<A-c>'] = { '<cmd>BufferClose<cr>', 'Close Buffer' },
+	['<A-c>'] = { '<cmd>BufferClose<CR>', 'Close Buffer' },
 	-- Magic buffer-picking mode
-	['<C-p>'] = { '<cmd>BufferPick<cr>', 'Pick Buffer' },
+	['<C-p>'] = { '<cmd>BufferPick<CR>', 'Pick Buffer' },
 	-- Sort automatically
 	['<leader>b'] = {
 		name = 'Order Buffers',
-		b = { '<cmd>BufferOrderByBufferNumber<cr>', 'Order Buffers By Number' },
-		d = { '<cmd>BufferOrderByDirectory<cr>', 'Order Buffers By Directory' },
-		l = { '<cmd>BufferOrderByLanguage<cr>', 'Order Buffers By Language' },
+		b = { '<cmd>BufferOrderByBufferNumber<CR>', 'Order Buffers By Number' },
+		d = { '<cmd>BufferOrderByDirectory<CR>', 'Order Buffers By Directory' },
+		l = { '<cmd>BufferOrderByLanguage<CR>', 'Order Buffers By Language' },
 	},
 }
 -- Trouble
 wk.register {
 	['<leader>x'] = {
 		name = 'Diagnostics',
-		x = { '<cmd>Trouble<cr>', 'Open Diagnostics' },
-		w = { '<cmd>Trouble lsp_workspace_diagnostics<cr>', 'Open Workspace Diagnostics' },
-		d = { '<cmd>Trouble lsp_document_diagnostics<cr>', 'Open Document Diagnostics' },
-		l = { '<cmd>Trouble loclist<cr>', 'Open Location List' },
-		q = { '<cmd>Trouble quickfix<cr>', 'Open Quickfix List' },
+		x = { '<cmd>Trouble<CR>', 'Open Diagnostics' },
+		w = { '<cmd>Trouble lsp_workspace_diagnostics<CR>', 'Open Workspace Diagnostics' },
+		d = { '<cmd>Trouble lsp_document_diagnostics<CR>', 'Open Document Diagnostics' },
+		l = { '<cmd>Trouble loclist<CR>', 'Open Location List' },
+		q = { '<cmd>Trouble quickfix<CR>', 'Open Quickfix List' },
 	},
-	['gR'] = { '<cmd>Trouble lsp_references<cr>', 'LSP References' },
+	['gR'] = { '<cmd>Trouble lsp_references<CR>', 'LSP References' },
 }
 -- Zen Mode
 wk.register {
-	['<leader>z'] = { '<cmd>TZA<cr>', 'Zen Mode' },
+	['<leader>z'] = { '<cmd>ZenMode<CR>', 'Zen Mode' },
 }
 -- Git diffing
 wk.register {
 	['<leader>'] = {
 
-		d = { '<cmd>DiffviewOpen<cr>', 'Open Git Diff' },
+		d = { '<cmd>DiffviewOpen<CR>', 'Open Git Diff' },
 
-		dq = { '<cmd>DiffviewClose<cr>', 'Close Git Diff' },
+		dq = { '<cmd>DiffviewClose<CR>', 'Close Git Diff' },
 	},
 }

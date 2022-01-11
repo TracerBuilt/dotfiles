@@ -5,10 +5,14 @@ vim.g.nvim_tree_window_picker_exclude = {
 	filetype = { 'notify', 'packer', 'qf' },
 	buftype = { 'terminal' },
 }
+
 -- Dictionary of buffer option names mapped to a list of option values that
 -- indicates to the window picker that the buffer's window should not be
 -- selectable.
 require('nvim-tree').setup {
+	diagnostics = {
+		enable = true,
+	},
 	filters = {
 		custom = { '.git', '.DS_Store' },
 	},

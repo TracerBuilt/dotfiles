@@ -1,11 +1,14 @@
 local telescope = require 'telescope'
+local actions = require 'telescope.actions'
 
 telescope.setup {
 	defaults = {
+		layout_strategy = 'flex',
+		scroll_strategy = 'cycle',
 		mappings = {
 			i = {
-				['<esc>'] = 'close',
-				['<C-h>'] = 'which_key',
+				['<esc>'] = actions.close,
+				['<C-h>'] = actions.which_key,
 			},
 		},
 	},
@@ -15,6 +18,15 @@ telescope.setup {
 			override_generic_sorter = true,
 			override_file_sorter = true,
 			case_mode = 'smart_case',
+		},
+	},
+	pickers = {
+		lsp_references = { theme = 'cursor' },
+		lsp_code_actions = { theme = 'cursor' },
+		lsp_definition = { theme = 'cursor' },
+		lsp_impl_definition = { theme = 'cursor' },
+		buffers = {
+			sort_lastused = true,
 		},
 	},
 }

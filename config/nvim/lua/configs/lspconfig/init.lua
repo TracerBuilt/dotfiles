@@ -1,15 +1,28 @@
 local lsp_installer = require 'nvim-lsp-installer'
 local on_attach = require 'configs.lspconfig.on-attach'
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-	signs = true,
-	virtual_text = false,
-	underline = true,
-	update_in_insert = false,
-})
+local border = {
+	{ '🭽', 'FloatBorder' },
+	{ '▔', 'FloatBorder' },
+	{ '🭾', 'FloatBorder' },
+	{ '▕', 'FloatBorder' },
+	{ '🭿', 'FloatBorder' },
+	{ '▁', 'FloatBorder' },
+	{ '🭼', 'FloatBorder' },
+	{ '▏', 'FloatBorder' },
+}
 
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'single' })
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'single' })
+-- LSP settings (for overriding per client)
+local handlers = {
+	['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+		signs = true,
+		virtual_text = false,
+		underline = true,
+		update_in_insert = false,
+	}),
+	['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+	['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+}
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -35,7 +48,23 @@ lsp_installer.on_server_ready(function(server)
 	local opts = {
 		capabilities = capabilities,
 		on_attach = on_attach,
+		handlers = handlers,
 	}
+	if server.name == 'tsserver' then
+		opts.init_options = require('nvim-lsp-ts-utils').init_options
+	end
+	if server.name == 'eslint' then
+		opts.filetypes = {
+			'svelte',
+			'javascript',
+			'javascriptreact',
+			'javascript.jsx',
+			'typescript',
+			'typescriptreact',
+			'typescript.tsx',
+			'vue',
+		}
+	end
 	if server.name == 'sumneko_lua' then
 		opts.settings = {
 			Lua = {
@@ -54,10 +83,30 @@ lsp_installer.on_server_ready(function(server)
 			},
 		}
 	end
-
+	if server.name == 'stylelint_lsp' then
+		opts.filetypes = {
+			'css',
+			'less',
+			'scss',
+			'sugarss',
+			'svelte',
+			'vue',
+			'wxss',
+			'javascript',
+			'javascriptreact',
+			'typescript',
+			'typescriptreact',
+		}
+		opts.settings = {
+			autoFixOnFormat = true,
+		}
+	end
 	server:setup(opts)
 
 	vim.cmd [[ do User LspAttachBuffers ]]
 end)
 
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]]
+require 'configs.lspconfig.null-ls'
+
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]

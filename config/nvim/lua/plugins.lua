@@ -12,15 +12,8 @@ return require('packer').startup {
 		use 'wbthomason/packer.nvim'
 		-- Indentation helpers
 		use {
-			{
-				'lukas-reineke/indent-blankline.nvim',
-				config = [[require('configs.indent-blankline')]],
-			},
-			{
-				'p00f/nvim-ts-rainbow',
-				requires = { 'nvim-treesitter/nvim-treesitter' },
-				config = [[require('configs.treesitter')]],
-			},
+			'lukas-reineke/indent-blankline.nvim',
+			config = [[require('configs.indent-blankline')]],
 		}
 		-- Fuzzy search
 		use {
@@ -28,18 +21,17 @@ return require('packer').startup {
 				'nvim-telescope/telescope.nvim',
 				requires = {
 					'nvim-lua/plenary.nvim',
-					'telescope-frecency.nvim',
-					'telescope-fzf-native.nvim',
+					'nvim-telescope/telescope-fzf-native.nvim',
 				},
 				config = [[require('configs.telescope')]],
 			},
 			{
 				'nvim-telescope/telescope-frecency.nvim',
 				after = 'telescope.nvim',
-				requires = {
-					'tami5/sqlite.lua',
-					'kyazdani42/nvim-web-devicons',
-				},
+				requires = 'tami5/sqlite.lua',
+				config = function()
+					require('telescope').load_extension 'frecency'
+				end,
 			},
 			{
 				'nvim-telescope/telescope-fzf-native.nvim',
@@ -61,7 +53,7 @@ return require('packer').startup {
 		}
 		-- Symbols
 		use 'kyazdani42/nvim-web-devicons'
-		-- Completion and linting
+		-- LSP
 		use {
 			'onsails/lspkind-nvim',
 			{
@@ -70,14 +62,10 @@ return require('packer').startup {
 			},
 			'williamboman/nvim-lsp-installer',
 			{
-				'jose-elias-alvarez/nvim-lsp-ts-utils',
-				requires = { 'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim', 'jose-elias-alvarez/null-ls.nvim' },
-			},
-			{
 				'jose-elias-alvarez/null-ls.nvim',
-				config = [[require('configs.lspconfig.null-ls')]],
 				requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
 			},
+			'jose-elias-alvarez/nvim-lsp-ts-utils',
 			{
 				'hrsh7th/nvim-cmp',
 				requires = {
@@ -95,13 +83,20 @@ return require('packer').startup {
 				},
 				config = [[require('configs.cmp')]],
 			},
+			'ray-x/lsp_signature.nvim',
 			'github/copilot.vim',
+		}
+		-- Code Actions
+		use {
+			'kosayoda/nvim-lightbulb',
+			config = [[require('configs.lightbulb')]],
 		}
 		-- Highlighting
 		use {
 			{
 				'nvim-treesitter/nvim-treesitter',
 				config = [[require('configs.treesitter')]],
+				requires = { 'p00f/nvim-ts-rainbow' },
 				run = ':TSUpdate',
 			},
 			'nvim-treesitter/playground',
@@ -110,6 +105,15 @@ return require('packer').startup {
 			'plasticboy/vim-markdown',
 			requires = 'godlygeek/tabular',
 			setup = [[require('configs.markdown')]],
+		}
+		-- Registers
+		use {
+			'AckslD/nvim-neoclip.lua',
+			requires = {
+				{ 'tami5/sqlite.lua', module = 'sqlite' },
+				'nvim-telescope/telescope.nvim',
+			},
+			config = [[require('configs.neoclip')]],
 		}
 		-- Cursor line
 		use 'yamatsum/nvim-cursorline'
@@ -122,7 +126,7 @@ return require('packer').startup {
 		-- Sidebar
 		use {
 			'kyazdani42/nvim-tree.lua',
-			requires = 'kyazdani42/nvim-web-devicons',
+			requires = { 'kyazdani42/nvim-web-devicons' },
 			config = [[require('configs.tree')]],
 		}
 		-- Terminal
@@ -141,6 +145,11 @@ return require('packer').startup {
 			'romgrk/barbar.nvim',
 			requires = { 'kyazdani42/nvim-web-devicons' },
 			config = [[require('configs.barbar')]],
+		}
+		-- Notifications
+		use {
+			'rcarriga/nvim-notify',
+			config = [[require('configs.notify')]],
 		}
 		-- WhichKey
 		use {
@@ -166,11 +175,15 @@ return require('packer').startup {
 		}
 		-- Surround
 		use 'tpope/vim-surround'
-		-- Motion
-		use { 'ggandor/lightspeed.nvim', requires = 'tpope/vim-repeat' } -- Zen mode
+		-- Repeatable commands
+		use 'tpope/vim-repeat'
+		-- Motions
+		use 'ggandor/lightspeed.nvim'
+		-- Zen mode
 		use {
-			'Pocco81/TrueZen.nvim',
-			config = [[require('configs.truezen')]],
+			'folke/zen-mode.nvim',
+			requires = 'folke/twilight.nvim',
+			config = [[require('configs.zen-mode')]],
 		}
 		-- Commenting
 		use 'b3nj5m1n/kommentary'
@@ -179,32 +192,48 @@ return require('packer').startup {
 			'norcalli/nvim-colorizer.lua',
 			config = [[require('configs.colorizer')]],
 		}
+		-- Debugging
 		use {
-			'nvim-neorg/neorg',
-			requires = 'nvim-lua/plenary.nvim',
-			config = [[require('configs.neorg')]],
-			after = 'nvim-treesitter',
+			{
+				'mfussenegger/nvim-dap',
+				config = [[require('configs.dap')]],
+			},
+			{
+				'rcarriga/nvim-dap-ui',
+				config = [[require('configs.dap-ui')]],
+			},
 		}
-		-- Color schemes
-		use {
-			'Pocco81/Catppuccino.nvim',
-			config = [[require('configs.colorschemes.catppuccino')]],
-		}
-		use 'bluz71/vim-nightfly-guicolors'
 
+		-- Color schemes
+		-- use {
+		-- 'catppuccin/nvim',
+		-- config = [[require('configs.colorschemes.catppuccin')]],
+		-- }
+		-- use 'bluz71/vim-nightfly-guicolors'
 		use {
-			'folke/tokyonight.nvim',
-			-- config = [[require('configs.colorschemes.tokyonight')]],
+			'bluz71/vim-moonfly-colors',
+			config = [[require('configs.colorschemes.moonfly')]],
 		}
-		use 'sainnhe/sonokai'
-		use 'shaunsingh/nord.nvim'
-		use 'navarasu/onedark.nvim'
-		use 'sainnhe/everforest'
-		use 'EdenEast/nightfox.nvim'
-		use {
-			'mcchrish/zenbones.nvim',
-			requires = 'rktjmp/lush.nvim',
-		}
+		-- use {
+		-- 'folke/tokyonight.nvim',
+		-- config = [[require('configs.colorschemes.tokyonight')]],
+		-- }
+		-- use {
+		-- 'sainnhe/sonokai',
+		-- config = [[require('configs.colorschemes.sonokai')]],
+		-- }
+		-- use 'shaunsingh/nord.nvim'
+		-- use {
+		-- 'navarasu/onedark.nvim',
+		-- config = [[require('configs.colorschemes.onedark')]],
+		-- }
+		-- use 'sainnhe/everforest'
+		-- use 'EdenEast/nightfox.nvim'
+		-- use 'pineapplegiant/spaceduck'
+		-- use {
+		-- 'mcchrish/zenbones.nvim',
+		-- requires = 'rktjmp/lush.nvim',
+		-- }
 	end,
 	config = {
 		display = {

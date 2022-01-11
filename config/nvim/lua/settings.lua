@@ -15,6 +15,7 @@ o.undofile = true
 o.hlsearch = true
 o.updatetime = 500
 o.timeoutlen = 1000
+o.list = true
 
 -- Search
 o.ignorecase = true
@@ -28,6 +29,8 @@ o.expandtab = false
 o.tabstop = 3
 o.shiftwidth = 3
 o.smartindent = true
+
+vim.notify = require('notify')
 
 -- Detect alternative file types
 vim.cmd [[

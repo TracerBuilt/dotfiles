@@ -1,16 +1,18 @@
-local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
-
-parser_configs.tsx.used_by = { 'javascript', 'typescript.tsx' }
-
-parser_configs.norg = {
-	install_info = {
-		url = 'https://github.com/nvim-neorg/tree-sitter-norg',
-		files = { 'src/parser.c', 'src/scanner.cc' },
-		branch = 'main',
-	},
-}
-
 require('nvim-treesitter.configs').setup {
+	ensure_installed = {
+		'html',
+		'css',
+		'scss',
+		'javascript',
+		'typescript',
+		'tsx',
+		'svelte',
+		'graphql',
+		'toml',
+		'json',
+		'yaml',
+		'lua',
+	},
 	highlight = {
 		enable = true,
 		disable = {},
@@ -18,19 +20,6 @@ require('nvim-treesitter.configs').setup {
 	indent = {
 		enable = false,
 		disable = {},
-	},
-	ensure_installed = {
-		'javascript',
-		'typescript',
-		'tsx',
-		'css',
-		'scss',
-		'svelte',
-		'lua',
-		'toml',
-		'json',
-		'yaml',
-		'html',
 	},
 	playground = {
 		enable = true,
@@ -49,6 +38,10 @@ require('nvim-treesitter.configs').setup {
 			goto_node = '<cr>',
 			show_help = '?',
 		},
+	},
+	rainbow = {
+		enable = true,
+		max_file_lines = nil,
 	},
 }
 

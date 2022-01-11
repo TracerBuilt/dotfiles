@@ -70,7 +70,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bundler dotenv osx npm zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git bundler dotenv macos npm zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -101,40 +101,20 @@ export EDITOR='nvim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias chrome-debug='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
+alias dhide='defaults write com.apple.finder CreateDesktop false; killall Finder'
+alias dshow='defaults write com.apple.finder CreateDesktop true; killall Finder'
 
-# nnn CD on quit
-n ()
-{
-    # Block nesting of nnn in subshells
-    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
-        echo "nnn is already running"
-        return
-    fi
+export PATH="/usr/local/sbin:$PATH"
 
-    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # To cd on quit only on ^G, either remove the "export" as in:
-    #    NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    #    (or, to a custom path: NNN_TMPFILE=/tmp/.lastd)
-    # or, export NNN_TMPFILE after nnn invocation
-    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+export CC=/usr/local/Cellar/gcc/11.2.0_3/bin/gcc-11
 
-    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
-    # stty lwrap undef
-    # stty lnext undef
-
-    nnn "$@"
-
-    if [ -f "$NNN_TMPFILE" ]; then
-            . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null
-    fi
+function killport() {
+	lsof -i TCP:$1 | grep LISTEN | awk '{print $2}' | xargs kill -9
 }
-
 # nnn plugins
 export NNN_PLUG='f:fzcd;o:fzopen;g:gutenread;i:ipinfo;l:launch;p:preview-tabbed;r:rsynccp;d:diffs;t:nmount;v:imgview'
 
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_OPENER=/User/thewildgander/.config/nnn/plugins/nuke
-export PATH="/usr/local/sbin:$PATH"
+
