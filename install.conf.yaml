@@ -11,6 +11,10 @@
 - shell:
     - description: install oh-my-zsh
       command: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    - description: install zsh-autosuggestions
+      command: git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+    - description: install zsh-syntax-highlighting
+      command: git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
     - description: install homebrew
       command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     - description: install homebrew formulas
