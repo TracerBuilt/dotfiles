@@ -30,8 +30,6 @@ o.tabstop = 3
 o.shiftwidth = 3
 o.smartindent = true
 
-vim.notify = require('notify')
-
 -- Detect alternative file types
 vim.cmd [[
 	if exists("did_load_filetypes") 
