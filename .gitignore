@@ -3,3 +3,4 @@ config/github-copilot/hosts.json
 config/nnn/.lastd
 config/nvim/vscode-chrome-debug/
 config/nvim/vscode-firefox-debug/
+config/nvim/plugin/packer_compiled.lua
