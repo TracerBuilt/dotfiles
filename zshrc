@@ -118,3 +118,7 @@ export NNN_PLUG='f:fzcd;o:fzopen;g:gutenread;i:ipinfo;l:launch;p:preview-tabbed;
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_OPENER=/User/thewildgander/.config/nnn/plugins/nuke
 
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
