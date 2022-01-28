@@ -16,6 +16,7 @@ o.hlsearch = true
 o.updatetime = 500
 o.timeoutlen = 1000
 o.list = true
+o.clipboard = 'unnamedplus'
 
 -- Search
 o.ignorecase = true
