@@ -1,6 +1,5 @@
 local null_ls = require 'null-ls'
 local b = null_ls.builtins
-local on_attach = require 'configs.lspconfig.on-attach'
 
 null_ls.setup {
 	debug = true,
@@ -10,6 +9,7 @@ null_ls.setup {
 		b.diagnostics.proselint.with {
 			filetypes = { 'markdown', 'text', 'svx', 'mdx' },
 		},
+		b.diagnostics.luacheck,
 		b.formatting.prettier.with {
 			filetypes = {
 				'svelte',
