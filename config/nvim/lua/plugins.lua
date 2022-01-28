@@ -101,11 +101,6 @@ return require('packer').startup {
 			},
 			'nvim-treesitter/playground',
 		}
-		use {
-			'plasticboy/vim-markdown',
-			requires = 'godlygeek/tabular',
-			setup = [[require('configs.markdown')]],
-		}
 		-- Registers
 		use {
 			'AckslD/nvim-neoclip.lua',
