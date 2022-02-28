@@ -1,17 +1,6 @@
 local lsp_installer = require 'nvim-lsp-installer'
 local on_attach = require 'configs.lspconfig.on-attach'
 
-local border = {
-	{ '🭽', 'FloatBorder' },
-	{ '▔', 'FloatBorder' },
-	{ '🭾', 'FloatBorder' },
-	{ '▕', 'FloatBorder' },
-	{ '🭿', 'FloatBorder' },
-	{ '▁', 'FloatBorder' },
-	{ '🭼', 'FloatBorder' },
-	{ '▏', 'FloatBorder' },
-}
-
 -- LSP settings (for overriding per client)
 local handlers = {
 	['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -20,8 +9,8 @@ local handlers = {
 		underline = true,
 		update_in_insert = false,
 	}),
-	['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
-	['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+	['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' }),
+	['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' }),
 }
 
 -- Add additional capabilities supported by nvim-cmp

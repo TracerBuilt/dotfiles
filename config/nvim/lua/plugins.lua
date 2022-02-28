@@ -83,7 +83,6 @@ return require('packer').startup {
 				},
 				config = [[require('configs.cmp')]],
 			},
-			'ray-x/lsp_signature.nvim',
 			'github/copilot.vim',
 		}
 		-- Code Actions
@@ -133,13 +132,14 @@ return require('packer').startup {
 		use {
 			'famiu/feline.nvim',
 			requires = 'kyazdani42/nvim-web-devicons',
+			after = 'onedark.nvim',
 			config = [[require('configs.feline')]],
 		}
 		-- Buffer management
 		use {
-			'romgrk/barbar.nvim',
+			'akinsho/bufferline.nvim',
 			requires = { 'kyazdani42/nvim-web-devicons' },
-			config = [[require('configs.barbar')]],
+			config = [[require('configs.bufferline')]],
 		}
 		-- Notifications
 		use {
@@ -198,7 +198,6 @@ return require('packer').startup {
 				config = [[require('configs.dap-ui')]],
 			},
 		}
-
 		-- Color schemes
 		use {
 			'catppuccin/nvim',
@@ -206,7 +205,6 @@ return require('packer').startup {
 		use 'bluz71/vim-nightfly-guicolors'
 		use {
 			'bluz71/vim-moonfly-colors',
-			config = [[require('configs.colorschemes.moonfly')]],
 		}
 		use {
 			'folke/tokyonight.nvim',
@@ -217,6 +215,7 @@ return require('packer').startup {
 		use 'shaunsingh/nord.nvim'
 		use {
 			'navarasu/onedark.nvim',
+			config = [[require('configs.colorschemes.onedark')]],
 		}
 		use 'sainnhe/everforest'
 		use 'EdenEast/nightfox.nvim'

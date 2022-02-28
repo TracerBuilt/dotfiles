@@ -18,5 +18,6 @@ require('nvim-tree').setup {
 	},
 	view = {
 		auto_resize = true,
+		hide_root_folder = true,
 	},
 }

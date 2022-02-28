@@ -3,9 +3,6 @@ return function(client, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
 	vim.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
 
-	-- Enable lsp_signature
-	require('lsp_signature').on_attach()
-
 	if client.name == 'tsserver' or 'jsonls' then
 		client.resolved_capabilities.document_formatting = false
 		client.resolved_capabilities.document_range_formatting = false

@@ -1,7 +1,17 @@
-local g = vim.g
+require('onedark').setup {
+	style = 'darker',
+	transparent = true,
 
-g.onedark_style = 'darker'
-g.onedark_transparent_background = true
-g.onedark_hide_ending_tildes = false
+	diagnostics = {
+		background = false,
+	},
+	highlights = {
+		IndentBlankline = { fg = '$grey' },
+		IndentBlanklineContext = { fg = '$purple' },
+		IndentBlanklineContextStart = { sp = '$purple', fmt = 'underline' },
+		NormalFloat = { bg = 'NONE' },
+		FloatBorder = { fg = '$purple' },
+	},
+}
 
-require('onedark').setup()
+require('onedark').load()

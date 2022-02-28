@@ -27,9 +27,9 @@ wk.register {
 
 -- nvim-tree
 wk.register {
-	['<C-n>'] = { '<cmd>lua require("ui.treetoggle").toggle()<CR>', 'Toggle File Tree' },
+	['<C-n>'] = { '<cmd>NvimTreeToggle<CR>', 'Toggle File Tree' },
 	['<leader>r'] = { '<cmd>NvimTreeRefresh<CR>', 'Refresh File Tree' },
-	['<leader>n'] = { '<cmd>NvimTreeFindFile<CR>', 'Focus File Tree' },
+	['<leader>n'] = { '<cmd>NvimTreeFocus<CR>', 'Focus File Tree' },
 }
 -- Telescope
 wk.register {
@@ -90,34 +90,33 @@ wk.register({
 	['ih'] = { '<cmd>C-U>lua require"gitsigns.actions".select_hunk()<CR>' },
 }, { mode = 'x' })
 
--- Barbar
+-- Bufferline
 wk.register {
-	['<A-,>'] = { '<cmd>BufferPrevious<CR>', 'Previous Buffer' },
-	['<A-.>'] = { '<cmd>BufferNext<CR>', 'Next Buffer' },
+	['<A-,>'] = { '<cmd>BufferLineCyclePrev<CR>', 'Previous Buffer' },
+	['<A-.>'] = { '<cmd>BufferLineCycleNext<CR>', 'Next Buffer' },
 	-- Re-order
-	['<A-<>'] = { '<cmd>BufferMovePrevious<CR>', 'Re-Order Buffer To Previous' },
-	['<A->>'] = { '<cmd>BufferMoveNext<CR>', 'Re-Order Buffer To Next' },
+	['<A-<>'] = { '<cmd>BufferLineMovePrev<CR>', 'Re-Order Buffer To Previous' },
+	['<A->>'] = { '<cmd>BufferLineMoveNext<CR>', 'Re-Order Buffer To Next' },
 	-- Goto
-	['<A-1>'] = { '<cmd>BufferGoto 1<CR>', 'Go To Buffer 1' },
-	['<A-2>'] = { '<cmd>BufferGoto 2<CR>', 'Go To Buffer 2' },
-	['<A-3>'] = { '<cmd>BufferGoto 3<CR>', 'Go To Buffer 3' },
-	['<A-4>'] = { '<cmd>BufferGoto 4<CR>', 'Go To Buffer 4' },
-	['<A-5>'] = { '<cmd>BufferGoto 5<CR>', 'Go To Buffer 5' },
-	['<A-6>'] = { '<cmd>BufferGoto 6<CR>', 'Go To Buffer 6' },
-	['<A-7>'] = { '<cmd>BufferGoto 7<CR>', 'Go To Buffer 7' },
-	['<A-8>'] = { '<cmd>BufferGoto 8<CR>', 'Go To Buffer 8' },
-	['<A-9>'] = { '<cmd>BufferGoto 9<CR>', 'Go To Buffer 9' },
-	['<A-0>'] = { '<cmd>BufferLast<CR>', 'Go To Last Buffer' },
+	['<A-1>'] = { '<cmd>BufferLineGoToBuffer 1<CR>', 'Go To Buffer 1' },
+	['<A-2>'] = { '<cmd>BufferLineGoToBuffer 2<CR>', 'Go To Buffer 2' },
+	['<A-3>'] = { '<cmd>BufferLineGoToBuffer 3<CR>', 'Go To Buffer 3' },
+	['<A-4>'] = { '<cmd>BufferLineGoToBuffer 4<CR>', 'Go To Buffer 4' },
+	['<A-5>'] = { '<cmd>BufferLineGoToBuffer 5<CR>', 'Go To Buffer 5' },
+	['<A-6>'] = { '<cmd>BufferLineGoToBuffer 6<CR>', 'Go To Buffer 6' },
+	['<A-7>'] = { '<cmd>BufferLineGoToBuffer 7<CR>', 'Go To Buffer 7' },
+	['<A-8>'] = { '<cmd>BufferLineGoToBuffer 8<CR>', 'Go To Buffer 8' },
+	['<A-9>'] = { '<cmd>BufferLineGoToBuffer 9<CR>', 'Go To Buffer 9' },
 	--
-	['<A-c>'] = { '<cmd>BufferClose<CR>', 'Close Buffer' },
+	['<A-c>'] = { '<cmd>BufferLinePickClose<CR>', 'Close Buffer' },
 	-- Magic buffer-picking mode
-	['<C-p>'] = { '<cmd>BufferPick<CR>', 'Pick Buffer' },
+	['<C-p>'] = { '<cmd>BufferLinePick<CR>', 'Pick Buffer' },
 	-- Sort automatically
 	['<leader>b'] = {
-		name = 'Order Buffers',
-		b = { '<cmd>BufferOrderByBufferNumber<CR>', 'Order Buffers By Number' },
-		d = { '<cmd>BufferOrderByDirectory<CR>', 'Order Buffers By Directory' },
-		l = { '<cmd>BufferOrderByLanguage<CR>', 'Order Buffers By Language' },
+		name = 'Sort Buffers',
+		e = { '<cmd>BufferLineSortByExtension<CR>', 'Sort By Extension' },
+		d = { '<cmd>BufferLineSortByDirectory<CR>', 'Sort By Directory' },
+		t = { '<cmd>BufferLineSortByTabs<CR>', 'Sort By Tabs' },
 	},
 }
 -- Trouble

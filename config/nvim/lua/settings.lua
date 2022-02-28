@@ -1,35 +1,40 @@
-local o = vim.o
-
 -- Colors
-o.termguicolors = true
+vim.o.termguicolors = true
 
 -- Basics
-o.number = true
-o.relativenumber = true
-o.hidden = true
-o.encoding = 'utf-8'
-o.mouse = 'a'
-o.wrap = true
-o.linebreak = true
-o.undofile = true
-o.hlsearch = true
-o.updatetime = 500
-o.timeoutlen = 1000
-o.list = true
-o.clipboard = 'unnamedplus'
+vim.wo.number = true
+vim.o.relativenumber = true
+vim.o.hidden = true
+vim.o.encoding = 'utf-8'
+vim.o.mouse = 'a'
+vim.o.wrap = true
+vim.o.linebreak = true
+vim.opt.undofile = true
+vim.o.updatetime = 250
+vim.wo.signcolumn = 'yes'
+vim.o.timeoutlen = 1000
+vim.o.list = true
+vim.o.clipboard = 'unnamedplus'
+vim.o.completeopt = 'menuone,noselect'
 
 -- Search
-o.ignorecase = true
-o.smartcase = true
-o.incsearch = true
-o.mousemodel = 'popup'
+vim.o.hlsearch = false
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.incsearch = true
+vim.o.mousemodel = 'popup'
 
 -- Spacing
-o.autoindent = true
-o.expandtab = false
-o.tabstop = 3
-o.shiftwidth = 3
-o.smartindent = true
+vim.o.autoindent = true
+vim.o.expandtab = false
+vim.o.tabstop = 3
+vim.o.shiftwidth = 3
+vim.o.smartindent = true
+vim.o.breakindent = true
+
+--Remap for dealing with word wrap
+vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
+vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
 -- Detect alternative file types
 vim.cmd [[
