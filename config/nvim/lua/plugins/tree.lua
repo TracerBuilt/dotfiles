@@ -1,10 +1,6 @@
 vim.g.nvim_tree_git_hl = 0
 vim.g.nvim_tree_highlight_opened_files = 1
 vim.g.nvim_tree_indent_markers = 1
-vim.g.nvim_tree_window_picker_exclude = {
-	filetype = { 'notify', 'packer', 'qf' },
-	buftype = { 'terminal' },
-}
 
 -- Dictionary of buffer option names mapped to a list of option values that
 -- indicates to the window picker that the buffer's window should not be
@@ -14,10 +10,9 @@ require('nvim-tree').setup {
 		enable = true,
 	},
 	filters = {
-		custom = { '.git', '.DS_Store' },
+		custom = { '.DS_Store' },
 	},
 	view = {
-		auto_resize = true,
 		hide_root_folder = true,
 	},
 }

@@ -10,10 +10,15 @@ return require('packer').startup {
 	function(use)
 		-- Packer
 		use 'wbthomason/packer.nvim'
+		-- Faster filetype detection
+		use {
+			'nathom/filetype.nvim',
+			config = [[require('plugins.filetype')]],
+		}
 		-- Indentation helpers
 		use {
 			'lukas-reineke/indent-blankline.nvim',
-			config = [[require('configs.indent-blankline')]],
+			config = [[require('plugins.indent-blankline')]],
 		}
 		-- Fuzzy search
 		use {
@@ -23,7 +28,7 @@ return require('packer').startup {
 					'nvim-lua/plenary.nvim',
 					'nvim-telescope/telescope-fzf-native.nvim',
 				},
-				config = [[require('configs.telescope')]],
+				config = [[require('plugins.telescope')]],
 			},
 			{
 				'nvim-telescope/telescope-frecency.nvim',
@@ -40,16 +45,9 @@ return require('packer').startup {
 		}
 		-- Git
 		use {
-			'tpope/vim-fugitive',
-			{
-				'lewis6991/gitsigns.nvim',
-				requires = { 'nvim-lua/plenary.nvim' },
-				config = [[require('configs.gitsigns')]],
-			},
-			{
-				'sindrets/diffview.nvim',
-				config = [[require('configs.diffview')]],
-			},
+			'lewis6991/gitsigns.nvim',
+			requires = { 'nvim-lua/plenary.nvim' },
+			config = [[require('plugins.gitsigns')]],
 		}
 		-- Symbols
 		use 'kyazdani42/nvim-web-devicons'
@@ -58,14 +56,17 @@ return require('packer').startup {
 			'onsails/lspkind-nvim',
 			{
 				'neovim/nvim-lspconfig',
-				config = [[require('configs.lspconfig')]],
+				config = [[require('plugins.lspconfig')]],
 			},
 			'williamboman/nvim-lsp-installer',
 			{
 				'jose-elias-alvarez/null-ls.nvim',
 				requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
 			},
-			'jose-elias-alvarez/nvim-lsp-ts-utils',
+			{
+				'jose-elias-alvarez/typescript.nvim',
+				config = [[require('typescript').setup()]],
+			},
 			{
 				'hrsh7th/nvim-cmp',
 				requires = {
@@ -77,37 +78,25 @@ return require('packer').startup {
 					'saadparwaiz1/cmp_luasnip',
 					{
 						'L3MON4D3/LuaSnip',
-						config = [[require('configs.luasnip')]],
+						config = [[require('plugins.luasnip')]],
 						requires = { 'rafamadriz/friendly-snippets' },
 					},
 				},
-				config = [[require('configs.cmp')]],
+				config = [[require('plugins.cmp')]],
 			},
 			'github/copilot.vim',
 		}
 		-- Code Actions
 		use {
 			'kosayoda/nvim-lightbulb',
-			config = [[require('configs.lightbulb')]],
+			config = [[require('plugins.lightbulb')]],
 		}
 		-- Highlighting
 		use {
-			{
-				'nvim-treesitter/nvim-treesitter',
-				config = [[require('configs.treesitter')]],
-				requires = { 'p00f/nvim-ts-rainbow' },
-				run = ':TSUpdate',
-			},
-			'nvim-treesitter/playground',
-		}
-		-- Registers
-		use {
-			'AckslD/nvim-neoclip.lua',
-			requires = {
-				{ 'tami5/sqlite.lua', module = 'sqlite' },
-				'nvim-telescope/telescope.nvim',
-			},
-			config = [[require('configs.neoclip')]],
+			'nvim-treesitter/nvim-treesitter',
+			config = [[require('plugins.treesitter')]],
+			requires = { 'p00f/nvim-ts-rainbow' },
+			run = ':TSUpdate',
 		}
 		-- Cursor line
 		use 'yamatsum/nvim-cursorline'
@@ -115,57 +104,57 @@ return require('packer').startup {
 		use {
 			'folke/trouble.nvim',
 			requires = 'kyazdani42/nvim-web-devicons',
-			config = [[require('configs.trouble')]],
+			config = [[require('plugins.trouble')]],
 		}
 		-- Sidebar
 		use {
 			'kyazdani42/nvim-tree.lua',
 			requires = { 'kyazdani42/nvim-web-devicons' },
-			config = [[require('configs.tree')]],
+			config = [[require('plugins.tree')]],
 		}
 		-- Terminal
 		use {
 			'akinsho/toggleterm.nvim',
-			config = [[require('configs.toggleterm')]],
+			config = [[require('plugins.toggleterm')]],
 		}
 		-- Statusline
 		use {
 			'famiu/feline.nvim',
 			requires = 'kyazdani42/nvim-web-devicons',
 			after = 'onedark.nvim',
-			config = [[require('configs.feline')]],
+			config = [[require('plugins.feline')]],
 		}
 		-- Buffer management
 		use {
 			'akinsho/bufferline.nvim',
 			requires = { 'kyazdani42/nvim-web-devicons' },
-			config = [[require('configs.bufferline')]],
+			config = [[require('plugins.bufferline')]],
 		}
 		-- Notifications
 		use {
 			'rcarriga/nvim-notify',
-			config = [[require('configs.notify')]],
+			config = [[require('plugins.notify')]],
 		}
 		-- WhichKey
 		use {
 			'folke/which-key.nvim',
-			config = [[require('configs.which-key')]],
+			config = [[require('plugins.which-key')]],
 		}
 		-- Scrolling
 		use {
 			'karb94/neoscroll.nvim',
-			config = [[require('configs.neoscroll')]],
+			config = [[require('plugins.neoscroll')]],
 		}
 		-- Auto pairing and tagging
 		use {
 			{
 				'windwp/nvim-autopairs',
-				config = [[require('configs.autopairs')]],
+				config = [[require('plugins.autopairs')]],
 				after = 'nvim-cmp',
 			},
 			{
 				'windwp/nvim-ts-autotag',
-				config = [[require('configs.ts-autotag')]],
+				config = [[require('plugins.ts-autotag')]],
 			},
 		}
 		-- Surround
@@ -173,30 +162,32 @@ return require('packer').startup {
 		-- Repeatable commands
 		use 'tpope/vim-repeat'
 		-- Motions
-		use 'ggandor/lightspeed.nvim'
-		-- Zen mode
-		use {
-			'folke/zen-mode.nvim',
-			requires = 'folke/twilight.nvim',
-			config = [[require('configs.zen-mode')]],
-		}
+		use 'ggandor/leap.nvim'
 		-- Commenting
-		use 'b3nj5m1n/kommentary'
+		use {
+			'numToStr/Comment.nvim',
+			config = [[require('Comment').setup()]],
+		}
 		-- Color highlighting
 		use {
 			'norcalli/nvim-colorizer.lua',
-			config = [[require('configs.colorizer')]],
+			config = [[require('plugins.colorizer')]],
 		}
 		-- Debugging
 		use {
 			{
 				'mfussenegger/nvim-dap',
-				config = [[require('configs.dap')]],
+				config = [[require('plugins.dap')]],
 			},
 			{
 				'rcarriga/nvim-dap-ui',
-				config = [[require('configs.dap-ui')]],
+				config = [[require('plugins.dap-ui')]],
 			},
+		}
+		-- Window management
+		use {
+			'beauwilliams/focus.nvim',
+			config = [[require('focus').setup()]],
 		}
 		-- Color schemes
 		use {
@@ -215,7 +206,7 @@ return require('packer').startup {
 		use 'shaunsingh/nord.nvim'
 		use {
 			'navarasu/onedark.nvim',
-			config = [[require('configs.colorschemes.onedark')]],
+			config = [[require('plugins.colorschemes.onedark')]],
 		}
 		use 'sainnhe/everforest'
 		use 'EdenEast/nightfox.nvim'

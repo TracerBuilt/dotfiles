@@ -1,5 +1,5 @@
 local lsp_installer = require 'nvim-lsp-installer'
-local on_attach = require 'configs.lspconfig.on-attach'
+local on_attach = require 'plugins.lspconfig.on-attach'
 
 -- LSP settings (for overriding per client)
 local handlers = {
@@ -39,9 +39,6 @@ lsp_installer.on_server_ready(function(server)
 		on_attach = on_attach,
 		handlers = handlers,
 	}
-	if server.name == 'tsserver' then
-		opts.init_options = require('nvim-lsp-ts-utils').init_options
-	end
 	if server.name == 'eslint' then
 		opts.filetypes = {
 			'svelte',
@@ -95,7 +92,7 @@ lsp_installer.on_server_ready(function(server)
 	vim.cmd [[ do User LspAttachBuffers ]]
 end)
 
-require 'configs.lspconfig.null-ls'
+require 'plugins.lspconfig.null-ls'
 
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]

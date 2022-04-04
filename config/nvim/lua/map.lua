@@ -62,20 +62,20 @@ wk.register {
 		'&diff ? "[c" : "<cmd>lua require\'gitsigns.actions\'.prev_hunk()<CR>"',
 		'Previous Hunk',
 	},
-	['<leader>h'] = {
+	['<leader>g'] = {
 		name = 'GitSigns Actions',
 		['s'] = { '<cmd>lua require("gitsigns").stage_hunk<CR>', 'Stage Hunk' },
 		['u'] = { '<cmd>lua require("gitsigns").undo_stage_hunk<CR>', 'Undo Stage Hunk' },
 		['r'] = { '<cmd>lua require("gitsigns").reset_hunk<CR>', 'Reset Hunk' },
-		['R'] = { '<cmd>lua require"gitsigns".reset_buffer()<CR>', 'Reset Buffer' },
-		['p'] = { '<cmd>lua require"gitsigns".preview_hunk()<CR>', 'Preview Hunk' },
-		['b'] = { '<cmd>lua require"gitsigns".blame_line(true)<CR>', 'Blame Line' },
-		['S'] = { '<cmd>lua require"gitsigns".stage_buffer()<CR>', 'Stage Buffer' },
-		['U'] = { '<cmd>lua require"gitsigns".reset_buffer_index()<CR>', 'Reset Buffer' },
+		['R'] = { '<cmd>lua require("gitsigns").reset_buffer()<CR>', 'Reset Buffer' },
+		['p'] = { '<cmd>lua require("gitsigns").preview_hunk()<CR>', 'Preview Hunk' },
+		['b'] = { '<cmd>lua require("gitsigns").blame_line(true)<CR>', 'Blame Line' },
+		['S'] = { '<cmd>lua require("gitsigns").stage_buffer()<CR>', 'Stage Buffer' },
+		['U'] = { '<cmd>lua require("gitsigns").reset_buffer_index()<CR>', 'Reset Buffer' },
 	},
 }
 wk.register({
-	['<leader>h'] = {
+	['<leader>g'] = {
 		name = 'GitSigns Actions',
 		s = { '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>', 'Stage Hunk' },
 		r = { '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>', 'Reset Hunk' },
@@ -131,16 +131,17 @@ wk.register {
 	},
 	['gR'] = { '<cmd>Trouble lsp_references<CR>', 'LSP References' },
 }
--- Zen Mode
+-- Lightspeed
 wk.register {
-	['<leader>z'] = { '<cmd>ZenMode<CR>', 'Zen Mode' },
+	s = { '<Plug>(leap-omni)', 'Lightspeed' },
 }
--- Git diffing
+-- Window management
 wk.register {
+	['<c-l>'] = { '<cmd>FocusSplitNicely<CR>', 'Focus Split Nicely' },
 	['<leader>'] = {
-
-		d = { '<cmd>DiffviewOpen<CR>', 'Open Git Diff' },
-
-		dq = { '<cmd>DiffviewClose<CR>', 'Close Git Diff' },
+		h = { '<cmd>FocusSplitLeft<CR>', 'Focus Split Left' },
+		j = { '<cmd>FocusSplitDown<CR>', 'Focus Split Down' },
+		k = { '<cmd>FocusSplitUp<CR>', 'Focus Split Up' },
+		l = { '<cmd>FocusSplitRight<CR>', 'Focus Split Right' },
 	},
 }
