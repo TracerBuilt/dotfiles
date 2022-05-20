@@ -1,4 +1,10 @@
 {
 	"optOut": false,
-	"lastUpdateCheck": 1648651167112
+	"lastUpdateCheck": 1651254364487,
+	"update": {
+		"latest": "10.1.0",
+		"current": "10.0.0",
+		"type": "minor",
+		"name": "netlify-cli"
+	}
 }

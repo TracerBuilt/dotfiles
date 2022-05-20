@@ -85,7 +85,7 @@ source $ZSH/oh-my-zsh.sh
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='nvim'
 # fi
 export TERM='xterm-kitty'
 export EDITOR='nvim'
@@ -104,10 +104,11 @@ export EDITOR='nvim'
 alias chrome-debug='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
 alias dhide='defaults write com.apple.finder CreateDesktop false; killall Finder'
 alias dshow='defaults write com.apple.finder CreateDesktop true; killall Finder'
+alias npm list='npm list -g --depth 0'
 
 export PATH="/usr/local/sbin:$PATH"
 
-export CC=/usr/local/Cellar/gcc/11.2.0_3/bin/gcc-11
+export CC=/usr/local/Cellar/gcc/11.3.0/bin/gcc-11
 
 function killport() {
 	lsof -i TCP:$1 | grep LISTEN | awk '{print $2}' | xargs kill -9
@@ -118,7 +119,41 @@ export NNN_PLUG='f:fzcd;o:fzopen;g:gutenread;i:ipinfo;l:launch;p:preview-tabbed;
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_OPENER=/User/thewildgander/.config/nnn/plugins/nuke
 
+# nnn CD on quit
+n ()
+{
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
+    # see. To cd on quit only on ^G, remove the "export" and make sure not to
+    # use a custom path, i.e. set NNN_TMPFILE *exactly* as follows:
+    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    nnn "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
+
+# Python stuff
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
+export PNPM_HOME="/Users/thewildgander/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+export PATH="/usr/local/opt/openssl@3/bin:$PATH"

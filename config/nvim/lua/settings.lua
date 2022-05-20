@@ -16,6 +16,7 @@ vim.o.timeoutlen = 1000
 vim.o.list = true
 vim.o.clipboard = 'unnamedplus'
 vim.o.completeopt = 'menu,menuone,noselect'
+vim.o.cursorline = false
 
 -- Global status bar
 vim.o.laststatus = 3

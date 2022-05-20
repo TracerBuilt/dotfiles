@@ -86,11 +86,6 @@ return require('packer').startup {
 			},
 			'github/copilot.vim',
 		}
-		-- Code Actions
-		use {
-			'kosayoda/nvim-lightbulb',
-			config = [[require('plugins.lightbulb')]],
-		}
 		-- Highlighting
 		use {
 			'nvim-treesitter/nvim-treesitter',
@@ -98,8 +93,6 @@ return require('packer').startup {
 			requires = { 'p00f/nvim-ts-rainbow' },
 			run = ':TSUpdate',
 		}
-		-- Cursor line
-		use 'yamatsum/nvim-cursorline'
 		-- Diagnostics
 		use {
 			'folke/trouble.nvim',
@@ -157,6 +150,11 @@ return require('packer').startup {
 				config = [[require('plugins.ts-autotag')]],
 			},
 		}
+		-- Extra Rust tools
+		use {
+			'simrat39/rust-tools.nvim',
+			config = [[require('rust-tools').setup({})]],
+		}
 		-- Surround
 		use 'tpope/vim-surround'
 		-- Repeatable commands
@@ -173,6 +171,8 @@ return require('packer').startup {
 			'norcalli/nvim-colorizer.lua',
 			config = [[require('plugins.colorizer')]],
 		}
+		-- Illuminate word under cursor
+		use 'RRethy/vim-illuminate'
 		-- Debugging
 		use {
 			{
@@ -187,7 +187,12 @@ return require('packer').startup {
 		-- Window management
 		use {
 			'beauwilliams/focus.nvim',
-			config = [[require('focus').setup()]],
+			config = [[require('plugins.focus')]],
+		}
+		-- Fancy selects
+		use {
+			'stevearc/dressing.nvim',
+			config = [[require('plugins.dressing')]],
 		}
 		-- Color schemes
 		use {
@@ -203,7 +208,6 @@ return require('packer').startup {
 		use {
 			'sainnhe/sonokai',
 		}
-		use 'shaunsingh/nord.nvim'
 		use {
 			'navarasu/onedark.nvim',
 			config = [[require('plugins.colorschemes.onedark')]],

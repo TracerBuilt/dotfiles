@@ -1,6 +1,7 @@
 require('onedark').setup {
 	style = 'darker',
 	transparent = true,
+	ending_tildes = false,
 
 	diagnostics = {
 		background = false,
@@ -10,8 +11,10 @@ require('onedark').setup {
 		IndentBlanklineContext = { fg = '$purple' },
 		IndentBlanklineContextStart = { sp = '$purple', fmt = 'underline' },
 		NormalFloat = { bg = 'NONE' },
-		FloatBorder = { fg = '$purple' },
+		FloatBorder = { fg = '$purple', bg = 'NONE' },
 	},
 }
 
 require('onedark').load()
+
+vim.g.terminal_color_8 = '$grey'

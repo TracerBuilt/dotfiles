@@ -10,17 +10,17 @@ map('i', 'jk', '<ESC>', { noremap = true })
 -- LSP
 wk.register {
 	g = {
-		d = { '<cmd>Telescope lsp_definitions<CR>', 'Go-To Defintion' },
+		d = { '<cmd>lua require("telescope.builtin").lsp_definitions{}<CR>', 'Go-To Defintion' },
 		D = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Go-To Declaration' },
-		i = { '<cmd>Telescope lsp_implementations<CR>', 'List All Implementations' },
-		r = { '<cmd>Telescope lsp_references<CR>', 'List All References' },
-		y = { '<cmd>Telescope lsp_type_definitions()<CR>', 'Go-To Type Definition' },
+		i = { '<cmd>lua require("telescope.builtin").lsp_implementations{}<CR>', 'List All Implementations' },
+		r = { '<cmd>lua require("telescope.builtin").lsp_references{}<CR>', 'List All References' },
+		y = { '<cmd>lua require("telescope.builtin").lsp_type_definitions{}<CR>', 'Go-To Type Definition' },
 	},
 	K = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'Display Hover Info' },
 	['C-k'] = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Display Signature Info' },
 	['<leader>'] = {
 		rn = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename All References' },
-		ca = { '<cmd>Telescope lsp_code_actions<CR>', 'Code Actions' },
+		ca = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Actions' },
 		F = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'Format File' },
 	},
 }
@@ -35,22 +35,22 @@ wk.register {
 wk.register {
 	['<leader>f'] = {
 		name = 'File',
-		f = { '<cmd>Telescope find_files<CR>', 'Find Files' },
-		g = { '<cmd> Telescope live_grep<CR>', 'Live Grep' },
-		b = { '<cmd>Telescope buffers<CR>', 'Find Buffers' },
-		h = { '<cmd>Telescope help_tags<CR>', 'Help Tags' },
-		o = { '<cmd>Telescope vim_options<CR>', 'Vim Options' },
-		t = { '<cmd>Telescope treesitter<CR>', 'Treesitter Symbols' },
-		c = { '<cmd>Telescope colorscheme<CR>', 'Color Schemes' },
-		i = { '<cmd>Telescope highlights<CR>', 'Color Schemes' },
+		f = { '<cmd>lua require("telescope.builtin").find_files{}<CR>', 'Find Files' },
+		g = { '<cmd>lua require("telescope.builtin").live_grep{}<CR>', 'Live Grep' },
+		b = { '<cmd>lua require("telescope.builtin").buffers{}<CR>', 'Find Buffers' },
+		h = { '<cmd>lua require("telescope.builtin").help_tags{}<CR>', 'Help Tags' },
+		o = { '<cmd>lua require("telescope.builtin").vim_options{}<CR>', 'Vim Options' },
+		t = { '<cmd>lua require("telescope.builtin").treesitter{}<CR>', 'Treesitter Symbols' },
+		c = { '<cmd>lua require("telescope.builtin").colorscheme{}<CR>', 'Color Schemes' },
+		i = { '<cmd>lua require("telescope.builtin").highlights{}<CR>', 'Color Schemes' },
 
 		G = {
 			name = 'Git',
-			c = { '<cmd>Telescope git_commits<CR>', 'List All Commits' },
-			C = { '<cmd>Telescope git_bcommits<CR>', 'List Buffer Commits' },
-			b = { '<cmd>Telescope git_branches<CR>', 'List Branches' },
-			s = { '<cmd>Telescope git_status<CR>', 'List Current Changes' },
-			S = { '<cmd>Telescope git_stash<CR>', 'List Stash Items' },
+			c = { '<cmd>lua require("telescope.builtin").git_commits{}<CR>', 'List All Commits' },
+			C = { '<cmd>lua require("telescope.builtin").git_bcommits{}<CR>', 'List Buffer Commits' },
+			b = { '<cmd>lua require("telescope.builtin").git_branches{}<CR>', 'List Branches' },
+			s = { '<cmd>lua require("telescope.builtin").git_status{}<CR>', 'List Current Changes' },
+			S = { '<cmd>lua require("telescope.builtin").git_stash{}<CR>', 'List Stash Items' },
 		},
 	},
 }
@@ -64,14 +64,14 @@ wk.register {
 	},
 	['<leader>g'] = {
 		name = 'GitSigns Actions',
-		['s'] = { '<cmd>lua require("gitsigns").stage_hunk<CR>', 'Stage Hunk' },
-		['u'] = { '<cmd>lua require("gitsigns").undo_stage_hunk<CR>', 'Undo Stage Hunk' },
-		['r'] = { '<cmd>lua require("gitsigns").reset_hunk<CR>', 'Reset Hunk' },
-		['R'] = { '<cmd>lua require("gitsigns").reset_buffer()<CR>', 'Reset Buffer' },
-		['p'] = { '<cmd>lua require("gitsigns").preview_hunk()<CR>', 'Preview Hunk' },
-		['b'] = { '<cmd>lua require("gitsigns").blame_line(true)<CR>', 'Blame Line' },
-		['S'] = { '<cmd>lua require("gitsigns").stage_buffer()<CR>', 'Stage Buffer' },
-		['U'] = { '<cmd>lua require("gitsigns").reset_buffer_index()<CR>', 'Reset Buffer' },
+		s = { '<cmd>lua require("gitsigns").stage_hunk<CR>', 'Stage Hunk' },
+		u = { '<cmd>lua require("gitsigns").undo_stage_hunk<CR>', 'Undo Stage Hunk' },
+		r = { '<cmd>lua require("gitsigns").reset_hunk<CR>', 'Reset Hunk' },
+		R = { '<cmd>lua require("gitsigns").reset_buffer()<CR>', 'Reset Buffer' },
+		p = { '<cmd>lua require("gitsigns").preview_hunk()<CR>', 'Preview Hunk' },
+		b = { '<cmd>lua require("gitsigns").blame_line(true)<CR>', 'Blame Line' },
+		S = { '<cmd>lua require("gitsigns").stage_buffer()<CR>', 'Stage Buffer' },
+		U = { '<cmd>lua require("gitsigns").reset_buffer_index()<CR>', 'Reset Buffer' },
 	},
 }
 wk.register({
@@ -131,9 +131,15 @@ wk.register {
 	},
 	['gR'] = { '<cmd>Trouble lsp_references<CR>', 'LSP References' },
 }
--- Lightspeed
+-- Leap
+
 wk.register {
-	s = { '<Plug>(leap-omni)', 'Lightspeed' },
+	s = {
+		function()
+			require('leap').leap { ['target-windows'] = { vim.fn.getwininfo(vim.fn.win_getid())[1] } }
+		end,
+		'Lightspeed',
+	},
 }
 -- Window management
 wk.register {

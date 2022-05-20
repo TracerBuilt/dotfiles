@@ -22,7 +22,6 @@ telescope.setup {
 	},
 	pickers = {
 		lsp_references = { theme = 'cursor' },
-		lsp_code_actions = { theme = 'cursor' },
 		lsp_definition = { theme = 'cursor' },
 		lsp_impl_definition = { theme = 'cursor' },
 		buffers = {
