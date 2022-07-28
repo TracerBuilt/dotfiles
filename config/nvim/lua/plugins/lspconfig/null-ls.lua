@@ -10,6 +10,7 @@ null_ls.setup {
 		b.diagnostics.luacheck,
 		b.formatting.prettier.with {
 			extra_filetypes = { 'svelte', 'xhtml' },
+			prefer_local = 'node_modules/.bin',
 		},
 		b.formatting.stylua,
 		b.diagnostics.codespell,

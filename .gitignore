@@ -4,3 +4,5 @@ config/nnn/.lastd
 config/nvim/vscode-chrome-debug/
 config/nvim/vscode-firefox-debug/
 config/nvim/plugin/packer_compiled.lua
+config/configstore/update-notifier-@storybook/cli.json
+config/configstore/update-notifier-netlify-cli.json

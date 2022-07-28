@@ -31,10 +31,13 @@ vim.o.mousemodel = 'popup'
 -- Spacing
 vim.o.autoindent = true
 vim.o.expandtab = false
-vim.o.tabstop = 3
-vim.o.shiftwidth = 3
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
 vim.o.smartindent = true
 vim.o.breakindent = true
+
+-- Node version for Copilot
+vim.g.node_host_prog = '/usr/local/Cellar/node@16/16.15.1/bin/node'
 
 --Remap for dealing with word wrap
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })

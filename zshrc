@@ -42,7 +42,7 @@ ZSH_THEME="awesomepanda"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
@@ -113,41 +113,6 @@ export CC=/usr/local/Cellar/gcc/11.3.0/bin/gcc-11
 function killport() {
 	lsof -i TCP:$1 | grep LISTEN | awk '{print $2}' | xargs kill -9
 }
-# nnn plugins
-export NNN_PLUG='f:fzcd;o:fzopen;g:gutenread;i:ipinfo;l:launch;p:preview-tabbed;r:rsynccp;d:diffs;t:nmount;v:imgview'
-
-export NNN_FIFO=/tmp/nnn.fifo
-export NNN_OPENER=/User/thewildgander/.config/nnn/plugins/nuke
-
-# nnn CD on quit
-n ()
-{
-    # Block nesting of nnn in subshells
-    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
-        echo "nnn is already running"
-        return
-    fi
-
-    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
-    # see. To cd on quit only on ^G, remove the "export" and make sure not to
-    # use a custom path, i.e. set NNN_TMPFILE *exactly* as follows:
-    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-
-    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
-    # stty lwrap undef
-    # stty lnext undef
-
-    nnn "$@"
-
-    if [ -f "$NNN_TMPFILE" ]; then
-            . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null
-    fi
-}
 
 # Python stuff
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -157,3 +122,18 @@ fi
 export PNPM_HOME="/Users/thewildgander/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 export PATH="/usr/local/opt/openssl@3/bin:$PATH"
+
+# bun completions
+[ -s "/Users/thewildgander/.bun/_bun" ] && source "/Users/thewildgander/.bun/_bun"
+
+# Bun
+export BUN_INSTALL="/Users/thewildgander/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Tere
+tere() {
+	local result=$(/Users/thewildgander/.cargo/bin/tere "$@")
+	[ -n "$result" ] && cd -- "$result"
+}
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

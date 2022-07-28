@@ -107,8 +107,10 @@ wk.register {
 	['<A-7>'] = { '<cmd>BufferLineGoToBuffer 7<CR>', 'Go To Buffer 7' },
 	['<A-8>'] = { '<cmd>BufferLineGoToBuffer 8<CR>', 'Go To Buffer 8' },
 	['<A-9>'] = { '<cmd>BufferLineGoToBuffer 9<CR>', 'Go To Buffer 9' },
-	--
-	['<A-c>'] = { '<cmd>BufferLinePickClose<CR>', 'Close Buffer' },
+	-- Closing buffers
+	['<A-c>'] = { '<cmd>BufferLinePickClose<CR>', 'Close Picked Buffer' },
+	['<A-h>'] = { '<cmd>BufferLineCloseLeft<CR>', 'Close Left Buffers' },
+	['<A-l>'] = { '<cmd>BufferLineCloseRight<CR>', 'Close Right Buffers' },
 	-- Magic buffer-picking mode
 	['<C-p>'] = { '<cmd>BufferLinePick<CR>', 'Pick Buffer' },
 	-- Sort automatically
@@ -136,9 +138,9 @@ wk.register {
 wk.register {
 	s = {
 		function()
-			require('leap').leap { ['target-windows'] = { vim.fn.getwininfo(vim.fn.win_getid())[1] } }
+			require('leap').leap { target_windows = { vim.api.nvim_get_current_win() } }
 		end,
-		'Lightspeed',
+		'Leap',
 	},
 }
 -- Window management

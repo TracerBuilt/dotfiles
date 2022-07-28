@@ -64,10 +64,6 @@ return require('packer').startup {
 				requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
 			},
 			{
-				'jose-elias-alvarez/typescript.nvim',
-				config = [[require('typescript').setup()]],
-			},
-			{
 				'hrsh7th/nvim-cmp',
 				requires = {
 					'neovim/nvim-lspconfig',
@@ -84,7 +80,6 @@ return require('packer').startup {
 				},
 				config = [[require('plugins.cmp')]],
 			},
-			'github/copilot.vim',
 		}
 		-- Highlighting
 		use {
