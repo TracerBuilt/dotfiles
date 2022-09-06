@@ -1,5 +1,7 @@
-local lsp_installer = require 'nvim-lsp-installer'
+local lspconfig = require 'lspconfig'
 local on_attach = require 'plugins.lspconfig.on-attach'
+require 'plugins.mason'
+require('mason-lspconfig').setup()
 
 -- LSP settings (for overriding per client)
 local handlers = {
@@ -16,65 +18,38 @@ local handlers = {
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
--- Setup servers
-lsp_installer.on_server_ready(function(server)
-	local opts = {
-		capabilities = capabilities,
-		on_attach = on_attach,
-		handlers = handlers,
-	}
-	if server.name == 'eslint' then
-		opts.filetypes = {
-			'svelte',
-			'javascript',
-			'javascriptreact',
-			'javascript.jsx',
-			'typescript',
-			'typescriptreact',
-			'typescript.tsx',
-			'vue',
-		}
-	end
-	if server.name == 'sumneko_lua' then
-		opts.settings = {
-			Lua = {
-				completion = { keywordSnippet = 'Both' },
-				diagnostics = { globals = { 'vim' } },
-				runtime = {
-					version = 'LuaJIT',
-					path = vim.split(package.path, ';'),
-				},
-				workspace = {
-					libaray = {
-						[vim.fn.expand '$VIMRUNTIME/lua'] = true,
-						[vim.fn.expand '$VIMRUNTIME/lua/vim/lsp'] = true,
-					},
-				},
-			},
-		}
-	end
-	if server.name == 'stylelint_lsp' then
-		opts.filetypes = {
-			'css',
-			'less',
-			'scss',
-			'sugarss',
-			'svelte',
-			'vue',
-			'wxss',
-			'javascript',
-			'javascriptreact',
-			'typescript',
-			'typescriptreact',
-		}
-		opts.settings = {
-			autoFixOnFormat = true,
-		}
-	end
-	server:setup(opts)
+local opts = {
+	capabilities = capabilities,
+	on_attach = on_attach,
+	handlers = handlers,
+}
 
-	vim.cmd [[ do User LspAttachBuffers ]]
-end)
+lspconfig['html'].setup(opts)
+lspconfig['cssls'].setup { opts, settings = {
+	css = {
+		lint = {
+			unknownAtRules = 'ignore',
+		},
+	},
+} }
+lspconfig['tsserver'].setup(opts)
+lspconfig['eslint'].setup(opts)
+lspconfig['svelte'].setup(opts)
+lspconfig['jsonls'].setup(opts)
+lspconfig['tailwindcss'].setup(opts)
+lspconfig['stylelint_lsp'].setup(opts)
+lspconfig['rust_analyzer'].setup(opts)
+lspconfig['sumneko_lua'].setup {
+	opts,
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { 'vim' },
+			},
+		},
+	},
+}
+lspconfig['vimls'].setup(opts)
 
 require 'plugins.lspconfig.null-ls'
 

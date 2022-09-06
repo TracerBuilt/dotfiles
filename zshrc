@@ -1,3 +1,6 @@
+#! /bin/zsh
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -87,7 +90,6 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='nvim'
 # fi
-export TERM='xterm-kitty'
 export EDITOR='nvim'
 
 # Compilation flags
@@ -107,8 +109,6 @@ alias dshow='defaults write com.apple.finder CreateDesktop true; killall Finder'
 alias npm list='npm list -g --depth 0'
 
 export PATH="/usr/local/sbin:$PATH"
-
-export CC=/usr/local/Cellar/gcc/11.3.0/bin/gcc-11
 
 function killport() {
 	lsof -i TCP:$1 | grep LISTEN | awk '{print $2}' | xargs kill -9
@@ -137,3 +137,6 @@ tere() {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"

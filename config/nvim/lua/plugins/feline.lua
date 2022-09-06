@@ -1,5 +1,6 @@
 local vi_mode_utils = require 'feline.providers.vi_mode'
 
+--[[
 local moonfly = {
 
 	bg = 'none',
@@ -69,8 +70,9 @@ end
 
 local onedark = select_colors()
 
+--]]
+--
 require('feline').setup {
-	theme = onedark,
 	components = {
 		active = {
 			-- Left side

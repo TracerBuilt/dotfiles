@@ -10,11 +10,6 @@ return require('packer').startup {
 	function(use)
 		-- Packer
 		use 'wbthomason/packer.nvim'
-		-- Faster filetype detection
-		use {
-			'nathom/filetype.nvim',
-			config = [[require('plugins.filetype')]],
-		}
 		-- Indentation helpers
 		use {
 			'lukas-reineke/indent-blankline.nvim',
@@ -53,40 +48,48 @@ return require('packer').startup {
 		use 'kyazdani42/nvim-web-devicons'
 		-- LSP
 		use {
-			'onsails/lspkind-nvim',
 			{
 				'neovim/nvim-lspconfig',
 				config = [[require('plugins.lspconfig')]],
 			},
-			'williamboman/nvim-lsp-installer',
 			{
 				'jose-elias-alvarez/null-ls.nvim',
 				requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
 			},
-			{
-				'hrsh7th/nvim-cmp',
-				requires = {
-					'neovim/nvim-lspconfig',
-					'hrsh7th/cmp-nvim-lsp',
-					'hrsh7th/cmp-buffer',
-					'hrsh7th/cmp-path',
-					'hrsh7th/cmp-cmdline',
-					'saadparwaiz1/cmp_luasnip',
-					{
-						'L3MON4D3/LuaSnip',
-						config = [[require('plugins.luasnip')]],
-						requires = { 'rafamadriz/friendly-snippets' },
-					},
+			'williamboman/mason.nvim',
+			'williamboman/mason-lspconfig.nvim',
+		}
+		-- Completion
+		use {
+			'hrsh7th/nvim-cmp',
+			requires = {
+				'neovim/nvim-lspconfig',
+				'onsails/lspkind-nvim',
+				'hrsh7th/cmp-nvim-lsp',
+				'hrsh7th/cmp-buffer',
+				'hrsh7th/cmp-path',
+				'hrsh7th/cmp-cmdline',
+				'saadparwaiz1/cmp_luasnip',
+				{
+					'L3MON4D3/LuaSnip',
+					config = [[require('plugins.luasnip')]],
+					requires = { 'rafamadriz/friendly-snippets' },
 				},
-				config = [[require('plugins.cmp')]],
 			},
+			config = [[require('plugins.cmp')]],
 		}
 		-- Highlighting
 		use {
-			'nvim-treesitter/nvim-treesitter',
-			config = [[require('plugins.treesitter')]],
-			requires = { 'p00f/nvim-ts-rainbow' },
-			run = ':TSUpdate',
+			'nvim-treesitter/nvim-treesitter-context',
+			requires = {
+				{
+					'nvim-treesitter/nvim-treesitter',
+					config = [[require('plugins.treesitter')]],
+					requires = { 'p00f/nvim-ts-rainbow' },
+					run = ':TSUpdate',
+				},
+			},
+			config = [[require('plugins.treesitter-context')]],
 		}
 		-- Diagnostics
 		use {
@@ -107,10 +110,9 @@ return require('packer').startup {
 		}
 		-- Statusline
 		use {
-			'famiu/feline.nvim',
-			requires = 'kyazdani42/nvim-web-devicons',
-			after = 'onedark.nvim',
-			config = [[require('plugins.feline')]],
+			'nvim-lualine/lualine.nvim',
+			requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+			config = [[require('plugins.lualine')]],
 		}
 		-- Buffer management
 		use {
@@ -133,17 +135,11 @@ return require('packer').startup {
 			'karb94/neoscroll.nvim',
 			config = [[require('plugins.neoscroll')]],
 		}
-		-- Auto pairing and tagging
+		-- Auto pairing
 		use {
-			{
-				'windwp/nvim-autopairs',
-				config = [[require('plugins.autopairs')]],
-				after = 'nvim-cmp',
-			},
-			{
-				'windwp/nvim-ts-autotag',
-				config = [[require('plugins.ts-autotag')]],
-			},
+			'windwp/nvim-autopairs',
+			config = [[require('plugins.autopairs')]],
+			after = 'nvim-cmp',
 		}
 		-- Extra Rust tools
 		use {
@@ -151,7 +147,10 @@ return require('packer').startup {
 			config = [[require('rust-tools').setup({})]],
 		}
 		-- Surround
-		use 'tpope/vim-surround'
+		use {
+			'kylechui/nvim-surround',
+			config = [[require('nvim-surround').setup({})]],
+		}
 		-- Repeatable commands
 		use 'tpope/vim-repeat'
 		-- Motions
@@ -204,8 +203,10 @@ return require('packer').startup {
 			'sainnhe/sonokai',
 		}
 		use {
+			'sainnhe/edge',
+		}
+		use {
 			'navarasu/onedark.nvim',
-			config = [[require('plugins.colorschemes.onedark')]],
 		}
 		use 'sainnhe/everforest'
 		use 'EdenEast/nightfox.nvim'
@@ -213,6 +214,10 @@ return require('packer').startup {
 		use {
 			'mcchrish/zenbones.nvim',
 			requires = 'rktjmp/lush.nvim',
+		}
+		use {
+			'rebelot/kanagawa.nvim',
+			config = [[require('plugins.colorschemes.kanagawa')]],
 		}
 	end,
 	config = {

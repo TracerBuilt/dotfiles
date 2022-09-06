@@ -5,8 +5,8 @@ return function(client, bufnr)
 
 	if client.name ~= 'null-ls' then
 		require('illuminate').on_attach(client)
-		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_range_formatting = false
+		client.server_capabilities.document_formatting = false
+		client.server_capabilities.document_range_formatting = false
 	end
 
 	vim.api.nvim_create_augroup('Format', { clear = true })
@@ -14,7 +14,7 @@ return function(client, bufnr)
 		group = 'Format',
 		pattern = '<buffer>',
 		callback = function()
-			vim.lsp.buf.formatting_sync(nil, 10000)
+			vim.lsp.buf.format{ timeout_ms = 10000 }
 		end,
 	})
 
