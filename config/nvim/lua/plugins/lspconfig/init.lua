@@ -16,7 +16,7 @@ local handlers = {
 }
 
 -- Add additional capabilities supported by nvim-cmp
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local opts = {
 	capabilities = capabilities,
@@ -24,22 +24,22 @@ local opts = {
 	handlers = handlers,
 }
 
-lspconfig['html'].setup(opts)
-lspconfig['cssls'].setup { opts, settings = {
+lspconfig.html.setup(opts)
+lspconfig.cssls.setup { opts, settings = {
 	css = {
 		lint = {
 			unknownAtRules = 'ignore',
 		},
 	},
 } }
-lspconfig['tsserver'].setup(opts)
-lspconfig['eslint'].setup(opts)
-lspconfig['svelte'].setup(opts)
-lspconfig['jsonls'].setup(opts)
-lspconfig['tailwindcss'].setup(opts)
-lspconfig['stylelint_lsp'].setup(opts)
-lspconfig['rust_analyzer'].setup(opts)
-lspconfig['sumneko_lua'].setup {
+lspconfig.tsserver.setup(opts)
+lspconfig.eslint.setup(opts)
+lspconfig.svelte.setup(opts)
+lspconfig.jsonls.setup(opts)
+lspconfig.tailwindcss.setup(opts)
+lspconfig.stylelint_lsp.setup(opts)
+lspconfig.rust_analyzer.setup(opts)
+lspconfig.sumneko_lua.setup {
 	opts,
 	settings = {
 		Lua = {
@@ -49,7 +49,7 @@ lspconfig['sumneko_lua'].setup {
 		},
 	},
 }
-lspconfig['vimls'].setup(opts)
+lspconfig.vimls.setup(opts)
 
 require 'plugins.lspconfig.null-ls'
 

@@ -99,9 +99,13 @@ return require('packer').startup {
 		}
 		-- Sidebar
 		use {
-			'kyazdani42/nvim-tree.lua',
-			requires = { 'kyazdani42/nvim-web-devicons' },
-			config = [[require('plugins.tree')]],
+			'nvim-neo-tree/neo-tree.nvim',
+			branch = 'v2.x',
+			requires = {
+				'nvim-lua/plenary.nvim',
+				'kyazdani42/nvim-web-devicons',
+				'MunifTanjim/nui.nvim',
+			}
 		}
 		-- Terminal
 		use {
@@ -189,32 +193,6 @@ return require('packer').startup {
 			config = [[require('plugins.dressing')]],
 		}
 		-- Color schemes
-		use {
-			'catppuccin/nvim',
-		}
-		use 'bluz71/vim-nightfly-guicolors'
-		use {
-			'bluz71/vim-moonfly-colors',
-		}
-		use {
-			'folke/tokyonight.nvim',
-		}
-		use {
-			'sainnhe/sonokai',
-		}
-		use {
-			'sainnhe/edge',
-		}
-		use {
-			'navarasu/onedark.nvim',
-		}
-		use 'sainnhe/everforest'
-		use 'EdenEast/nightfox.nvim'
-		use 'pineapplegiant/spaceduck'
-		use {
-			'mcchrish/zenbones.nvim',
-			requires = 'rktjmp/lush.nvim',
-		}
 		use {
 			'rebelot/kanagawa.nvim',
 			config = [[require('plugins.colorschemes.kanagawa')]],

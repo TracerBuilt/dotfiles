@@ -27,9 +27,8 @@ wk.register {
 
 -- nvim-tree
 wk.register {
-	['<C-n>'] = { '<cmd>NvimTreeToggle<CR>', 'Toggle File Tree' },
-	['<leader>r'] = { '<cmd>NvimTreeRefresh<CR>', 'Refresh File Tree' },
-	['<leader>n'] = { '<cmd>NvimTreeFocus<CR>', 'Focus File Tree' },
+	['<C-n>'] = { '<cmd>Neotree toggle<CR>', 'Toggle File Tree' },
+	['<leader>n'] = { '<cmd>Neotree<CR>', 'Focus File Tree' },
 }
 -- Telescope
 wk.register {

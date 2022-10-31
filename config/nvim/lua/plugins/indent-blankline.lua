@@ -3,7 +3,7 @@ vim.opt.list = true
 require('indent_blankline').setup {
 	buftype_exclude = { 'terminal' },
 	char = '┆',
-	filetype_exclude = { '', 'help', 'packer', 'NvimTree', 'nofile', 'mason' },
+	filetype_exclude = { '', 'help', 'packer', 'neo-tree', 'NvimTree', 'nofile', 'mason' },
 	char_highlight_list = {
 		'IndentBlankline1',
 		'IndentBlankline2',
