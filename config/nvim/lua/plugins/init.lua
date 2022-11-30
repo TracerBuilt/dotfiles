@@ -51,6 +51,24 @@ return require('packer').startup {
 			{
 				'neovim/nvim-lspconfig',
 				config = [[require('plugins.lspconfig')]],
+				requires = {
+					{
+						'hrsh7th/nvim-cmp',
+						config = [[require('plugins.cmp')]],
+					},
+					'neovim/nvim-lspconfig',
+					'onsails/lspkind-nvim',
+					'hrsh7th/cmp-nvim-lsp',
+					'hrsh7th/cmp-buffer',
+					'hrsh7th/cmp-path',
+					'hrsh7th/cmp-cmdline',
+					'saadparwaiz1/cmp_luasnip',
+					{
+						'L3MON4D3/LuaSnip',
+						config = [[require('plugins.luasnip')]],
+						requires = { 'rafamadriz/friendly-snippets' },
+					},
+				},
 			},
 			{
 				'jose-elias-alvarez/null-ls.nvim',
@@ -58,25 +76,6 @@ return require('packer').startup {
 			},
 			'williamboman/mason.nvim',
 			'williamboman/mason-lspconfig.nvim',
-		}
-		-- Completion
-		use {
-			'hrsh7th/nvim-cmp',
-			requires = {
-				'neovim/nvim-lspconfig',
-				'onsails/lspkind-nvim',
-				'hrsh7th/cmp-nvim-lsp',
-				'hrsh7th/cmp-buffer',
-				'hrsh7th/cmp-path',
-				'hrsh7th/cmp-cmdline',
-				'saadparwaiz1/cmp_luasnip',
-				{
-					'L3MON4D3/LuaSnip',
-					config = [[require('plugins.luasnip')]],
-					requires = { 'rafamadriz/friendly-snippets' },
-				},
-			},
-			config = [[require('plugins.cmp')]],
 		}
 		-- Highlighting
 		use {
@@ -99,13 +98,9 @@ return require('packer').startup {
 		}
 		-- Sidebar
 		use {
-			'nvim-neo-tree/neo-tree.nvim',
-			branch = 'v2.x',
-			requires = {
-				'nvim-lua/plenary.nvim',
-				'kyazdani42/nvim-web-devicons',
-				'MunifTanjim/nui.nvim',
-			}
+			'kyazdani42/nvim-tree.lua',
+			requires = { 'kyazdani42/nvim-web-devicons' },
+			config = [[require('plugins.tree')]],
 		}
 		-- Terminal
 		use {
@@ -192,7 +187,6 @@ return require('packer').startup {
 			'stevearc/dressing.nvim',
 			config = [[require('plugins.dressing')]],
 		}
-		-- Color schemes
 		use {
 			'rebelot/kanagawa.nvim',
 			config = [[require('plugins.colorschemes.kanagawa')]],

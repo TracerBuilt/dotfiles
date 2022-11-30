@@ -8,7 +8,7 @@ null_ls.setup {
 			extra_filetypes = { 'svx', 'mdx' },
 		},
 		b.diagnostics.selene,
-		b.formatting.prettierd.with {
+		b.formatting.prettier.with {
 			extra_filetypes = { 'svelte', 'xhtml' },
 			prefer_local = 'node_modules/.bin',
 		},
@@ -16,9 +16,7 @@ null_ls.setup {
 		b.diagnostics.codespell,
 		b.formatting.stylelint,
 		b.code_actions.shellcheck,
-		b.diagnostics.shellcheck.with {
-			extra_filetypes = { 'zsh' }
-		},
+		b.diagnostics.shellcheck,
 		b.formatting.shellharden,
 		b.formatting.shfmt
 	},
