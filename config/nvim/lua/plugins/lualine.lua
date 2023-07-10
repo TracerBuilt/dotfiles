@@ -1,10 +1,11 @@
 require('lualine').setup {
 	options = {
-		globalstatus = true
+		globalstatus = true,
 	},
+	extensions = { 'toggleterm' },
 	sections = {
 		lualine_a = { 'mode' },
-		lualine_b = { 'branch', 'diff', 'diagnostics' },
+		lualine_b = { 'branch', 'diff', 'diagnostics', 'toggleterm' },
 		lualine_c = {},
 		lualine_x = { 'filetype' },
 		lualine_y = { 'progress' },

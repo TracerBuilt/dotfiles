@@ -6,18 +6,14 @@ require('nvim-tree').setup {
 		custom = { '.DS_Store' },
 	},
 	view = {
-		hide_root_folder = true,
+		side = 'right',
 	},
 	renderer = {
 		highlight_git = true,
 		highlight_opened_files = 'icon',
+		root_folder_label = false,
 		indent_markers = {
 			enable = true,
 		},
 	},
-	git = {
-		ignore = false,
-	},
 }
-
-

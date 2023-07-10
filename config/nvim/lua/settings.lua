@@ -1,3 +1,6 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Colors
 vim.o.termguicolors = true
 
@@ -36,7 +39,7 @@ vim.o.shiftwidth = 2
 vim.o.smartindent = true
 vim.o.breakindent = true
 
-vim.g.neovide_transparency = 0.8
+vim.o.title = true
 
 --Remap for dealing with word wrap
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
@@ -45,3 +48,14 @@ vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true,
 -- Proper indentation for YAML
 vim.cmd [[ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab ]]
 vim.cmd [[ autocmd FileType markdown setlocal ts=2 sts=2 sw=2 expandtab ]]
+
+-- Highlight on yank
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	group = highlight_group,
+	pattern = '*',
+})

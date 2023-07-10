@@ -1,30 +1,27 @@
-local colors = require('kanagawa.colors').setup()
-
 require('kanagawa').setup {
 	globalStatus = true,
-	transparent = true,
 	undercurl = true,
-	overrides = {
-		VertSplit = { fg = colors.katanaGray, bg = 'NONE' },
-		WinSeparator = { fg = colors.katanaGray, bg = 'NONE' },
-		IndentBlankline1 = { fg = colors.oniViolet },
-		IndentBlankline2 = { fg = colors.crystalBlue },
-		IndentBlankline3 = { fg = colors.sakuraPink },
-		IndentBlankline4 = { fg = colors.springGreen },
-		IndentBlankline5 = { fg = colors.surimiOrange },
-		IndentBlankline6 = { fg = colors.peachRed },
-		IndentBlankline7 = { fg = colors.oldWhite},
-		IndentBlanklineContextChar = { fg = colors.fujiWhite },
-		IndentBlanklineContextStart = { sp = colors.fujiWhite },
-		rainbowcol1 = { fg = colors.oniViolet },
-		rainbowcol2 = { fg = colors.crystalBlue },
-		rainbowcol3 = { fg = colors.sakuraPink },
-		rainbowcol4 = { fg = colors.springGreen },
-		rainbowcol5 = { fg = colors.surimiOrange },
-		rainbowcol6 = { fg = colors.peachRed },
-		rainbowcol7 = { fg = colors.oldWhite},
-		TreesitterContext = { bg = colors.sumiInk2, sp = colors.fujiWhite }
-	},
+	overrides = function(colors)
+		return {
+			IndentBlankline1 = { fg = colors.palette.oniViolet },
+			IndentBlankline2 = { fg = colors.palette.crystalBlue },
+			IndentBlankline3 = { fg = colors.palette.sakuraPink },
+			IndentBlankline4 = { fg = colors.palette.springGreen },
+			IndentBlankline5 = { fg = colors.palette.surimiOrange },
+			IndentBlankline6 = { fg = colors.palette.peachRed },
+			IndentBlankline7 = { fg = colors.palette.oldWhite },
+			IndentBlanklineContextChar = { fg = colors.palette.fujiWhite },
+			IndentBlanklineContextStart = { sp = colors.palette.fujiWhite },
+			rainbowcol1 = { fg = colors.palette.oniViolet },
+			rainbowcol2 = { fg = colors.palette.crystalBlue },
+			rainbowcol3 = { fg = colors.palette.sakuraPink },
+			rainbowcol4 = { fg = colors.palette.springGreen },
+			rainbowcol5 = { fg = colors.palette.surimiOrange },
+			rainbowcol6 = { fg = colors.palette.peachRed },
+			rainbowcol7 = { fg = colors.palette.oldWhite },
+			TreesitterContext = { bg = colors.palette.sumiInk2, sp = colors.palette.fujiWhite },
+		}
+	end,
 }
 
 vim.cmd 'colorscheme kanagawa'

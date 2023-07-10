@@ -2,26 +2,12 @@ local lspconfig = require 'lspconfig'
 require 'plugins.mason'
 require('mason-lspconfig').setup()
 
-local on_attach = function(client, bufnr)
+local on_attach = function(client)
 	if client.name ~= 'null-ls' then
 		require('illuminate').on_attach(client)
 		client.server_capabilities.document_formatting = false
 		client.server_capabilities.document_range_formatting = false
 	end
-
-	vim.api.nvim_create_augroup('Format', { clear = true })
-	vim.api.nvim_create_autocmd('BufWritePre', {
-		group = 'Format',
-		pattern = '<buffer>',
-		callback = function()
-			vim.lsp.buf.format { timeout_ms = 10000 }
-		end,
-	})
-
-	-- vim.cmd [[augroup Format]]
-	-- vim.cmd [[autocmd! * <buffer>]]
-	-- vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
-	-- vim.cmd [[augroup END]]
 end
 
 -- LSP settings (for overriding per client)
@@ -60,18 +46,37 @@ lspconfig.jsonls.setup(opts)
 lspconfig.tailwindcss.setup(opts)
 lspconfig.stylelint_lsp.setup(opts)
 lspconfig.rust_analyzer.setup(opts)
-lspconfig.sumneko_lua.setup {
+lspconfig.astro.setup(opts)
+lspconfig.jdtls.setup(opts)
+
+-- Make runtime files discoverable to the server
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
+
+lspconfig.lua_ls.setup {
 	opts,
 	settings = {
 		Lua = {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most likely LuaJIT)
+				version = 'LuaJIT',
+			},
 			diagnostics = {
 				globals = { 'vim' },
 			},
+			workspace = {
+				library = vim.api.nvim_get_runtime_file('', true),
+			},
+			-- Do not send telemetry data containing a randomized but unique identifier
+			telemetry = { enable = false },
 		},
 	},
 }
 lspconfig.vimls.setup(opts)
 
-require 'plugins.lspconfig.null-ls'
+require('fidget').setup()
+
+require 'plugins.null-ls'
 
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]

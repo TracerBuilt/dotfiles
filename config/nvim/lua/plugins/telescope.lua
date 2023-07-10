@@ -1,23 +1,12 @@
-local telescope = require 'telescope'
-local actions = require 'telescope.actions'
-
-telescope.setup {
+require('telescope').setup {
 	defaults = {
 		layout_strategy = 'flex',
 		scroll_strategy = 'cycle',
 		mappings = {
 			i = {
-				['<esc>'] = actions.close,
-				['<C-h>'] = actions.which_key,
+				['<C-u>'] = false,
+				['<C-d>'] = false
 			},
-		},
-	},
-	extensions = {
-		fzf = {
-			fuzzy = true,
-			override_generic_sorter = true,
-			override_file_sorter = true,
-			case_mode = 'smart_case',
 		},
 	},
 	pickers = {
@@ -30,4 +19,3 @@ telescope.setup {
 	},
 }
 
-telescope.load_extension 'fzf'
