@@ -13,27 +13,9 @@ function killport() {
 	lsof -i TCP:$1 | grep LISTEN | awk '{print $2}' | xargs kill -9
 }
 
-# Python stuff
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
 export PNPM_HOME="/Users/thewildgander/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 export PATH="/usr/local/opt/openssl@3/bin:$PATH"
-
-# bun completions
-[ -s "/Users/thewildgander/.bun/_bun" ] && source "/Users/thewildgander/.bun/_bun"
-
-# Bun
-export BUN_INSTALL="/Users/thewildgander/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# Tere
-tere() {
-	local result=$(/Users/thewildgander/.cargo/bin/tere "$@")
-	[ -n "$result" ] && cd -- "$result"
-}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -44,11 +26,6 @@ eval "$(zoxide init zsh)"
 
 function xtitle () {
     builtin print -n -- "\e]0;$@\a"
-}
-
-# updates the window title whenever a command is run
-function precmd () {
-    xtitle "$(print -P %2~)"
 }
 
 export NVM_DIR="$HOME/.nvm"
