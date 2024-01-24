@@ -1,5 +1,4 @@
 require('kanagawa').setup {
-	globalStatus = true,
 	undercurl = true,
 	overrides = function(colors)
 		return {

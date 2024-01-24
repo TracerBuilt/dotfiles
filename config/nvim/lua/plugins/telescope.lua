@@ -5,8 +5,16 @@ require('telescope').setup {
 		mappings = {
 			i = {
 				['<C-u>'] = false,
-				['<C-d>'] = false
+				['<C-d>'] = false,
 			},
+		},
+	},
+	extensions = {
+		fzf = {
+			fuzzy = true,
+			override_generic_sorter = true,
+			override_file_sorter = true,
+			case_mode = 'smart_case',
 		},
 	},
 	pickers = {
@@ -18,4 +26,3 @@ require('telescope').setup {
 		},
 	},
 }
-

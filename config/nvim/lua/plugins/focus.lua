@@ -1,6 +1,6 @@
 require('focus').setup {
-	autoresize = false,
-	hybridnumber = true,
-	excluded_filetypes = { 'toggleterm', 'TelescopePrompt' },
+	autoresize = {
+		enable = false,
+	},
 	excluded_buftypes = { 'terminal' },
 }

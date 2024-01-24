@@ -1,5 +1,13 @@
 {
-	"cliLastUpdateCheck": 1667315732201,
-	"authToken": "skkWGWFOj2LkGFGSdouYX28vgN8Tm4uFomhVMgHibEgkRF5zzodrLjKAttOnMwwxS5UGthBsS9jDSbrW9",
-	"authType": "normal"
+	"cliLastUpdateCheck": 1705359568340,
+	"authToken": "skAD4KkyBZCUrNismPcUceCU0VYtP65BS9Gissjv8ix6QfafKm3oojchdivbhQpEVkZXG4HTikykfqYCQ",
+	"authType": "normal",
+	"telemetryDisclosed": 1705359567892,
+	"telemetryConsent": {
+		"value": {
+			"type": "telemetry",
+			"status": "granted"
+		},
+		"updatedAt": 1705359639299
+	}
 }

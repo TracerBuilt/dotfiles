@@ -2,9 +2,6 @@ require('nvim-tree').setup {
 	diagnostics = {
 		enable = true,
 	},
-	filters = {
-		custom = { '.DS_Store' },
-	},
 	view = {
 		side = 'right',
 	},
@@ -15,5 +12,8 @@ require('nvim-tree').setup {
 		indent_markers = {
 			enable = true,
 		},
+	},
+	filters = {
+		dotfiles = false,
 	},
 }
