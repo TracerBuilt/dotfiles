@@ -1,0 +1,41 @@
+window.bar {
+	background-color: $background-color;
+	color: white;
+}
+
+button {
+	min-width: 0;
+	margin: 0 .25rem;
+	padding: 0 0.5rem;
+	border: none;
+	background: none;
+}
+
+button:active {
+	background-color: blue;
+}
+
+button:hover {
+	border-bottom: 3px solid blue;
+}
+
+label {
+	font-weight: bold;
+}
+
+.workspaces button.focused {
+	border-bottom: 3px solid blue;
+}
+
+.client-title {
+	color: $text-color;
+}
+
+.notification {
+	color: yellow;
+}
+
+levelbar block,
+highlight {
+	min-height: 1rem;
+}

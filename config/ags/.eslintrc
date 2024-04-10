@@ -1,0 +1,17 @@
+{
+	"extends": "eslint:recommended",
+	"rules": {
+		"indent": [
+			"warning",
+			"tab"
+		],
+		"quotes": [
+			"warning",
+			"single"
+		],
+		"semi": [
+			"warning",
+			"never"
+		]
+	}
+}
