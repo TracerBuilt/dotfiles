@@ -25,16 +25,10 @@ null_ls.setup {
 			extra_filetypes = { 'svelte', 'toml' },
 		},
 		b.formatting.stylua,
-		b.diagnostics.stylelint.with {
-			extra_filetypes = { 'svelte' },
-		},
 		b.formatting.stylelint.with {
 			extra_filetypes = { 'svelte' },
 		},
-		b.code_actions.shellcheck,
-		b.diagnostics.shellcheck,
 		b.formatting.shellharden,
 		b.formatting.shfmt,
-		b.formatting.rustfmt,
 	},
 }

@@ -1,0 +1,10 @@
+mode=drun
+width=50%
+height=40%
+prompt=Search
+allow_images=true
+no_actions=true
+gtk_dark=true
+halign=fill
+image_size=48
+key_expand=Tab

@@ -43,11 +43,19 @@ lspconfig.tsserver.setup(opts)
 lspconfig.eslint.setup(opts)
 lspconfig.svelte.setup(opts)
 lspconfig.jsonls.setup(opts)
-lspconfig.tailwindcss.setup(opts)
-lspconfig.stylelint_lsp.setup(opts)
 lspconfig.rust_analyzer.setup(opts)
-lspconfig.astro.setup(opts)
 lspconfig.jdtls.setup(opts)
+lspconfig.lemminx.setup(opts)
+
+lspconfig.stylelint_lsp.setup {
+	opts,
+	filetypes = { 'css', 'scss', 'less', 'pcss', 'svelte' },
+	settings = {
+		stylelintplus = {
+			autoFixOnSave = true,
+		},
+	},
+}
 
 -- Make runtime files discoverable to the server
 local runtime_path = vim.split(package.path, ';')
@@ -74,9 +82,5 @@ lspconfig.lua_ls.setup {
 	},
 }
 lspconfig.vimls.setup(opts)
-
-require('fidget').setup()
-
-require 'plugins.null-ls'
 
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]

@@ -21,7 +21,7 @@ wk.register {
 	['<leader>'] = {
 		rn = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename All References' },
 		ca = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Actions' },
-		F = { '<cmd>lua vim.lsp.buf.format { async = true}<CR>', 'Format File' },
+		F = { '<cmd>lua require("conform").format()<CR>', 'Format File' },
 	},
 }
 

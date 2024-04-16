@@ -4,7 +4,7 @@ if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system {
 		'git',
 		'clone',
-		'--filter=blob:none',
+		'--filter=blob:one',
 		'https://github.com/folke/lazy.nvim.git',
 		'--branch=stable', -- latest stable release
 		lazypath,
@@ -20,11 +20,18 @@ return require('lazy').setup {
 			require 'plugins.lspconfig'
 		end,
 	},
-	'nvimtools/none-ls.nvim',
 	'nvim-lua/plenary.nvim',
 	'neovim/nvim-lspconfig',
 	'williamboman/mason.nvim',
 	'williamboman/mason-lspconfig.nvim',
+	-- Formatting
+	{
+		'stevearc/conform.nvim',
+		opts = {},
+		config = function()
+			require 'plugins.conform'
+		end,
+	},
 	{
 		'j-hui/fidget.nvim',
 		config = function()
@@ -87,6 +94,9 @@ return require('lazy').setup {
 			require('telescope').load_extension 'fzf'
 		end,
 	},
+
+	-- Auto-tagging
+	'windwp/nvim-ts-autotag',
 
 	-- Git
 	{
@@ -190,18 +200,30 @@ return require('lazy').setup {
 	-- Illuminate word under cursor
 	'RRethy/vim-illuminate',
 	-- Debugging
+	--
 	{
 		'mfussenegger/nvim-dap',
 		config = function()
 			require 'plugins.dap'
 		end,
 	},
+
 	{
 		'rcarriga/nvim-dap-ui',
+		dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio', 'folke/neodev.nvim' },
 		config = function()
 			require('dapui').setup()
 		end,
 	},
+
+	{
+		'folke/neodev.nvim',
+		opts = {},
+		config = function()
+			require 'plugins.neodev'
+		end,
+	},
+
 	-- Window management
 	{
 		'beauwilliams/focus.nvim',
