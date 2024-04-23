@@ -15,7 +15,8 @@ vim.o.linebreak = true
 vim.opt.undofile = true
 vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
-vim.o.timeoutlen = 1000
+vim.o.timeout = true
+vim.o.timeoutlen = 500
 vim.o.list = true
 vim.o.clipboard = 'unnamedplus'
 vim.o.completeopt = 'menu,menuone,noselect'
@@ -25,7 +26,7 @@ vim.o.cursorline = false
 vim.o.laststatus = 3
 
 -- Search
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.incsearch = true
@@ -40,6 +41,8 @@ vim.o.smartindent = true
 vim.o.breakindent = true
 
 vim.o.title = true
+
+vim.o.mousemoveevent = true
 
 --Remap for dealing with word wrap
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
@@ -59,3 +62,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 	group = highlight_group,
 	pattern = '*',
 })
+
+-- Disable ruby and perl providers
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0

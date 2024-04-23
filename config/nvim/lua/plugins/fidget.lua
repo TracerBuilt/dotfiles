@@ -2,8 +2,13 @@ require('fidget').setup {
 	progress = {
 		display = {
 			progress_icon = {
-				pattern = "dots_scrolling",
-			}
-		}
-	}
+				pattern = 'dots_scrolling',
+			},
+		},
+	},
+	notification = {
+		window = {
+			winblend = 0,
+		},
+	},
 }

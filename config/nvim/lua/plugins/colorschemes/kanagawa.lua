@@ -1,24 +1,32 @@
 require('kanagawa').setup {
 	undercurl = true,
+	transparent = true,
+
+	colors = {
+		theme = {
+			all = {
+				ui = {
+					bg_gutter = 'none',
+				},
+			},
+		},
+	},
 	overrides = function(colors)
+		-- local theme = colors.theme
 		return {
-			IndentBlankline1 = { fg = colors.palette.oniViolet },
-			IndentBlankline2 = { fg = colors.palette.crystalBlue },
-			IndentBlankline3 = { fg = colors.palette.sakuraPink },
-			IndentBlankline4 = { fg = colors.palette.springGreen },
-			IndentBlankline5 = { fg = colors.palette.surimiOrange },
-			IndentBlankline6 = { fg = colors.palette.peachRed },
-			IndentBlankline7 = { fg = colors.palette.oldWhite },
-			IndentBlanklineContextChar = { fg = colors.palette.fujiWhite },
-			IndentBlanklineContextStart = { sp = colors.palette.fujiWhite },
-			rainbowcol1 = { fg = colors.palette.oniViolet },
-			rainbowcol2 = { fg = colors.palette.crystalBlue },
-			rainbowcol3 = { fg = colors.palette.sakuraPink },
-			rainbowcol4 = { fg = colors.palette.springGreen },
-			rainbowcol5 = { fg = colors.palette.surimiOrange },
-			rainbowcol6 = { fg = colors.palette.peachRed },
-			rainbowcol7 = { fg = colors.palette.oldWhite },
-			TreesitterContext = { bg = colors.palette.sumiInk2, sp = colors.palette.fujiWhite },
+			NormalFloat = { bg = 'none' },
+			FloatBorder = { bg = 'none' },
+			FloatTitle = { bg = 'none' },
+
+			-- Save an hlgroup with dark background and dimmed foreground
+			-- so that you can use it where your still want darker windows.
+			-- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+			-- NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+
+			-- Popular plugins that open floats will link to NormalFloat by default;
+			-- set their background accordingly if you wish to keep them dark and borderless
+			-- LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+			-- MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
 		}
 	end,
 }

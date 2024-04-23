@@ -132,8 +132,17 @@ wk.register {
 	},
 	['gR'] = { '<cmd>Trouble lsp_references<CR>', 'LSP References' },
 }
--- Leap
 
+-- Dap
+wk.register {
+	['<leader>d'] = {
+		name = 'Debug',
+		u = { '<cmd>lua require"dapui".toggle()<CR>', 'Toggle UI' },
+		b = { '<cmd>lua require"dap".toggle_breakpoint()<CR>', 'Toggle Breakpoint' },
+	},
+}
+
+-- Leap
 wk.register {
 	s = {
 		function()

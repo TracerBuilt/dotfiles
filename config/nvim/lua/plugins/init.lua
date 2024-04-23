@@ -14,22 +14,13 @@ vim.opt.rtp:prepend(lazypath)
 
 return require('lazy').setup {
 	-- LSP
+
+	'williamboman/mason.nvim',
+	'williamboman/mason-lspconfig.nvim',
 	{
 		'neovim/nvim-lspconfig',
 		config = function()
 			require 'plugins.lspconfig'
-		end,
-	},
-	'nvim-lua/plenary.nvim',
-	'neovim/nvim-lspconfig',
-	'williamboman/mason.nvim',
-	'williamboman/mason-lspconfig.nvim',
-	-- Formatting
-	{
-		'stevearc/conform.nvim',
-		opts = {},
-		config = function()
-			require 'plugins.conform'
 		end,
 	},
 	{
@@ -38,6 +29,15 @@ return require('lazy').setup {
 			require 'plugins.fidget'
 		end,
 		opts = {},
+	},
+
+	-- Formatting
+	{
+		'stevearc/conform.nvim',
+		opts = {},
+		config = function()
+			require 'plugins.conform'
+		end,
 	},
 
 	-- Autocomplete
@@ -53,14 +53,27 @@ return require('lazy').setup {
 	'hrsh7th/cmp-buffer',
 	'hrsh7th/cmp-path',
 	'hrsh7th/cmp-cmdline',
+	'petertriho/cmp-git',
 	'saadparwaiz1/cmp_luasnip',
 	{
 		'L3MON4D3/LuaSnip',
 		version = 'v2.*',
 		build = 'make install_jsregexp',
+		config = function()
+			require('luasnip.loaders.from_vscode').lazy_load()
+		end,
 	},
 	'rafamadriz/friendly-snippets',
-	'Exafunction/codeium.vim',
+	{
+		'Exafunction/codeium.nvim',
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'hrsh7th/nvim-cmp',
+		},
+		config = function()
+			require('codeium').setup {}
+		end,
+	},
 
 	-- Highlighting
 	{
@@ -76,11 +89,26 @@ return require('lazy').setup {
 		end,
 		build = ':TSUpdate',
 	},
-	'p00f/nvim-ts-rainbow',
+
+	{
+		'HiPhish/rainbow-delimiters.nvim',
+		config = function()
+			require 'plugins.rainbow-delimiters'
+		end,
+	},
+
+	{
+		'nvimdev/hlsearch.nvim',
+		event = 'BufRead',
+		config = function()
+			require('hlsearch').setup()
+		end,
+	},
+
+	-- Auto-tagging
+	'windwp/nvim-ts-autotag',
 
 	-- Fuzzy search
-	'nvim-treesitter/nvim-treesitter-textobjects',
-	'nvim-lua/plenary.nvim',
 	{
 		'nvim-telescope/telescope.nvim',
 		config = function()
@@ -89,14 +117,8 @@ return require('lazy').setup {
 	},
 	{
 		'nvim-telescope/telescope-fzf-native.nvim',
-		build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
-		config = function()
-			require('telescope').load_extension 'fzf'
-		end,
+		build = 'make',
 	},
-
-	-- Auto-tagging
-	'windwp/nvim-ts-autotag',
 
 	-- Git
 	{
@@ -105,8 +127,6 @@ return require('lazy').setup {
 			require 'plugins.gitsigns'
 		end,
 	},
-	-- Symbols
-	'kyazdani42/nvim-web-devicons',
 	-- Diagnostics
 	{
 		'folke/trouble.nvim',
@@ -116,9 +136,23 @@ return require('lazy').setup {
 	},
 	-- Sidebar
 	{
-		'kyazdani42/nvim-tree.lua',
+		'antosha417/nvim-lsp-file-operations',
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			{
+				'nvim-tree/nvim-tree.lua',
+				version = '*',
+				lazy = false,
+				dependencies = {
+					'nvim-tree/nvim-web-devicons',
+				},
+				config = function()
+					require 'plugins.tree'
+				end,
+			},
+		},
 		config = function()
-			require 'plugins.tree'
+			require('lsp-file-operations').setup()
 		end,
 	},
 	-- Terminal
@@ -132,6 +166,7 @@ return require('lazy').setup {
 	-- Statusline
 	{
 		'nvim-lualine/lualine.nvim',
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
 		config = function()
 			require 'plugins.lualine'
 		end,
@@ -139,6 +174,8 @@ return require('lazy').setup {
 	-- Buffer management
 	{
 		'akinsho/bufferline.nvim',
+		version = '*',
+		dependencies = 'nvim-tree/nvim-web-devicons',
 		config = function()
 			require 'plugins.bufferline'
 		end,
@@ -146,35 +183,30 @@ return require('lazy').setup {
 	-- WhichKey
 	{
 		'folke/which-key.nvim',
-		config = function()
-			require 'plugins.which-key'
-		end,
+		event = 'VeryLazy',
+		opts = {},
 	},
 	-- Scrolling
 	{
 		'karb94/neoscroll.nvim',
 		config = function()
-			require 'plugins.neoscroll'
+			require('neoscroll').setup {}
 		end,
 	},
 	-- Auto pairing
 	{
 		'windwp/nvim-autopairs',
-		config = function()
-			require 'plugins.autopairs'
-		end,
-	},
-	-- Extra Rust tools
-	{
-		'simrat39/rust-tools.nvim',
-		config = function()
-			require('rust-tools').setup()
-		end,
+		event = 'InsertEnter',
+		config = true,
+		opts = {
+			check_ts = true,
+		},
 	},
 	-- Surround
 	{
 		'kylechui/nvim-surround',
 		version = '*',
+		event = 'VeryLazy',
 		config = function()
 			require('nvim-surround').setup()
 		end,
@@ -197,30 +229,14 @@ return require('lazy').setup {
 			require 'plugins.colorizer'
 		end,
 	},
-	-- Illuminate word under cursor
-	'RRethy/vim-illuminate',
 	-- Debugging
 	--
-	{
-		'mfussenegger/nvim-dap',
-		config = function()
-			require 'plugins.dap'
-		end,
-	},
 
 	{
 		'rcarriga/nvim-dap-ui',
-		dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio', 'folke/neodev.nvim' },
+		dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' },
 		config = function()
-			require('dapui').setup()
-		end,
-	},
-
-	{
-		'folke/neodev.nvim',
-		opts = {},
-		config = function()
-			require 'plugins.neodev'
+			require 'plugins.dap-ui'
 		end,
 	},
 
@@ -234,9 +250,7 @@ return require('lazy').setup {
 	-- Fancy selects
 	{
 		'stevearc/dressing.nvim',
-		config = function()
-			require 'plugins.dressing'
-		end,
+		opts = {},
 	},
 	{
 		'rebelot/kanagawa.nvim',

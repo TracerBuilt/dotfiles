@@ -1,23 +1,22 @@
 require('bufferline').setup {
 	options = {
+		themable = true,
 		diagnostics = 'nvim_lsp',
-		diagnostics_update_in_insert = false,
-		diagnostics_indicator = function(count, level, diagnostics_dict, context)
-			local s = ''
-			for e, n in pairs(diagnostics_dict) do
-				local sym = e == 'error' and ' ' or (e == 'warning' and ' ' or '')
-				s = n .. sym
-			end
-			return s
-		end,
+		separator_style = 'thin',
+		hover = {
+			enabled = true,
+			delay = 0,
+			reveal = { 'close' },
+		},
 		offsets = {
 			{
-				filetype = 'neo-tree',
+				filetype = 'NvimTree',
 				text = function()
-					return vim.fn.getcwd()
+					return string.sub(vim.fn.getcwd(), vim.fn.getcwd():match '^.*()/')
 				end,
 				highlight = 'Directory',
-				text_align = 'left',
+				text_align = 'center',
+				separator = true,
 			},
 		},
 	},

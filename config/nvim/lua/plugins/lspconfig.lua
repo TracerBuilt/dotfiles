@@ -1,36 +1,15 @@
 local lspconfig = require 'lspconfig'
 require 'plugins.mason'
-require('mason-lspconfig').setup()
-
-local on_attach = function(client)
-	if client.name ~= 'null-ls' then
-		require('illuminate').on_attach(client)
-		client.server_capabilities.document_formatting = false
-		client.server_capabilities.document_range_formatting = false
-	end
-end
-
--- LSP settings (for overriding per client)
-local handlers = {
-	['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-		signs = true,
-		virtual_text = false,
-		underline = true,
-		update_in_insert = false,
-	}),
-	['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' }),
-	['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' }),
-}
+require('mason-lspconfig').setup { automatic_installation = true }
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local opts = {
 	capabilities = capabilities,
-	on_attach = on_attach,
-	handlers = handlers,
 }
 
+lspconfig.typos_lsp.setup(opts)
 lspconfig.html.setup(opts)
 lspconfig.cssls.setup { opts, settings = {
 	css = {
@@ -46,7 +25,6 @@ lspconfig.jsonls.setup(opts)
 lspconfig.rust_analyzer.setup(opts)
 lspconfig.jdtls.setup(opts)
 lspconfig.lemminx.setup(opts)
-
 lspconfig.stylelint_lsp.setup {
 	opts,
 	filetypes = { 'css', 'scss', 'less', 'pcss', 'svelte' },
