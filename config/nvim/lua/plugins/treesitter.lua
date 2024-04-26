@@ -1,28 +1,36 @@
-require('nvim-treesitter.configs').setup {
+return {
+	'nvim-treesitter/nvim-treesitter',
+	build = ':TSUpdate',
+	config = function()
+		local configs = require 'nvim-treesitter.configs'
 
-	ensure_installed = {
-		'html',
-		'css',
-		'scss',
-		'javascript',
-		'typescript',
-		'tsx',
-		'svelte',
-		'toml',
-		'json',
-		'yaml',
-		'lua',
-	},
+		configs.setup {
 
-	highlight = {
-		enable = true,
-	},
+			ensure_installed = {
+				'html',
+				'css',
+				'scss',
+				'javascript',
+				'typescript',
+				'tsx',
+				'svelte',
+				'toml',
+				'json',
+				'yaml',
+				'lua',
+			},
 
-	indent = {
-		enable = true,
-	},
+			highlight = {
+				enable = true,
+			},
 
-	autotag = {
-		enable = true,
-	},
+			indent = {
+				enable = true,
+			},
+
+			autotag = {
+				enable = true,
+			},
+		}
+	end,
 }

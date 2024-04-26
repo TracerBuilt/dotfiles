@@ -1,5 +1,6 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.g.mapleader = ' '
 
 -- Colors
 vim.o.termguicolors = true
@@ -15,8 +16,6 @@ vim.o.linebreak = true
 vim.opt.undofile = true
 vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
-vim.o.timeout = true
-vim.o.timeoutlen = 500
 vim.o.list = true
 vim.o.clipboard = 'unnamedplus'
 vim.o.completeopt = 'menu,menuone,noselect'
@@ -43,10 +42,6 @@ vim.o.breakindent = true
 vim.o.title = true
 
 vim.o.mousemoveevent = true
-
---Remap for dealing with word wrap
-vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
-vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
 -- Proper indentation for YAML
 vim.cmd [[ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab ]]

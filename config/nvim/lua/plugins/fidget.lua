@@ -1,14 +1,17 @@
-require('fidget').setup {
-	progress = {
-		display = {
-			progress_icon = {
-				pattern = 'dots_scrolling',
+return {
+	'j-hui/fidget.nvim',
+	opts = {
+		progress = {
+			display = {
+				progress_icon = {
+					pattern = 'dots_scrolling',
+				},
 			},
 		},
-	},
-	notification = {
-		window = {
-			winblend = 0,
+		notification = {
+			window = {
+				winblend = 0,
+			},
 		},
 	},
 }

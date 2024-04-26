@@ -1,1 +1,1 @@
-require('nvim-ts-autotag').setup()
+return { 'windwp/nvim-ts-autotag' }
