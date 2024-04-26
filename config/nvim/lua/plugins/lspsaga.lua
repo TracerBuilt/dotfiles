@@ -1,4 +1,6 @@
-return {
+return {}
+
+--[[ return {
 	'nvimdev/lspsaga.nvim',
 	dependencies = {
 		'nvim-treesitter/nvim-treesitter',
@@ -8,4 +10,4 @@ return {
 	config = function()
 		require('lspsaga').setup {}
 	end,
-}
+} ]]

@@ -1,6 +1,6 @@
 return {
 	'nvim-lualine/lualine.nvim',
-	dependencies = { 'nvim-tree/nvim-web-devicons' },
+	dependencies = { 'nvim-neo-tree/neo-tree.nvim' },
 	config = function()
 		local theme = require('kanagawa.colors').setup().theme
 
@@ -43,7 +43,7 @@ return {
 				globalstatus = true,
 				theme = kanagawa,
 			},
-			extensions = { 'fzf', 'lazy', 'mason', 'nvim-tree', 'nvim-dap-ui', 'toggleterm' },
+			extensions = { 'fzf', 'lazy', 'mason', 'neo-tree', 'nvim-dap-ui', 'toggleterm' },
 			sections = {
 				lualine_a = { 'mode' },
 				lualine_b = { 'branch', 'diff', 'diagnostics' },

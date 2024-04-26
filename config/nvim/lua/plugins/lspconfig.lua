@@ -90,12 +90,12 @@ return {
 						r = { require('telescope.builtin').lsp_references, 'List All References' },
 						y = { require('telescope.builtin').lsp_type_definitions, 'Go-To Type Definition' },
 					},
-					K = { '<cmd>Lspsaga hover_doc<cr>', 'Display Hover Info' },
+					K = { vim.lsp.buf.hover, 'Display Hover Info' },
 					['C-k'] = { vim.lsp.buf.signature_help, 'Display Signature Info' },
 					['<leader>'] = {
 						F = { require('conform').format, 'Format File' },
 						rn = { vim.lsp.buf.rename, 'Rename All References' },
-						ca = { '<cmd>Lspsaga code_action<CR>', 'Code Actions', mode = { 'n', 'v' } },
+						ca = { vim.lsp.buf.code_action, 'Code Actions', mode = { 'n', 'v' } },
 						wa = { vim.lsp.buf.add_workspace_folder, 'Add Workspace Folder' },
 						wr = { vim.lsp.buf.remove_workspace_folder, 'Remove Workspace Folder' },
 						wl = {

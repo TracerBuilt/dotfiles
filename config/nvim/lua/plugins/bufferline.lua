@@ -15,11 +15,7 @@ return {
 				},
 				offsets = {
 					{
-						filetype = 'NvimTree',
-						text = function()
-							return string.sub(vim.fn.getcwd(), vim.fn.getcwd():match '^.*()/')
-						end,
-						text_align = 'center',
+						filetype = 'neo-tree',
 						separator = true,
 					},
 				},

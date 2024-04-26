@@ -18,6 +18,11 @@ return {
 				'json',
 				'yaml',
 				'lua',
+				'vim',
+				'regex',
+				'bash',
+				'markdown',
+				'markdown_inline',
 			},
 
 			highlight = {
