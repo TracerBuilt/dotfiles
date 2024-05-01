@@ -34,6 +34,7 @@ return {
 				},
 				use_libuv_file_watcher = true,
 			},
+			hide_root_node = true,
 		}
 	end,
 }

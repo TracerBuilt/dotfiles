@@ -1,5 +1,5 @@
 return {
-	'akinsho/bufferline.nvim',
+	'Theyashsawarkar/bufferline.nvim',
 	version = '*',
 	dependencies = 'nvim-tree/nvim-web-devicons',
 	config = function()
@@ -16,6 +16,10 @@ return {
 				offsets = {
 					{
 						filetype = 'neo-tree',
+						text = function()
+							return string.sub(vim.fn.getcwd(), vim.fn.getcwd():match '^.*()/')
+						end,
+						text_align = 'center',
 						separator = true,
 					},
 				},

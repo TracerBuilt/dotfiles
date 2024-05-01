@@ -34,6 +34,7 @@ return {
 		lspconfig.rust_analyzer.setup(lsp_opts)
 		lspconfig.jdtls.setup(lsp_opts)
 		lspconfig.lemminx.setup(lsp_opts)
+		lspconfig.tailwindcss.setup(lsp_opts)
 		lspconfig.stylelint_lsp.setup {
 			lsp_opts,
 			filetypes = { 'css', 'scss', 'less', 'pcss', 'svelte' },

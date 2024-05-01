@@ -7,9 +7,16 @@ return {
 			'nvim-telescope/telescope-fzf-native.nvim',
 			build = 'make',
 		},
+		{
+			'nvim-telescope/telescope-media-files.nvim',
+			dependencies = {
+				'nvim-lua/popup.nvim',
+			},
+		},
 	},
 	config = function()
-		require('telescope').setup {
+		local telescope = require 'telescope'
+		telescope.setup {
 			defaults = {
 				layout_strategy = 'flex',
 				scroll_strategy = 'cycle',
@@ -27,6 +34,7 @@ return {
 					override_file_sorter = true,
 					case_mode = 'smart_case',
 				},
+				media_files = {},
 			},
 			pickers = {
 				lsp_references = { theme = 'cursor' },
@@ -38,7 +46,8 @@ return {
 			},
 		}
 
-		require('telescope').load_extension 'fzf'
+		telescope.load_extension 'fzf'
+		telescope.load_extension 'media_files'
 
 		local wk = require 'which-key'
 
