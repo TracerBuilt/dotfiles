@@ -4,7 +4,6 @@ return {
 		'williamboman/mason.nvim',
 		'williamboman/mason-lspconfig.nvim',
 		'hrsh7th/cmp-nvim-lsp',
-		'nvimdev/lspsaga.nvim',
 	},
 	config = function()
 		local lspconfig = require 'lspconfig'
@@ -16,7 +15,6 @@ return {
 			capabilities = capabilities,
 		}
 
-		lspconfig.typos_lsp.setup(lsp_opts)
 		lspconfig.html.setup(lsp_opts)
 		lspconfig.cssls.setup {
 			lsp_opts,
@@ -28,6 +26,7 @@ return {
 				},
 			},
 		}
+		lspconfig.tsserver.setup(lsp_opts)
 		lspconfig.eslint.setup(lsp_opts)
 		lspconfig.svelte.setup(lsp_opts)
 		lspconfig.jsonls.setup(lsp_opts)
@@ -35,15 +34,7 @@ return {
 		lspconfig.jdtls.setup(lsp_opts)
 		lspconfig.lemminx.setup(lsp_opts)
 		lspconfig.tailwindcss.setup(lsp_opts)
-		lspconfig.stylelint_lsp.setup {
-			lsp_opts,
-			filetypes = { 'css', 'scss', 'less', 'pcss', 'svelte' },
-			settings = {
-				stylelintplus = {
-					autoFixOnSave = true,
-				},
-			},
-		}
+		lspconfig.typos_lsp.setup(lsp_opts)
 
 		-- Make runtime files discoverable to the server
 		local runtime_path = vim.split(package.path, ';')
