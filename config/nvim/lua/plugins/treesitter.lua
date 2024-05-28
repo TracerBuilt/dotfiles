@@ -2,9 +2,7 @@ return {
 	'nvim-treesitter/nvim-treesitter',
 	build = ':TSUpdate',
 	config = function()
-		local configs = require 'nvim-treesitter.configs'
-
-		configs.setup {
+		require('nvim-treesitter.configs').setup {
 
 			ensure_installed = {
 				'html',
@@ -25,15 +23,13 @@ return {
 				'markdown_inline',
 			},
 
+			auto_install = true,
+
 			highlight = {
 				enable = true,
 			},
 
 			indent = {
-				enable = true,
-			},
-
-			autotag = {
 				enable = true,
 			},
 		}
