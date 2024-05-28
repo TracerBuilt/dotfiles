@@ -1,9 +1,5 @@
 **/*.DS_Store
-config/github-copilot/
 config/nnn/.lastd
-config/nvim/vscode-chrome-debug/
-config/nvim/vscode-firefox-debug/
-config/nvim/plugin/packer_compiled.lua
 config/configstore/update-notifier-@storybook/cli.json
 config/configstore/update-notifier-netlify-cli.json
 config/ags/node_modules/
@@ -14,7 +10,6 @@ config/BraveSoftware/Brave-Browser
 config/Cider
 config/GIMP/2.10
 config/Kingsoft
-config/VSCodium
 config/Zoho Mail - Desktop
 config/alienfx
 config/cava
@@ -36,7 +31,6 @@ config/libaccounts-glib
 config/libreoffice/4
 config/microsoft-edge-dev/NativeMessagingHosts
 config/nextjs-nodejs
-config/nvm
 config/onlyoffice
 config/pulse
 config/qBittorrent
@@ -44,8 +38,10 @@ config/rog
 config/scribus
 config/session
 config/sh.cider.electron
-config/ticktick
 config/vivaldi-snapshot/NativeMessagingHosts
 config/xfce4/xfconf/xfce-perchannel-xml
 config/xsettingsd
-config/zed
+config/mc
+config/Thunar
+config/google-chrome
+config/qalculate
