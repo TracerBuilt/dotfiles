@@ -26,7 +26,6 @@ return {
 				},
 			},
 		}
-		lspconfig.tsserver.setup(lsp_opts)
 		lspconfig.eslint.setup(lsp_opts)
 		lspconfig.svelte.setup(lsp_opts)
 		lspconfig.jsonls.setup(lsp_opts)
