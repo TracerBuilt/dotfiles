@@ -26,6 +26,7 @@ return {
 				},
 			},
 		}
+		lspconfig.tsserver.setup(lsp_opts)
 		lspconfig.eslint.setup(lsp_opts)
 		lspconfig.svelte.setup(lsp_opts)
 		lspconfig.jsonls.setup(lsp_opts)
@@ -66,23 +67,46 @@ return {
 		vim.api.nvim_create_autocmd('LspAttach', {
 
 			group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+
 			callback = function(ev)
-				-- Enable completion triggered by <c-x><c-o>
-				vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 				local opts = { buffer = ev.buf }
 				local wk = require 'which-key'
+
+				--[[ local open_hover = function()
+					for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+						local win_config = vim.api.nvim_win_get_config(win)
+						if win_config.relative == 'win' then
+							vim.api.nvim_win_close(win, false)
+						end
+					end
+
+					vim.lsp.buf.hover()
+				end ]]
+
+				local diagnostic_opts = {
+					bufnr = ev.buf,
+					scope = 'line',
+					source = 'if_many',
+					close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost', 'WinNew' },
+					border = 'rounded',
+				}
 
 				-- LSP
 				wk.register({
 					g = {
-						D = { vim.lsp.buf.declaration, 'Go-To Declaration' },
-						d = { require('telescope.builtin').lsp_definitions, 'Go-To Definition' },
+						D = { vim.lsp.buf.declaration, 'Go To Declaration' },
+						d = { require('telescope.builtin').lsp_definitions, 'Go To Definition' },
 						i = { require('telescope.builtin').lsp_implementations, 'List All Implementations' },
 						r = { require('telescope.builtin').lsp_references, 'List All References' },
-						y = { require('telescope.builtin').lsp_type_definitions, 'Go-To Type Definition' },
+						y = { require('telescope.builtin').lsp_type_definitions, 'Go To Type Definition' },
 					},
-					K = { vim.lsp.buf.hover, 'Display Hover Info' },
-					['C-k'] = { vim.lsp.buf.signature_help, 'Display Signature Info' },
+					['<C-k>'] = { vim.lsp.buf.signature_help, 'Display Signature Info' },
+					['<C-x>'] = {
+						function()
+							vim.diagnostic.open_float(diagnostic_opts)
+						end,
+						'Open Line Diagnostics',
+					},
 					['<leader>'] = {
 						F = { require('conform').format, 'Format File' },
 						rn = { vim.lsp.buf.rename, 'Rename All References' },
@@ -97,30 +121,6 @@ return {
 						},
 					},
 				}, opts)
-
-				-- Show diagnostics in a pop-up window on hover
-				_G.LspDiagnosticsPopupHandler = function()
-					local current_cursor = vim.api.nvim_win_get_cursor(0)
-					local last_popup_cursor = vim.w.lsp_diagnostics_last_cursor or { nil, nil }
-
-					-- Show the popup diagnostics window,
-					-- but only once for the current cursor location (unless moved afterwards).
-					if
-						not (current_cursor[1] == last_popup_cursor[1] and current_cursor[2] == last_popup_cursor[2])
-					then
-						vim.w.lsp_diagnostics_last_cursor = current_cursor
-						vim.diagnostic.open_float(0, { scope = 'cursor', focusable = false })
-					end
-				end
-
-				local reset_group = vim.api.nvim_create_augroup('reset_group', {})
-
-				vim.api.nvim_create_autocmd({ 'CursorHold' }, {
-					callback = function()
-						_G.LspDiagnosticsPopupHandler()
-					end,
-					group = reset_group,
-				})
 			end,
 		})
 	end,

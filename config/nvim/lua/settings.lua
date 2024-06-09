@@ -43,9 +43,12 @@ vim.o.title = true
 
 vim.o.mousemoveevent = true
 
--- Proper indentation for YAML
-vim.cmd [[ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab ]]
-vim.cmd [[ autocmd FileType markdown setlocal ts=2 sts=2 sw=2 expandtab ]]
+vim.diagnostic.config {
+	virtual_text = true,
+	signs = true,
+	underline = true,
+	severity_sort = true,
+}
 
 -- Highlight on yank
 -- See `:help vim.highlight.on_yank()`
