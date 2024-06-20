@@ -1,0 +1,15 @@
+[font]
+normal = ["RecMonoLinear Nerd Font"]
+size = 14
+
+[font.bold]
+family = "RecMonoLinear Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "RecMonoCasual Nerd Font"
+style = "Italic"
+
+[font.bold_italic]
+family = "RecMonoSmCasual Nerd Font"
+style = "Bold Italic"
