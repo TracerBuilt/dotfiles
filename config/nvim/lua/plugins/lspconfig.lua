@@ -34,6 +34,7 @@ return {
 		lspconfig.jdtls.setup(lsp_opts)
 		lspconfig.lemminx.setup(lsp_opts)
 		lspconfig.tailwindcss.setup(lsp_opts)
+		lspconfig.taplo.setup(lsp_opts)
 		lspconfig.typos_lsp.setup(lsp_opts)
 
 		-- Make runtime files discoverable to the server
@@ -87,7 +88,7 @@ return {
 					bufnr = ev.buf,
 					scope = 'line',
 					source = 'if_many',
-					close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost', 'WinNew' },
+					close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'WinNew' },
 					border = 'rounded',
 				}
 
@@ -100,17 +101,19 @@ return {
 						r = { require('telescope.builtin').lsp_references, 'List All References' },
 						y = { require('telescope.builtin').lsp_type_definitions, 'Go To Type Definition' },
 					},
-					['<C-k>'] = { vim.lsp.buf.signature_help, 'Display Signature Info' },
+					['<C-k>'] = { vim.lsp.buf.signature_help, 'Signature Info' },
 					['<C-x>'] = {
-						function()
-							vim.diagnostic.open_float(diagnostic_opts)
-						end,
-						'Open Line Diagnostics',
+						'<cmd>Lspsaga diagnostic_jump_next<CR>',
+						'Diagnostics - Jump Next',
+					},
+					['<C-X>'] = {
+						'<cmd>Lspsaga diagnostic_jump_prev<CR>',
+						'Diagnostics - Jump Previous',
 					},
 					['<leader>'] = {
 						F = { require('conform').format, 'Format File' },
 						rn = { vim.lsp.buf.rename, 'Rename All References' },
-						ca = { vim.lsp.buf.code_action, 'Code Actions', mode = { 'n', 'v' } },
+						ca = { '<cmd>Lspsaga code_action<CR>', 'Code Actions', mode = { 'n', 'v' } },
 						wa = { vim.lsp.buf.add_workspace_folder, 'Add Workspace Folder' },
 						wr = { vim.lsp.buf.remove_workspace_folder, 'Remove Workspace Folder' },
 						wl = {

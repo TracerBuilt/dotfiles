@@ -23,6 +23,35 @@ return {
 						separator = true,
 					},
 				},
+				name_formatter = function(buf)
+					if buf.name:find '+' then
+						local name = buf.name:gsub('+', '')
+						name = name:gsub('.svelte', '')
+
+						if name:find '.server' then
+							if name:find 'layout' then
+								name = 'layout server'
+							else
+								name = 'page server'
+							end
+						elseif name:find '.ts' or name:find '.js' then
+							if name:find 'layout' then
+								name = 'layout data'
+							elseif name:find 'page' then
+								name = 'page data'
+							else
+								name = 'server'
+							end
+						end
+						local path, last = buf.path:match '.*/(.*)/.*$'
+						if path == 'routes' then
+							return name
+						else
+							return path .. ' - ' .. name
+						end
+					end
+				end,
+				max_name_length = 25,
 			},
 		}
 

@@ -1,6 +1,8 @@
-return {
+return {}
+
+--[[ return {
 	'rcarriga/nvim-notify',
 	opts = {
 		top_down = false,
 	},
-}
+} ]]

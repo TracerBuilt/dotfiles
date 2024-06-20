@@ -7,12 +7,6 @@ return {
 			'nvim-telescope/telescope-fzf-native.nvim',
 			build = 'make',
 		},
-		{
-			'nvim-telescope/telescope-media-files.nvim',
-			dependencies = {
-				'nvim-lua/popup.nvim',
-			},
-		},
 	},
 	config = function()
 		local telescope = require 'telescope'
@@ -47,7 +41,6 @@ return {
 		}
 
 		telescope.load_extension 'fzf'
-		telescope.load_extension 'media_files'
 
 		local wk = require 'which-key'
 
