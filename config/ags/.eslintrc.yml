@@ -31,16 +31,6 @@ rules:
   arrow-parens:
     - error
     - as-needed
-  comma-dangle:
-    - error
-    - always-multiline
-  comma-spacing:
-    - error
-    - before: false
-      after: true
-  comma-style:
-    - error
-    - last
   curly:
     - error
     - multi-or-nest
@@ -53,10 +43,6 @@ rules:
   eqeqeq:
     - error
     - always
-  indent:
-    - error
-    - 4
-    - SwitchCase: 1
   keyword-spacing:
     - error
     - before: true
@@ -70,16 +56,6 @@ rules:
     - allowSingleLineBlocks: false
   prefer-const:
     - error
-  quotes:
-    - error
-    - double
-    - avoidEscape: true
-  semi:
-    - error
-    - never
-  nonblock-statement-body-position:
-    - error
-    - below
   no-trailing-spaces:
     - error
   no-useless-escape:
