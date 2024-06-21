@@ -73,25 +73,6 @@ return {
 				local opts = { buffer = ev.buf }
 				local wk = require 'which-key'
 
-				--[[ local open_hover = function()
-					for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
-						local win_config = vim.api.nvim_win_get_config(win)
-						if win_config.relative == 'win' then
-							vim.api.nvim_win_close(win, false)
-						end
-					end
-
-					vim.lsp.buf.hover()
-				end ]]
-
-				local diagnostic_opts = {
-					bufnr = ev.buf,
-					scope = 'line',
-					source = 'if_many',
-					close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'WinNew' },
-					border = 'rounded',
-				}
-
 				-- LSP
 				wk.register({
 					g = {
@@ -106,7 +87,7 @@ return {
 						'<cmd>Lspsaga diagnostic_jump_next<CR>',
 						'Diagnostics - Jump Next',
 					},
-					['<C-X>'] = {
+					['<C-z>'] = {
 						'<cmd>Lspsaga diagnostic_jump_prev<CR>',
 						'Diagnostics - Jump Previous',
 					},

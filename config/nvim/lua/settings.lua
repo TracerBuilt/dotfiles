@@ -1,5 +1,3 @@
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = ' '
 
 -- Colors
@@ -15,7 +13,7 @@ vim.o.wrap = true
 vim.o.linebreak = true
 vim.opt.undofile = true
 vim.o.updatetime = 250
-vim.wo.signcolumn = 'yes'
+vim.o.signcolumn = 'auto:1-2'
 vim.o.list = true
 vim.o.clipboard = 'unnamedplus'
 vim.o.completeopt = 'menu,menuone,noselect'
@@ -45,7 +43,14 @@ vim.o.mousemoveevent = true
 
 vim.diagnostic.config {
 	virtual_text = true,
-	signs = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = ' ',
+			[vim.diagnostic.severity.WARN] = ' ',
+			[vim.diagnostic.severity.INFO] = ' ',
+			[vim.diagnostic.severity.HINT] = '󰌵',
+		},
+	},
 	underline = true,
 	severity_sort = true,
 }
