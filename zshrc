@@ -128,10 +128,8 @@ for key ('j') bindkey -M vicmd ${key} history-substring-search-down
 unset key
 # }}} End configuration added by Zim install
 
-path+=('$PATH:/opt/nvim-linux64/bin')
-export path
-
 export EDITOR='nvim'
+export TERM='xterm-kitty'
 
 source /usr/share/nvm/init-nvm.sh
 
@@ -161,7 +159,7 @@ add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
 # pnpm
-export PNPM_HOME="/home/hyperland/.local/share/pnpm"
+export PNPM_HOME="/home/goose/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -172,10 +170,13 @@ esac
 eval "$(zoxide init zsh)"
 
 # bun completions
-[ -s "/home/hyperland/.bun/_bun" ] && source "/home/hyperland/.bun/_bun"
+[ -s "/home/goose/.bun/_bun" ] && source "/home/goose/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 alias lg='lazygit'
+
+# initialize Starship prompt
+eval "$(starship init zsh)"
