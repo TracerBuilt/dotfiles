@@ -31,13 +31,6 @@ rules:
   arrow-parens:
     - error
     - as-needed
-  comma-spacing:
-    - error
-    - before: false
-      after: true
-  comma-style:
-    - error
-    - last
   curly:
     - error
     - multi-or-nest
@@ -63,9 +56,6 @@ rules:
     - allowSingleLineBlocks: false
   prefer-const:
     - error
-  nonblock-statement-body-position:
-    - error
-    - below
   no-trailing-spaces:
     - error
   no-useless-escape:

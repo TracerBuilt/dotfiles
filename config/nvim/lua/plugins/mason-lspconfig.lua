@@ -26,6 +26,7 @@ return {
 				'tailwindcss@0.0.0-insiders.3d0673b',
 				'taplo',
 				'tsserver',
+				'typos_lsp',
 				'yamlls',
 				'vimls',
 			},
