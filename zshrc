@@ -131,8 +131,6 @@ unset key
 export EDITOR='nvim'
 export TERM='xterm-kitty'
 
-source /usr/share/nvm/init-nvm.sh
-
 # nvm hook
 autoload -U add-zsh-hook
 

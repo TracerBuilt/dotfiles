@@ -6,8 +6,6 @@ return {
 		'hrsh7th/cmp-nvim-lsp',
 	},
 	config = function()
-		vim.lsp.set_log_level 'debug'
-
 		-- Use LspAttach autocommand to only map the following keys
 		-- after the language server attaches to the current buffer
 		vim.api.nvim_create_autocmd('LspAttach', {
