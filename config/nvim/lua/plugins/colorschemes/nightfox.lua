@@ -1,9 +1,10 @@
-local nightfox = require 'nightfox'
-
-nightfox.setup {
-	fox = 'nightfox',
-	transparent = true,
-	terminal_colors = true,
+return {
+	'EdenEast/nightfox.nvim',
+	lazy = true,
+	config = function()
+		require('nightfox').setup {
+			transparent = true,
+			terminal_colors = true,
+		}
+	end,
 }
-
-nightfox.load()

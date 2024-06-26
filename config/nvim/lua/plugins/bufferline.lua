@@ -6,23 +6,7 @@ return {
 		require('bufferline').setup {
 			options = {
 				themable = true,
-				diagnostics = 'nvim_lsp',
-				separator_style = 'thin',
-				hover = {
-					enabled = true,
-					delay = 0,
-					reveal = { 'close' },
-				},
-				offsets = {
-					{
-						filetype = 'neo-tree',
-						text = function()
-							return string.sub(vim.fn.getcwd(), vim.fn.getcwd():match '^.*()/')
-						end,
-						text_align = 'center',
-						separator = true,
-					},
-				},
+				indicator = { style = 'underline' },
 				name_formatter = function(buf)
 					if buf.name:find '+' then
 						local name = buf.name:gsub('+', '')
@@ -52,6 +36,13 @@ return {
 					end
 				end,
 				max_name_length = 25,
+				diagnostics = 'nvim_lsp',
+				separator_style = 'thin',
+				hover = {
+					enabled = true,
+					delay = 0,
+					reveal = { 'close' },
+				},
 			},
 		}
 
@@ -61,8 +52,10 @@ return {
 			['<A-,>'] = { '<cmd>BufferLineCyclePrev<CR>', 'Previous Buffer' },
 			['<A-.>'] = { '<cmd>BufferLineCycleNext<CR>', 'Next Buffer' },
 			-- Re-order
-			['<A-<>'] = { '<cmd>BufferLineMovePrev<CR>', 'Re-Order Buffer To Previous' },
-			['<A->>'] = { '<cmd>BufferLineMoveNext<CR>', 'Re-Order Buffer To Next' },
+			['<A-<>'] = { '<cmd>BufferLineMovePrev<CR>', 'Move Buffer Backwards' },
+			['<A->>'] = { '<cmd>BufferLineMoveNext<CR>', 'Move Buffer Forwards' },
+			-- Pin buffer
+			['<A-p>'] = { '<cmd>BufferLineTogglePin<CR>', 'Pin Buffer' },
 			-- Goto
 			['<A-1>'] = { '<cmd>BufferLineGoToBuffer 1<CR>', 'Go To Buffer 1' },
 			['<A-2>'] = { '<cmd>BufferLineGoToBuffer 2<CR>', 'Go To Buffer 2' },
@@ -77,15 +70,12 @@ return {
 			['<A-c>'] = { '<cmd>BufferLinePickClose<CR>', 'Close Picked Buffer' },
 			['<A-h>'] = { '<cmd>BufferLineCloseLeft<CR>', 'Close Left Buffers' },
 			['<A-l>'] = { '<cmd>BufferLineCloseRight<CR>', 'Close Right Buffers' },
-			-- Magic buffer-picking mode
-			['<C-p>'] = { '<cmd>BufferLinePick<CR>', 'Pick Buffer' },
+			['<A-o>'] = { '<cmd>BufferLineCloseOthers<CR>', 'Close All Other Buffers' },
+			-- Pick buffer
+			['<A-g>'] = { '<cmd>BufferLinePick<CR>', 'Pick Buffer' },
 			-- Sort automatically
-			['<leader>b'] = {
-				name = 'Sort Buffers',
-				e = { '<cmd>BufferLineSortByExtension<CR>', 'Sort By Extension' },
-				d = { '<cmd>BufferLineSortByDirectory<CR>', 'Sort By Directory' },
-				t = { '<cmd>BufferLineSortByTabs<CR>', 'Sort By Tabs' },
-			},
+			['<A-e>'] = { '<cmd>BufferLineSortByExtension<CR>', 'Sort Buffers By Extension' },
+			['<A-d'] = { '<cmd>BufferLineSortByDirectory<CR>', 'Sort By Directory' },
 		}
 	end,
 }

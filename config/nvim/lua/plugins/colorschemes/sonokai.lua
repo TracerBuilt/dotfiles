@@ -1,7 +1,10 @@
-local g = vim.g
-
-g.sonokai_style = 'default'
-g.sonokai_enable_italic = 1
-g.sonokai_transparent_background = 1
-
-vim.cmd [[colorscheme sonokai]]
+return {
+	'sainnhe/sonokai',
+	lazy = true,
+	config = function()
+		vim.g.sonokai_style = 'default'
+		vim.g.sonokai_enable_italic = 1
+		vim.g.sonokai_better_performance = 1
+		vim.g.sonokai_transparent_background = 2
+	end,
+}

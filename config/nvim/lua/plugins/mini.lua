@@ -8,6 +8,9 @@ return {
 				go_in = 'L',
 				go_in_plus = 'l',
 			},
+			windows = {
+				preview = true,
+			},
 		}
 
 		local minifiles_toggle = function()
@@ -33,7 +36,7 @@ return {
 		local wk = require 'which-key'
 
 		wk.register {
-			['<C-n>'] = { MiniFiles.open, 'Toggle File Tree' },
+			['<leader>n'] = { minifiles_toggle, 'Toggle File Tree' },
 		}
 	end,
 }

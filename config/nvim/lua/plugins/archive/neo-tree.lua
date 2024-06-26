@@ -1,6 +1,4 @@
-return {}
-
---[[ return {
+return {
 	'nvim-neo-tree/neo-tree.nvim',
 	branch = 'v3.x',
 	dependencies = {
@@ -39,4 +37,4 @@ return {}
 			hide_root_node = true,
 		}
 	end,
-} ]]
+}
