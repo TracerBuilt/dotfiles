@@ -3,7 +3,8 @@ return {
 	event = 'VeryLazy',
 	config = function()
 		require('chatgpt').setup {
-			api_host_cmd = 'echo -n http://localhost:8080',
+			api_key_cmd = 'echo -n ""',
+			api_host_cmd = 'echo -n http://10.75.7.7:8080',
 		}
 	end,
 	dependencies = {
