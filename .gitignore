@@ -45,3 +45,4 @@ config/mc
 config/Thunar
 config/google-chrome
 config/qalculate
+config/nvim/lazy-lock.json

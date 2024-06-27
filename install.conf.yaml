@@ -7,22 +7,26 @@
       glob: true
       path: config/*
       relink: true
-
-- shell:
-    - description: install Xcode command line tools
-      command: xcode-select --install
-    - description: install homebrew
-      command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    - description: install homebrew formulas
-      command: bash -c "brew bundle"
-    - description: install packer.nvim
-      command: git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-    - description: install pnpm
-      command: corepack enable && corepack prepare pnpm@latest --activate
 - link:
     ~/.zshrc:
       force: true
+- link:
+    ~/.zimrc:
+      force: true
+      path: zimrc
 
 - link:
     ~/.gitconfig:
       force: true
+
+- shell:
+  - [yay -S zsh nvim rustup]
+
+- shell:
+  - [rustup default stable]
+
+- shell:
+  - [chsh -s $(which zsh)]
+
+- shell:
+  - [nvm install --lts]
