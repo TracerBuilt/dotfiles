@@ -25,7 +25,6 @@ return {
 				'svelte',
 				'tailwindcss@0.0.0-insiders.3d0673b',
 				'taplo',
-				'tsserver',
 				'typos_lsp',
 				'yamlls',
 				'vimls',
@@ -79,12 +78,6 @@ return {
 
 				['svelte'] = function()
 					lspconfig.svelte.setup {
-						opts,
-					}
-				end,
-
-				['tsserver'] = function()
-					lspconfig.tsserver.setup {
 						opts,
 					}
 				end,

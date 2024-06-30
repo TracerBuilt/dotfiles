@@ -14,7 +14,7 @@ vim.o.wrap = true
 vim.o.linebreak = true
 vim.opt.undofile = true
 vim.o.updatetime = 250
-vim.o.signcolumn = 'auto:1-2'
+vim.o.signcolumn = 'auto:2-3'
 vim.o.list = true
 vim.o.clipboard = 'unnamedplus'
 vim.o.completeopt = 'menu,menuone,noselect'
@@ -55,17 +55,6 @@ vim.diagnostic.config {
 	underline = true,
 	severity_sort = true,
 }
-
--- Highlight on yank
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-	group = highlight_group,
-	pattern = '*',
-})
 
 -- Disable ruby and perl providers
 vim.g.loaded_ruby_provider = 0

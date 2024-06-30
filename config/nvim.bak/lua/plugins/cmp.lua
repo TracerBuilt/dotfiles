@@ -1,13 +1,18 @@
 return {
 	'hrsh7th/nvim-cmp',
 	dependencies = {
+		'neovim/nvim-lspconfig',
 		'hrsh7th/cmp-nvim-lsp',
 		'hrsh7th/cmp-buffer',
 		'hrsh7th/cmp-path',
 		'hrsh7th/cmp-cmdline',
+
+		'garymjr/nvim-snippets',
+
 		'petertriho/cmp-git',
 		'onsails/lspkind-nvim',
-		'neovim/nvim-lspconfig',
+
+		'chrisgrieser/cmp_yanky',
 	},
 	config = function()
 		vim.opt.completeopt = 'menu,menuone,noselect'
@@ -18,12 +23,6 @@ return {
 
 		cmp.setup {
 
-			snippet = {
-				-- REQUIRED - you must specify a snippet engine
-				expand = function(args)
-					require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-				end,
-			},
 			window = {
 				completion = cmp.config.window.bordered(),
 				documentation = cmp.config.window.bordered(),
@@ -37,8 +36,9 @@ return {
 			},
 			sources = cmp.config.sources({
 				{ name = 'nvim_lsp' },
-				-- { name = 'luasnip' }, -- For luasnip users.
+				{ name = 'luasnip' },
 				{ name = 'codeium' },
+				{ name = 'cmp_yanky' },
 			}, {
 				{ name = 'buffer' },
 			}),
@@ -79,6 +79,9 @@ return {
 						return vim_item
 					end,
 				},
+			},
+			experimental = {
+				ghost_text = true,
 			},
 		}
 
