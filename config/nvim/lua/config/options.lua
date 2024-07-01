@@ -9,11 +9,12 @@ if vim.g.neovide then
 	opt.winblend = 50
 	opt.pumblend = 50
 
-	opt.linespace = 2
 	g.neovide_floating_blur_amount_x = 3.0
 	g.neovide_floating_blur_amount_y = 3.0
 	g.neovide_transparency = 0.8
-	g.neovide_underline_stroke_scale = 2.0
+else
+	opt.pumblend = 0
 end
 
 g.trouble_lualine = false
+opt.mousemoveevent = true
