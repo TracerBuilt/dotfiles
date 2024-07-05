@@ -19,6 +19,14 @@ return {
 				end
 			end,
 		})
+
+		vim.api.nvim_create_autocmd('User', {
+			pattern = 'MiniFilesBufferCreate',
+			desc = 'Disable cmp in mini.files',
+			callback = function()
+				require('cmp').setup.buffer { enabled = false }
+			end,
+		})
 	end,
 	opts = {
 		mappings = {
