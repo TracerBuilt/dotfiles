@@ -1,4 +1,4 @@
 return {
 	'echasnovski/mini.animate',
-	con = not vim.g.neovide,
+	cond = not vim.g.neovide,
 }
