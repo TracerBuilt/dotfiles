@@ -1,32 +1,33 @@
 return {
 	'hrsh7th/nvim-cmp',
-	opts = {
-		viw = {
-			entries = { name = 'custom', selection_order = 'near_cursor' },
-		},
-		window = {
-			completion = require('cmp').config.window.bordered(),
-			documentation = require('cmp').config.window.bordered(),
-		},
-		formatting = {
+	opts = function(_, opts)
+		opts.view = {
+			entries = { selection_order = 'near_cursor' },
+		}
+
+		opts.window = {
+			completion = {
+				winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
+				col_offset = -3,
+				side_padding = 0,
+			},
+		}
+		table.insert(opts.sources, { name = 'supermaven', group_index = 1, priority = 100 })
+		opts.formatting = {
+			fields = { 'kind', 'abbr', 'menu' },
 			format = function(entry, item)
 				local icons = LazyVim.config.icons.kinds
+
 				if icons[item.kind] then
-					item.kind = icons[item.kind]
+					item.kind = icons[item.kind] .. item.kind
 				end
 
-				local widths = {
-					abbr = vim.g.cmp_widths and vim.g.cmp_widths.abbr or 40,
-				}
-
-				for key, width in pairs(widths) do
-					if item[key] and vim.fn.strdisplaywidth(item[key]) > width then
-						item[key] = vim.fn.strcharpart(item[key], 0, width - 1) .. '…'
-					end
-				end
+				local strings = vim.split(item.kind, '%s', { trimempty = true })
+				item.kind = ' ' .. (strings[1] or '') .. ' '
+				item.menu = '    (' .. (strings[2] or '') .. ')'
 
 				return item
 			end,
-		},
-	},
+		}
+	end,
 }
