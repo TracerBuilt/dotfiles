@@ -24,7 +24,7 @@ return {
 			pattern = 'MiniFilesBufferCreate',
 			desc = 'Disable cmp in mini.files',
 			callback = function()
-				require('cmp').setup.buffer { enabled = false }
+				require('cmp').setup.buffer { enabled = false, completion = { autocomplete = false } }
 			end,
 		})
 	end,
