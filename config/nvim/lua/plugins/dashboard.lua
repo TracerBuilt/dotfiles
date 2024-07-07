@@ -3,6 +3,8 @@ return {
 	opts = function(_, opts)
 		opts.session_dir = vim.fn.stdpath 'data' .. '/sessions/'
 		opts.config.header = {
+			'',
+			'',
 
 			' ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗',
 			' ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║',
