@@ -1,16 +1,7 @@
 return {
 	'nvim-telescope/telescope.nvim',
-	opts = {
-		defaults = {
-			border = false,
-		},
-		resolve = {
-			resolve_height = {
-				padding = 1,
-			},
-			resolve_width = {
-				padding = 1,
-			},
-		},
-	},
+	opts = function(_, opts)
+		opts.defaults.borderchars = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }
+		opts.defaults.winblend = nil
+	end,
 }

@@ -2,79 +2,47 @@ return {
 	'akinsho/toggleterm.nvim',
 
 	cmd = { 'ToggleTerm' },
+
 	keys = function()
-		local wk = require 'which-key'
-		wk.register {
-			['<leader>T'] = { name = '+terminal' },
+		local Terminal = require('toggleterm.terminal').Terminal
+		local lazygit = Terminal:new {
+			cmd = 'lazygit',
+			dir = 'git_dir',
+			hidden = true,
+			direction = 'float',
+			on_open = function()
+				vim.cmd 'startinsert!'
+				vim.keymap.set('n', 'q', '<cmd>close<CR>', { noremap = true, silent = true, buffer = 0 })
+			end,
+			on_close = function(term)
+				vim.cmd 'startinsert!'
+			end,
+			float_opts = {
+				border = 'solid',
+				winblend = 30,
+			},
 		}
+		function _lazygit_toggle()
+			lazygit:toggle()
+		end
+
 		return {
-			{ '<C-/>' },
+			{ '<C-/>', desc = 'Toggle terminal' },
 			{
-				'<leader>Tf',
+				'<leader>gl',
 				function()
-					local count = vim.v.count1
-					require('toggleterm').toggle(count, 0, LazyVim.root.get(), 'float')
+					_lazygit_toggle()
 				end,
-				desc = 'Open float (root_dir)',
-			},
-			{
-				'<leader>Th',
-				function()
-					local count = vim.v.count1
-					require('toggleterm').toggle(count, 15, LazyVim.root.get(), 'horizontal')
-				end,
-				desc = 'Open horizontal (root_dir)',
-			},
-			{
-				'<leader>Tv',
-				function()
-					local count = vim.v.count1
-					require('toggleterm').toggle(
-						count,
-						vim.o.columns * 0.4,
-						LazyVim.root.get(),
-						'vertical'
-					)
-				end,
-				desc = 'Open vertical (root_dir)',
-			},
-			{
-				'<leader>Ts',
-				'<cmd>TermSelect<cr>',
-				desc = 'Select terminal',
-			},
-			{
-				'<leader>Tt',
-				function()
-					require('toggleterm').toggle(1, 100, LazyVim.root.get(), 'tab')
-				end,
-				desc = 'Open tab (root_dir)',
-			},
-			{
-				'<leader>TT',
-				function()
-					require('toggleterm').toggle(1, 100, vim.loop.cwd(), 'tab')
-				end,
-				desc = 'Open tab (cwd_dir)',
+				desc = 'Open lazygit',
 			},
 		}
 	end,
 
 	opts = {
 		open_mapping = [[<c-/>]],
-		hide_numbers = true, -- hide the number column in toggleterm buffers
-		shade_filetypes = {},
-		start_in_insert = true,
-		insert_mappings = true, -- whether or not the open mapping applies in insert mode
-		terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
 		on_open = function(term)
 			local opts = { buffer = term.bufnr }
-			vim.keymap.set(
-				't',
-				'<esc>',
-				'<C-\\><C-n>',
-				vim.tbl_extend('force', opts, { desc = 'Enter normal mode' })
-			)
+			vim.keymap.set('t', '<esc>', '<C-\\><C-n>', vim.tbl_extend('force', opts, { desc = 'Enter normal mode' }))
 			vim.keymap.set(
 				't',
 				'<C-h>',
@@ -106,6 +74,13 @@ return {
 				vim.tbl_extend('force', opts, { desc = 'Set terminal name' })
 			)
 		end,
+
+		hide_numbers = true, -- hide the number column in toggleterm buffers
+		shade_factor = '-10',
+		shading_ratio = '3',
+		start_in_insert = true,
+		insert_mappings = true, -- whether or not the open mapping applies in insert mode
+		terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
 		persist_size = true,
 		direction = 'horizontal',
 		winbar = {

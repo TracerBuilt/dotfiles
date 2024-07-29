@@ -1,6 +1,5 @@
 return {
 	'folke/noice.nvim',
-	event = 'VeryLazy',
 	opts = {
 		presets = {
 			inc_rename = true,
@@ -68,7 +67,6 @@ return {
 	},
 
 	dependencies = {
-		'MunifTanjim/nui.nvim',
 		{
 			'rcarriga/nvim-notify',
 			opts = {

@@ -11,9 +11,21 @@ if vim.g.neovide then
 
 	g.neovide_floating_blur_amount_x = 3.0
 	g.neovide_floating_blur_amount_y = 3.0
+
+	g.neovide_floating_shadow = true
+	g.neovide_floating_z_height = 10
+	g.neovide_light_angle_degrees = 45
+	g.neovide_light_radius = 5
+
 	g.neovide_transparency = 0.8
+
+	g.neovide_padding_top = 0
+	g.neovide_padding_bottom = 0
+	g.neovide_padding_right = 0
+	g.neovide_padding_left = 0
 else
-	opt.pumblend = 0
+	opt.winblend = 30
+	opt.pumblend = 30
 end
 
 g.trouble_lualine = false
