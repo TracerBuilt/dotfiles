@@ -4,33 +4,33 @@ return {
 	cmd = { 'ToggleTerm' },
 
 	keys = function()
-		local Terminal = require('toggleterm.terminal').Terminal
-		local lazygit = Terminal:new {
-			cmd = 'lazygit',
-			dir = 'git_dir',
-			hidden = true,
-			direction = 'float',
-			on_open = function()
-				vim.cmd 'startinsert!'
-				vim.keymap.set('n', 'q', '<cmd>close<CR>', { noremap = true, silent = true, buffer = 0 })
-			end,
-			on_close = function(term)
-				vim.cmd 'startinsert!'
-			end,
-			float_opts = {
-				border = 'solid',
-				winblend = 30,
-			},
-		}
-		function _lazygit_toggle()
-			lazygit:toggle()
-		end
-
 		return {
 			{ '<C-/>', desc = 'Toggle terminal' },
 			{
 				'<leader>gl',
 				function()
+					local Terminal = require('toggleterm.terminal').Terminal
+					local lazygit = Terminal:new {
+						cmd = 'lazygit',
+						dir = 'git_dir',
+						hidden = true,
+						direction = 'float',
+						on_open = function()
+							vim.cmd 'startinsert!'
+							vim.keymap.set('n', 'q', '<cmd>close<CR>', { noremap = true, silent = true, buffer = 0 })
+						end,
+						on_close = function(term)
+							vim.cmd 'startinsert!'
+						end,
+						float_opts = {
+							border = 'solid',
+							winblend = 30,
+						},
+					}
+
+					function _lazygit_toggle()
+						lazygit:toggle()
+					end
 					_lazygit_toggle()
 				end,
 				desc = 'Open lazygit',
@@ -39,7 +39,7 @@ return {
 	end,
 
 	opts = {
-		open_mapping = [[<c-/>]],
+		open_mapping = [[<C-/>]],
 		on_open = function(term)
 			local opts = { buffer = term.bufnr }
 			vim.keymap.set('t', '<esc>', '<C-\\><C-n>', vim.tbl_extend('force', opts, { desc = 'Enter normal mode' }))
@@ -76,7 +76,8 @@ return {
 		end,
 
 		hide_numbers = true, -- hide the number column in toggleterm buffers
-		shade_factor = '-10',
+		shade_terminals = true,
+		shade_factor = '-30',
 		shading_ratio = '3',
 		start_in_insert = true,
 		insert_mappings = true, -- whether or not the open mapping applies in insert mode

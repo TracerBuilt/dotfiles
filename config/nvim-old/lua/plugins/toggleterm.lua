@@ -6,13 +6,13 @@ return {
 
 			open_mapping = [[<c-\>]],
 			hide_numbers = true, -- hide the number column in toggleterm buffers
+			shade_terminals = false,
 			shade_filetypes = {},
 			start_in_insert = true,
 			insert_mappings = true, -- whether or not the open mapping applies in insert mode
 			on_open = function(term)
 				local opts = { buffer = term.bufnr }
 				vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
-				vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
 				vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
 				vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
 				vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)

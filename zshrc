@@ -140,9 +140,11 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
 
 source ~/completion-for-pnpm.zsh
+
+# jujutsu completion
+source <(jj util completion zsh)
 
 # Arch mirrorlist update
 alias ua-drop-caches='sudo paccache -rk3; yay -Sc --aur --noconfirm'

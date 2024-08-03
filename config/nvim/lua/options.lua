@@ -14,11 +14,11 @@ local opt = vim.opt
 local g = vim.g
 
 if vim.g.neovide then
-	opt.winblend = 50
-	opt.pumblend = 50
+	opt.winblend = 60
+	opt.pumblend = 60
 
-	g.neovide_floating_blur_amount_x = 3.0
-	g.neovide_floating_blur_amount_y = 3.0
+	g.neovide_floating_blur_amount_x = 4.0
+	g.neovide_floating_blur_amount_y = 4.0
 
 	g.neovide_floating_shadow = true
 	g.neovide_floating_z_height = 10

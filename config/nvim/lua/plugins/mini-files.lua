@@ -34,17 +34,13 @@ return {
 			local cur_entry_path = MiniFiles.get_fs_entry().path
 			local cur_directory = vim.fs.dirname(cur_entry_path)
 			vim.fn.chdir(cur_directory)
+			MiniFiles.trim_left()
 		end
 
 		vim.api.nvim_create_autocmd('User', {
 			pattern = 'MiniFilesBufferCreate',
 			callback = function(args)
-				vim.keymap.set(
-					'n',
-					'g,',
-					files_set_cwd,
-					{ buffer = args.data.buf_id, desc = 'Set cwd' }
-				)
+				vim.keymap.set('n', 'g,', files_set_cwd, { buffer = args.data.buf_id, desc = 'Set cwd' })
 			end,
 		})
 
@@ -70,12 +66,7 @@ return {
 			callback = function(args)
 				local buf_id = args.data.buf_id
 				-- Tweak left-hand side of mapping to your liking
-				vim.keymap.set(
-					'n',
-					'g.',
-					toggle_dotfiles,
-					{ buffer = buf_id, desc = 'Show/hide dotfiles' }
-				)
+				vim.keymap.set('n', 'g.', toggle_dotfiles, { buffer = buf_id, desc = 'Show/hide dotfiles' })
 			end,
 		})
 
@@ -113,6 +104,9 @@ return {
 		options = {
 			use_as_default_explorer = true,
 		},
+		windows = {
+			preview = true,
+		},
 	},
 	keys = function()
 		local minifiles_toggle = function()
@@ -124,23 +118,16 @@ return {
 
 		return {
 			{
-				'<C-n>',
+				'<leader>n',
 				minifiles_toggle,
 				desc = 'Toggle file tree',
 			},
 			{
-				'<leader>n',
+				'<leader>N',
 				function()
 					require('mini.files').open(vim.api.nvim_buf_get_name(0), true)
 				end,
 				desc = 'Open file tree (directory of current file)',
-			},
-			{
-				'<leader>N',
-				function()
-					require('mini.files').open(vim.uv.cwd(), true)
-				end,
-				desc = 'Open file tree (cwd)',
 			},
 		}
 	end,

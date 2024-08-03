@@ -4,9 +4,13 @@
 ---@type ChadrcConfig
 local M = {}
 
-M.ui = {
+M.base46 = {
 	theme = 'kanagawa',
+	theme_toggle = { 'kanagawa', 'github_light' },
 	transparency = true,
+}
+
+M.ui = {
 
 	cmp = {
 		style = 'atom',

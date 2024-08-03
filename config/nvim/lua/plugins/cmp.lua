@@ -1,12 +1,12 @@
-local cmp = require 'cmp'
-dofile(vim.g.base46_cache .. 'cmp')
-local cmp_ui = require('nvconfig').ui.cmp
-local cmp_style = cmp_ui.style
-
 return {
 	'hrsh7th/nvim-cmp',
-	event = 'InsertEnter',
+	event = { 'InsertEnter', 'CmdlineEnter' },
 	opts = function(_, opts)
+		local cmp = require 'cmp'
+		dofile(vim.g.base46_cache .. 'cmp')
+		local cmp_ui = require('nvconfig').ui.cmp
+		local cmp_style = cmp_ui.style
+
 		opts.snippet = {
 			expand = function(args)
 				vim.snippet.expand(args.body)
@@ -20,14 +20,23 @@ return {
 			['<C-Space>'] = cmp.mapping.complete(),
 			['<C-e>'] = cmp.mapping.close(),
 
-			['<CR>'] = cmp.mapping.confirm {
-				behavior = cmp.ConfirmBehavior.Insert,
-				select = true,
+			['<CR>'] = cmp.mapping {
+				i = function(fallback)
+					if cmp.visible() and cmp.get_active_entry() and cmp.get_active_entry().source.name ~= 'supermaven' then
+						cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
+					else
+						fallback()
+					end
+				end,
+				s = cmp.mapping.confirm { select = true },
 			},
 		}
 
 		opts.window.completion.border = 'none'
-		opts.window.completion.col_offset = (cmp_style == 'atom' or cmp_style == 'atom_colored') and -3
+
+		if cmp_style == 'atom' or cmp_style == 'atom_colored' then
+			opts.window.completion.col_offset = -3
+		end
 		opts.window.documentation.border = { '', '', '', ' ', ' ', ' ', ' ', ' ' }
 		opts.window.documentation.side_padding = 3
 
@@ -40,6 +49,8 @@ return {
 		})
 	end,
 	config = function(_, opts)
+		local cmp = require 'cmp'
+
 		cmp.setup(opts)
 
 		-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).

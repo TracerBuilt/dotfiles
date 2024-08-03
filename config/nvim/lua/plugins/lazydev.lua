@@ -5,9 +5,8 @@ return {
 		cmd = 'LazyDev',
 		opts = {
 			library = {
+				'ui/nvchad_types',
 				{ path = 'luvit-meta/library', words = { 'vim%.uv' } },
-				{ path = 'LazyVim', words = { 'LazyVim' } },
-				{ path = 'lazy.nvim', words = { 'LazyVim' } },
 			},
 		},
 	},

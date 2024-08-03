@@ -1,7 +1,7 @@
 return {
 	{
 		'williamboman/mason.nvim',
-		opts = {},
+		opts = nil,
 	},
 	{
 		'WhoIsSethDaniel/mason-tool-installer.nvim',
@@ -39,12 +39,13 @@ return {
 	{
 		'williamboman/mason-lspconfig.nvim',
 		opts = {},
+		event = 'User FilePost',
 		config = function(_, opts)
 			require('mason-lspconfig').setup(opts)
 
 			dofile(vim.g.base46_cache .. 'lsp')
 			require('nvchad.lsp').diagnostic_config()
-			local cmp = require 'cmp'
+
 			local map = vim.keymap.set
 
 			local on_attach = function(args)
@@ -73,7 +74,12 @@ return {
 				map('n', 'gr', vim.lsp.buf.references, buf_opts 'Show references')
 			end
 
-			local capabilities = require('cmp_nvim_lsp').default_capabilities()
+			local capabilities = vim.tbl_deep_extend(
+				'force',
+				{},
+				vim.lsp.protocol.make_client_capabilities(),
+				require('cmp_nvim_lsp').default_capabilities()
+			)
 
 			require('mason-lspconfig').setup_handlers {
 				-- The first entry (without a key) will be the default handler
@@ -82,37 +88,38 @@ return {
 				function(server_name) -- default handler (optional)
 					require('lspconfig')[server_name].setup {
 						on_attach = on_attach,
-						capabilities = capabilities,
+						capabilities = vim.deepcopy(capabilities),
 					}
 				end,
 				-- Next, you can provide a dedicated handler for specific servers.
 				-- For example, a handler override for the `rust_analyzer`:
 				require('lspconfig').lua_ls.setup {
+					on_attach = on_attach,
+					capabilities = vim.deepcopy(capabilities),
 
 					settings = {
 						Lua = {
-							diagnostics = {
-								globals = { 'vim' },
+							codeLens = {
+								enable = true,
 							},
-							workspace = {
-								library = {
-									vim.fn.expand '$VIMRUNTIME/lua',
-									vim.fn.expand '$VIMRUNTIME/lua/vim/lsp',
-									vim.fn.stdpath 'data' .. '/lazy/ui/nvchad_types',
-									vim.fn.stdpath 'data' .. '/lazy/lazy.nvim/lua/lazy',
-								},
-								maxPreload = 100000,
-								preloadFileSize = 10000,
+							hint = {
+								enable = true,
 							},
 						},
 					},
 				},
 			}
 		end,
-		dependencies = { 'williamboman/mason.nvim' },
-	},
-	{
-		'neovim/nvim-lspconfig',
-		dependencies = { 'williamboman/mason-lspconfig.nvim' },
+		dependencies = {
+			'williamboman/mason.nvim',
+			{
+				'neovim/nvim-lspconfig',
+				event = nil,
+				opts = nil,
+				config = nil,
+			},
+			'hrsh7th/nvim-cmp',
+			'hrsh7th/cmp-nvim-lsp',
+		},
 	},
 }
