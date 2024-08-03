@@ -60,5 +60,6 @@ end, { desc = 'Harpoon quick menu', remap = false })
 
 map('n', '<c-n>', '<Plug>(YankyNextEntry)', { desc = 'Select next entry through yank history' })
 
+unmap('n', '<leader>x')
 unmap('n', '<leader>v')
 unmap('n', '<leader>e')
