@@ -1,0 +1,47 @@
+[Data Source]
+DisplayName=Wild Gander
+Enabled=true
+Parent=caldav-stub
+
+[Security]
+Method=tls
+
+[Authentication]
+Host=p55-caldav.icloud.com
+Method=plain/password
+Port=443
+ProxyUid=system-proxy
+RememberPassword=true
+User=tyler.t.ward@icloud.com
+CredentialName=
+IsExternal=false
+
+[Refresh]
+Enabled=true
+EnabledOnMeteredNetwork=true
+IntervalMinutes=30
+
+[WebDAV Backend]
+AvoidIfmatch=false
+CalendarAutoSchedule=false
+Color=
+DisplayName=Wild Gander
+EmailAddress=tyler.t.ward@icloud.com
+ResourcePath=/11017832949/calendars/03c6d7fee5c7d6aabf848aee971071d185851a5d8e2302dfbf2711d47cb343af/
+ResourceQuery=
+SslTrust=
+Order=7
+
+[Alarms]
+IncludeMe=true
+LastNotified=
+ForEveryEvent=false
+
+[Calendar]
+BackendName=caldav
+Color=#ff9500
+Selected=true
+Order=7
+
+[Offline]
+StaySynchronized=true

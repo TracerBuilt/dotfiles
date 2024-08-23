@@ -6,6 +6,7 @@ return {
 		mappings = {
 			i = {
 				j = {
+					-- These can all also be functions
 					k = '<Esc>',
 				},
 			},
@@ -16,7 +17,7 @@ return {
 			},
 			t = {
 				j = {
-					k = '<Esc>',
+					k = '<C-\\><C-n>',
 				},
 			},
 			v = {
@@ -31,7 +32,4 @@ return {
 			},
 		},
 	},
-	config = function(_, opts)
-		require('better_escape').setup(opts)
-	end,
 }

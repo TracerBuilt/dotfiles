@@ -1,0 +1,47 @@
+[Data Source]
+DisplayName=Gonzo’s Gallivants
+Enabled=true
+Parent=caldav-stub
+
+[Security]
+Method=tls
+
+[Authentication]
+Host=p55-caldav.icloud.com
+Method=plain/password
+Port=443
+ProxyUid=system-proxy
+RememberPassword=true
+User=tyler.t.ward@icloud.com
+CredentialName=
+IsExternal=false
+
+[Refresh]
+Enabled=true
+EnabledOnMeteredNetwork=true
+IntervalMinutes=30
+
+[WebDAV Backend]
+AvoidIfmatch=false
+CalendarAutoSchedule=false
+Color=
+DisplayName=Gonzo’s Gallivants
+EmailAddress=tyler.t.ward@icloud.com
+ResourcePath=/11017832949/calendars/28fdc78afed27c4cc452b7d2333d6b90ff4e37b77648ab858d646957f90c925c/
+ResourceQuery=
+SslTrust=
+Order=1004
+
+[Alarms]
+IncludeMe=true
+LastNotified=
+ForEveryEvent=false
+
+[Calendar]
+BackendName=caldav
+Color=#1badf8
+Selected=true
+Order=1004
+
+[Offline]
+StaySynchronized=true

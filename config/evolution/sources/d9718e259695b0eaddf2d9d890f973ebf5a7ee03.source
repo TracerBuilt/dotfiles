@@ -1,0 +1,47 @@
+[Data Source]
+DisplayName=Fonzo’s Fonzerations
+Enabled=true
+Parent=caldav-stub
+
+[Security]
+Method=tls
+
+[Authentication]
+Host=p55-caldav.icloud.com
+Method=plain/password
+Port=443
+ProxyUid=system-proxy
+RememberPassword=true
+User=tyler.t.ward@icloud.com
+CredentialName=
+IsExternal=false
+
+[Refresh]
+Enabled=true
+EnabledOnMeteredNetwork=true
+IntervalMinutes=30
+
+[WebDAV Backend]
+AvoidIfmatch=false
+CalendarAutoSchedule=false
+Color=
+DisplayName=Fonzo’s Fonzerations
+EmailAddress=tyler.t.ward@icloud.com
+ResourcePath=/11017832949/calendars/DFBF59B1-4876-497E-A352-A4DBBD8C8959/
+ResourceQuery=
+SslTrust=
+Order=1007
+
+[Alarms]
+IncludeMe=true
+LastNotified=2024-08-23T15:55:00Z
+ForEveryEvent=false
+
+[Calendar]
+BackendName=caldav
+Color=#ff3d33
+Selected=true
+Order=1007
+
+[Offline]
+StaySynchronized=true

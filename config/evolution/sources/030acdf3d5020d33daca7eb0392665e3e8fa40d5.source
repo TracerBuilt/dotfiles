@@ -1,0 +1,29 @@
+[Data Source]
+DisplayName=tyler@dextersmpls.com
+Enabled=true
+Parent=7e316e2f41f451a4608ea00d3476c435730ef2c3
+
+[Mail Submission]
+SentFolder=folder://local/Sent
+TransportUid=16a776725032d722d740dbdea27d950a59692ee2
+RepliesToOriginFolder=false
+UseSentFolder=true
+
+[Mail Composition]
+Bcc=
+Cc=
+DraftsFolder=folder://8856336c587832dffb236f5806b9aa4587996477/%5bGmail%5d/Drafts
+ReplyStyle=default
+SignImip=true
+TemplatesFolder=folder://local/Templates
+StartBottom=inconsistent
+TopSignature=inconsistent
+Language=
+
+[Mail Identity]
+Address=tyler@dextersmpls.com
+Aliases=
+Name=Tyler Ward
+Organization=
+ReplyTo=
+SignatureUid=none

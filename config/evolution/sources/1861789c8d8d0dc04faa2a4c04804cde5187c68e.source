@@ -1,0 +1,65 @@
+[Data Source]
+DisplayName=tyler.t.ward@icloud.com
+Enabled=true
+Parent=
+
+[Mail Account]
+BackendName=imapx
+IdentityUid=a1ab69a265103ff382eb4c33859ceed02442c5e8
+ArchiveFolder=folder://1861789c8d8d0dc04faa2a4c04804cde5187c68e/Archive
+NeedsInitialSetup=false
+MarkSeen=inconsistent
+MarkSeenTimeout=1500
+Builtin=false
+
+[Authentication]
+Host=imap.mail.me.com
+Method=none
+Port=993
+ProxyUid=system-proxy
+RememberPassword=true
+User=tyler.t.ward
+CredentialName=
+IsExternal=false
+
+[Refresh]
+Enabled=true
+EnabledOnMeteredNetwork=true
+IntervalMinutes=60
+
+[Security]
+Method=ssl-on-alternate-port
+
+[Offline]
+StaySynchronized=false
+
+[Imapx Backend]
+FilterInbox=true
+StoreChangesInterval=3
+LimitByAge=false
+LimitUnit=years
+LimitValue=1
+UseMultiFetch=false
+CheckAll=false
+CheckSubscribed=false
+ConcurrentConnections=3
+FetchOrder=ascending
+FilterAll=false
+FilterJunk=false
+FilterJunkInbox=false
+Namespace=
+RealJunkPath=Junk
+RealTrashPath=Deleted Messages
+ShellCommand=ssh -C -l %u %h exec /usr/sbin/imapd
+UseIdle=true
+UseNamespace=false
+UseQresync=false
+UseRealJunkPath=true
+UseRealTrashPath=true
+UseShellCommand=false
+UseSubscriptions=false
+IgnoreOtherUsersNamespace=false
+IgnoreSharedFoldersNamespace=false
+FullUpdateOnMeteredNetwork=true
+SendClientId=false
+SingleClientMode=false

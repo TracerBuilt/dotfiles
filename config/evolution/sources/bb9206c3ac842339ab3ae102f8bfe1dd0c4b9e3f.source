@@ -1,0 +1,47 @@
+[Data Source]
+DisplayName=Bonzo’s Bam-Jams
+Enabled=true
+Parent=caldav-stub
+
+[Security]
+Method=tls
+
+[Authentication]
+Host=p55-caldav.icloud.com
+Method=plain/password
+Port=443
+ProxyUid=system-proxy
+RememberPassword=true
+User=tyler.t.ward@icloud.com
+CredentialName=
+IsExternal=false
+
+[Refresh]
+Enabled=true
+EnabledOnMeteredNetwork=true
+IntervalMinutes=30
+
+[WebDAV Backend]
+AvoidIfmatch=false
+CalendarAutoSchedule=false
+Color=
+DisplayName=Bonzo’s Bam-Jams
+EmailAddress=tyler.t.ward@icloud.com
+ResourcePath=/11017832949/calendars/7440a29c370ed764290bc0e975e229462442095d77d033aaa3b68054369ac029/
+ResourceQuery=
+SslTrust=
+Order=1003
+
+[Alarms]
+IncludeMe=true
+LastNotified=
+ForEveryEvent=false
+
+[Calendar]
+BackendName=caldav
+Color=#63da38
+Selected=true
+Order=1003
+
+[Offline]
+StaySynchronized=true
