@@ -7,6 +7,7 @@
     ./ags.nix
     ./browser.nix
     ./dconf.nix
+    ./git.nix
     ./hyprland.nix
     ./nvim.nix
     ./theme.nix
