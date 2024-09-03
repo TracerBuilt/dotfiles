@@ -11,7 +11,7 @@
       "FantasqueSansMono"
       "FiraCode"
       "Mononoki"
-      "RecMono"
+      "Recursive"
     ];
   };
 
@@ -20,7 +20,7 @@
     package = pkgs.adw-gtk3;
   };
   font = {
-    name = "RecMono Nerd Font";
+    name = "Recursive Nerd Font";
     package = nerdfonts;
     size = 12;
   };
