@@ -19,7 +19,6 @@
       open = false;
       nvidiaSettings = true; # gui app
 
-      nvidiaPersistenced = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
 
       prime = {

@@ -1,3 +1,6 @@
+frame = "none"
+title-hidden = true
+
 [font]
 normal = ["RecMonoLinear Nerd Font"]
 size = 10
