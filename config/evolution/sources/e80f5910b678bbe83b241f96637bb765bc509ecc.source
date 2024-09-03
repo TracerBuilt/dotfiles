@@ -1,0 +1,29 @@
+[Data Source]
+DisplayName=dine@dextersmpls.com
+Enabled=true
+Parent=062768d7a590d8bedd24327ff7fbebb0f405bfc5
+
+[Mail Submission]
+SentFolder=folder://local/Sent
+TransportUid=500c3b980c35342c079dbc0674e4084911b327ae
+RepliesToOriginFolder=false
+UseSentFolder=true
+
+[Mail Composition]
+Bcc=
+Cc=
+DraftsFolder=folder://local/Drafts
+ReplyStyle=default
+SignImip=true
+TemplatesFolder=
+StartBottom=inconsistent
+TopSignature=inconsistent
+Language=
+
+[Mail Identity]
+Address=dine@dextersmpls.com
+Aliases=
+Name=
+Organization=
+ReplyTo=
+SignatureUid=none

@@ -1,0 +1,29 @@
+[Data Source]
+DisplayName=tyler@dextersmpls.com
+Enabled=true
+Parent=ffba187185bd0c33823befa46d963b69dd2f85b1
+
+[Mail Submission]
+SentFolder=folder://local/Sent
+TransportUid=d8e7c6647d7dace7c78ec7b07f72717d2acf6dd2
+RepliesToOriginFolder=false
+UseSentFolder=true
+
+[Mail Composition]
+Bcc=
+Cc=
+DraftsFolder=folder://local/Drafts
+ReplyStyle=default
+SignImip=true
+TemplatesFolder=
+StartBottom=inconsistent
+TopSignature=inconsistent
+Language=
+
+[Mail Identity]
+Address=tyler@dextersmpls.com
+Aliases=
+Name=
+Organization=
+ReplyTo=
+SignatureUid=none
