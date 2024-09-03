@@ -10,7 +10,9 @@
     ./git.nix
     ./hyprland.nix
     ./nvim.nix
+    ./shell.nix
     ./theme.nix
+    ./wezterm.nix
   ];
 
   home = {
