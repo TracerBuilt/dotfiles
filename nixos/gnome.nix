@@ -15,6 +15,7 @@
         qogir-icon-theme
         gnome-extension-manager
         wl-clipboard
+        gnomeExtensions.pop-shell
       ];
 
       gnome.excludePackages = with pkgs; [
