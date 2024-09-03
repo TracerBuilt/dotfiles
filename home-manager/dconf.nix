@@ -39,7 +39,6 @@ with lib.hm.gvariant; {
     };
 
     "org/gnome/desktop/wm/keybindings" = {
-      close = ["<Alt>q"];
       move-to-workspace-1 = ["<Shift><Super>1"];
       move-to-workspace-2 = ["<Shift><Super>2"];
       move-to-workspace-3 = ["<Shift><Super>3"];
@@ -60,7 +59,6 @@ with lib.hm.gvariant; {
       switch-to-workspace-8 = ["<Shift><Super>8"];
       switch-to-workspace-9 = ["<Shift><Super>9"];
       switch-to-workspace-10 = ["<Shift><Super>0"];
-      toggle-fullscreen = ["<Super>g"];
     };
 
     "org/gnome/shell/keybindings" = {
@@ -73,7 +71,7 @@ with lib.hm.gvariant; {
 
     "org/gnome/desktop/wm/preferences" = {
       mouse-button-modifier = "<Super>";
-      num-workspaces = 5;
+      num-workspaces = 10;
       resize-with-right-button = true;
       focus-mode = "sloppy";
     };
