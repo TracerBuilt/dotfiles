@@ -6,6 +6,7 @@
 }: {
   programs.wezterm = {
     enable = true;
-    font = "CaskaydiaCove NF";
+    enableZshIntegration = true;
+    enableBashIntegration = true;
   };
 }

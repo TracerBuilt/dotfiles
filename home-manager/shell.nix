@@ -7,7 +7,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    autosuggestions.enable = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
     shellAliases = {
@@ -20,16 +20,6 @@
     };
 
     plugins = [
-      {
-        name = "enhancd";
-        file = "init.sh";
-        src = pkgs.fetchFromGitHub {
-          owner = "b4b4r07";
-          repo = "enhancd";
-          rev = "v2.5.1";
-          sha256 = lib.fakeSha256;
-        };
-      }
     ];
 
     initExtra = ''

@@ -1,6 +1,7 @@
 {
   inputs,
   lib,
+  pkgs,
   ...
 }: let
   username = "goose";
@@ -15,15 +16,18 @@ in {
 
   hyprland.enable = true;
 
-  users.users.${username} = {
-    isNormalUser = true;
-    description = "Tyler Ward";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "audio"
-      "video"
-    ];
+  users = {
+    defaultUserShell = pkgs.zsh;
+    users.${username} = {
+      isNormalUser = true;
+      description = "Tyler Ward";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "audio"
+        "video"
+      ];
+    };
   };
 
   home-manager = {
@@ -48,14 +52,18 @@ in {
     };
   };
 
-  programs.appimage = {
-    enable = true;
-    binfmt = true;
-  };
+  programs = {
+    zsh.enable = true;
 
-  programs._1password.enable = true;
-  programs._1password-gui = {
-    enable = true;
-    polkitPolicyOwners = ["goose"];
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
+
+    _1password.enable = true;
+    _1password-gui = {
+      enable = true;
+      polkitPolicyOwners = ["goose"];
+    };
   };
 }

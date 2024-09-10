@@ -3,14 +3,14 @@
   lib,
   ...
 }: {
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
+  home.sessionVariables.EDITOR = "nvim";
 
   programs.neovim = {
     enable = true;
     withNodeJs = true;
     withPython3 = true;
+    viAlias = true;
+    vimAlias = true;
 
     extraPackages = with pkgs; [
       git

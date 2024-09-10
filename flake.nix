@@ -25,10 +25,7 @@
     ags.url = "github:Aylur/ags";
     astal.url = "github:Aylur/astal";
 
-    lf-icons = {
-      url = "github:gokcehan/lf";
-      flake = false;
-    };
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     firefox-gnome-theme = {
       url = "github:rafaelmardojai/firefox-gnome-theme";

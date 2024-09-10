@@ -48,18 +48,23 @@
     #media-session.enable = true;
   };
 
-  # dconf
-  programs.dconf.enable = true;
-
   # packages
-  environment.systemPackages = with pkgs; [
-    git
-    home-manager
-    neovim
-    neovide
-    wget
-    curl
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      git
+      home-manager
+      wget
+      curl
+      neovide
+      inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+    ];
+
+    variables.EDITOR = "nvim";
+  };
+
+  programs = {
+    dconf.enable = true;
+  };
 
   # services
   services = {

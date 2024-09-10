@@ -36,7 +36,6 @@
       fzf
       lazygit
       kitty
-      wezterm
     ];
   };
 
