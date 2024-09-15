@@ -40,7 +40,6 @@
   outputs = {
     self,
     nixpkgs,
-    nix-alien,
     home-manager,
     nixos-hardware,
     ...
@@ -57,17 +56,6 @@
           asztal = self.packages.x86_64-linux.default;
         };
         modules = [
-          ({
-            self,
-            system,
-            ...
-          }: {
-            environment.systemPackages = with self.inputs.nix-alien.packages.${system}; [
-              nix-alien
-            ];
-
-            programs.nix-ld.enable = true;
-          })
           ./nixos/nixos.nix
           home-manager.nixosModules.home-manager
           {networking.hostName = "Treetop";}
