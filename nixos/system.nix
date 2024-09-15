@@ -32,30 +32,17 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
   # packages
   environment = {
     systemPackages = with pkgs; [
       git
+      gh
       home-manager
       wget
       curl
       neovide
+      zoxide
+      starship
       inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
     ];
 
@@ -66,23 +53,20 @@
     dconf.enable = true;
   };
 
-  # services
   services = {
     xserver = {
       enable = true;
       excludePackages = [pkgs.xterm];
     };
+
     printing.enable = true;
     flatpak.enable = true;
     openssh.enable = true;
+    # logind
+    logind.extraConfig = ''
+      HandlePowerKey=ignore
+    '';
   };
-
-  # logind
-  services.logind.extraConfig = ''
-    HandlePowerKey=ignore
-    HandleLidSwitch=suspend
-    HandleLidSwitchExternalPower=ignore
-  '';
 
   # kde connect
   networking.firewall = rec {

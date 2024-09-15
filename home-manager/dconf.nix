@@ -34,10 +34,6 @@ with lib.hm.gvariant; {
       ];
     };
 
-    "org/gnome/desktop/session" = {
-      idle-delay = mkUint32 0;
-    };
-
     "org/gnome/desktop/wm/keybindings" = {
       move-to-workspace-1 = ["<Shift><Super>1"];
       move-to-workspace-2 = ["<Shift><Super>2"];

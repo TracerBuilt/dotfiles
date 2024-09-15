@@ -33,11 +33,14 @@
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    nix-alien.url = "github:thiagokokada/nix-alien";
   };
 
   outputs = {
     self,
     nixpkgs,
+    nix-alien,
     home-manager,
     nixos-hardware,
     ...
@@ -47,13 +50,24 @@
 
     # nixos config
     nixosConfigurations = {
-      "Treetop" = nixpkgs.lib.nixosSystem {
+      "Treetop" = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         specialArgs = {
-          inherit inputs;
+          inherit inputs self system;
           asztal = self.packages.x86_64-linux.default;
         };
         modules = [
+          ({
+            self,
+            system,
+            ...
+          }: {
+            environment.systemPackages = with self.inputs.nix-alien.packages.${system}; [
+              nix-alien
+            ];
+
+            programs.nix-ld.enable = true;
+          })
           ./nixos/nixos.nix
           home-manager.nixosModules.home-manager
           {networking.hostName = "Treetop";}

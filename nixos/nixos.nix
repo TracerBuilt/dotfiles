@@ -10,6 +10,7 @@ in {
     ../hardware-configuration.nix
     ./system.nix
     ./laptop.nix
+    ./audio.nix
     ./hyprland.nix
     ./gnome.nix
   ];

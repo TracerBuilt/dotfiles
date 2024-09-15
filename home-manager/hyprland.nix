@@ -20,7 +20,7 @@ in {
     name = "Settings";
     comment = "Gnome Control Center";
     icon = "org.gnome.Settings";
-    exec = "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome.gnome-control-center}/bin/gnome-control-center";
+    exec = "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome-control-center}/bin/gnome-control-center";
     categories = ["X-Preferences"];
     terminal = false;
   };
@@ -127,7 +127,7 @@ in {
           "SHIFT,Print,    exec, ${screenshot} --full"
           "SUPER, B, exec, firefox"
           "SUPER, T, exec, kitty"
-          "SUPER, E, exec, wezterm -e lf"
+          "SUPER, 0, exec, nix-alien-ld neovide"
 
           # youtube
           ", XF86Launch1,  exec, ${yt}"
@@ -156,8 +156,28 @@ in {
           (mvactive "l" "20 0")
           (mvactive "h" "-20 0")
         ]
-        ++ (map (i: ws (toString i) (toString i)) arr)
-        ++ (map (i: mvtows (toString i) (toString i)) arr);
+        ++ (map (i:
+          ws (toString (
+            if i != 0
+            then i
+            else 10
+          )) (toString (
+            if i != 0
+            then i
+            else 10
+          )))
+        arr)
+        ++ (map (i:
+          mvtows (toString (
+            if i != 0
+            then i
+            else 10
+          )) (toString (
+            if i != 0
+            then i
+            else 10
+          )))
+        arr);
 
       bindle = [
         ",XF86MonBrightnessUp,   exec, ${brightnessctl} set +5%"

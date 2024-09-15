@@ -1,12 +1,14 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   home.sessionVariables.EDITOR = "nvim";
 
   programs.neovim = {
     enable = true;
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
     withNodeJs = true;
     withPython3 = true;
     viAlias = true;
