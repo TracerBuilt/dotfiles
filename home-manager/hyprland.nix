@@ -157,22 +157,14 @@ in {
           (mvactive "h" "-20 0")
         ]
         ++ (map (i:
-          ws (toString (
-            if i != 0
-            then i
-            else 10
-          )) (toString (
+          ws (toString i) (toString (
             if i != 0
             then i
             else 10
           )))
         arr)
         ++ (map (i:
-          mvtows (toString (
-            if i != 0
-            then i
-            else 10
-          )) (toString (
+          mvtows (toString i) (toString (
             if i != 0
             then i
             else 10
