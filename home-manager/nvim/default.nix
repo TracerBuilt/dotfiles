@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   inputs,
   ...
 }: {
@@ -26,11 +25,16 @@
       fd
       fzf
       cargo
+      python3
+      go
 
-      nil
-      lua-language-server
-      stylua
       alejandra
+      eslint
+      lua-language-server
+      nil
+      stylua
+      svelte-language-server
+      typescript-language-server
     ];
   };
 }

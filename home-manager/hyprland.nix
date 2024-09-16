@@ -41,7 +41,6 @@ in {
       exec-once = [
         "ags -b hypr"
         "hyprctl setcursor Qogir 24"
-        "[workspace 9 silent] cider"
         "[workspace 10 silent] 1password"
       ];
 
@@ -103,8 +102,6 @@ in {
         (f "xdg-desktop-portal-gnome")
         (f "de.haeckerfelix.Fragments")
         (f "com.github.Aylur.ags")
-        "workspace 9, title:Cider"
-        "workspace 10, title:1Password"
       ];
 
       bind = let
@@ -112,7 +109,7 @@ in {
         mvfocus = binding "SUPER" "movefocus";
         ws = binding "SUPER" "workspace";
         resizeactive = binding "SUPER CTRL" "resizeactive";
-        mvactive = binding "SUPER SHIFT" "moveactive";
+        mvwindow = binding "SUPER SHIFT" "movewindow";
         mvtows = binding "SUPER SHIFT" "movetoworkspace";
         e = "exec, ags -b hypr";
         arr = [1 2 3 4 5 6 7 8 9 0];
@@ -127,7 +124,7 @@ in {
           "SHIFT,Print,    exec, ${screenshot} --full"
           "SUPER, B, exec, firefox"
           "SUPER, T, exec, kitty"
-          "SUPER, 0, exec, nix-alien-ld neovide"
+          "SUPER, E, exec, wezterm -e lf"
 
           # youtube
           ", XF86Launch1,  exec, ${yt}"
@@ -139,22 +136,23 @@ in {
           "SUPER, RETURN, fullscreen"
           "SUPER, P, togglesplit"
 
-          (mvfocus "k" "u")
-          (mvfocus "j" "d")
-          (mvfocus "l" "r")
-          (mvfocus "h" "l")
+          # Scratchpad
+          "SUPER, S, togglespecialworkspace, magic"
+          "SUPER SHIFT, S, movetoworkspace, special:magic"
+
+          (mvfocus "K" "u")
+          (mvfocus "L" "r")
+          (mvfocus "J" "d")
+          (mvfocus "H" "l")
+          (mvwindow "K" "u")
+          (mvwindow "L" "r")
+          (mvwindow "J" "d")
+          (mvwindow "H" "l")
+
           (ws "left" "e-1")
           (ws "right" "e+1")
           (mvtows "left" "e-1")
           (mvtows "right" "e+1")
-          (resizeactive "k" "0 -20")
-          (resizeactive "j" "0 20")
-          (resizeactive "l" "20 0")
-          (resizeactive "h" "-20 0")
-          (mvactive "k" "0 -20")
-          (mvactive "j" "0 20")
-          (mvactive "l" "20 0")
-          (mvactive "h" "-20 0")
         ]
         ++ (map (i:
           ws (toString i) (toString (

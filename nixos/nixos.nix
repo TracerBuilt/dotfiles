@@ -9,7 +9,6 @@ in {
   imports = [
     ../hardware-configuration.nix
     ./system.nix
-    ./alien.nix
     ./laptop.nix
     ./audio.nix
     ./hyprland.nix

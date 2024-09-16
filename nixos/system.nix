@@ -43,6 +43,7 @@
       neovide
       zoxide
       starship
+      helix
       inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
     ];
 
@@ -51,6 +52,9 @@
 
   programs = {
     dconf.enable = true;
+    nix-ld = {
+      enable = true;
+    };
   };
 
   services = {

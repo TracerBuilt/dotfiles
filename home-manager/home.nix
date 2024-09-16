@@ -8,6 +8,7 @@
     ./browser.nix
     ./dconf.nix
     ./git.nix
+    ./helix.nix
     ./hyprland.nix
     ./nvim
     ./shell.nix
@@ -48,5 +49,13 @@
 
   home.stateVersion = "24.05";
 
-  programs.home-manager.enable = true;
+  programs = {
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
+    home-manager.enable = true;
+  };
 }
