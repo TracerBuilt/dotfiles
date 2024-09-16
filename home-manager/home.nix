@@ -9,7 +9,7 @@
     ./dconf.nix
     ./git.nix
     ./hyprland.nix
-    ./nvim/init.nix
+    ./nvim
     ./shell.nix
     ./theme.nix
     ./wezterm.nix
