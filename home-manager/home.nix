@@ -37,6 +37,7 @@
       fzf
       lazygit
       kitty
+      obsidian
     ];
   };
 
