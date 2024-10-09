@@ -1,4 +1,4 @@
-frame = "none"
+frame = "transparent"
 title-hidden = true
 
 [font]
