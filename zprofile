@@ -1,8 +1,23 @@
-if [[ "$(tty)" = "/dev/tty1" ]]; then
-  exec Hyprland
-fi
+ANTIGEN_PATH=$HOME/.dotfiles
+source $ANTIGEN_PATH/antigen/antigen.zsh
 
-# Setting PATH for Python 3.12
-# The original version is saved in .zprofile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.12/bin:${PATH}"
-export PATH
+antigen use oh-my-zsh
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh)
+antigen bundle git
+
+# Syntax highlighting bundle.
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# Fish-like auto suggestions
+antigen bundle zsh-users/zsh-autosuggestions
+
+# Extra zsh completions
+antigen bundle zsh-users/zsh-completions
+
+# NVM
+export NVM_LAZY_LOAD=true
+export NVM_AUTO_USE=true
+antigen bundle lukechilds/zsh-nvm
+
+antigen apply
