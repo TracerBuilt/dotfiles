@@ -1,37 +1,36 @@
 {
-  config,
-  lib,
+  inputs,
+  pkgs,
   ...
 }: {
-  config = {
-    hardware.graphics.enable = true;
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+  };
 
-    services.xserver.videoDrivers = ["nvidia"];
+  environment.systemPackages = with pkgs; [
+    powertop
+  ];
 
-    hardware.nvidia = {
-      modesetting.enable = true;
+  services = {
+    power-profiles-daemon.enable = false;
+    tlp = {
+      enable = false;
+    };
+  };
 
-      powerManagement = {
-        enable = true;
-        finegrained = true;
-      };
-
-      open = false;
-      nvidiaSettings = true; # gui app
-
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
-
-      prime = {
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
+  programs = {
+    auto-cpufreq = {
+      enable = true;
+      settings = {
+        battery = {
+          governor = "powersave";
+          turbo = "never";
         };
-
-        # Bus ID of the Intel GPU.
-        intelBusId = lib.mkDefault "PCI:0:2:0";
-
-        # Bus ID of the NVIDIA GPU.
-        nvidiaBusId = lib.mkDefault "PCI:1:0:0";
+        charger = {
+          governor = "performance";
+          turbo = "auto";
+        };
       };
     };
   };

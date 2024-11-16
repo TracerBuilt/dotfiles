@@ -31,7 +31,7 @@ in {
     systemd.enable = true;
     xwayland.enable = true;
     plugins = [
-      inputs.hyprland-hyprspace.packages.${pkgs.system}.default
+      # inputs.hyprland-hyprspace.packages.${pkgs.system}.default
       # plugins.hyprexpo
       # plugins.hyprbars
       # plugins.borderspp
@@ -41,6 +41,7 @@ in {
       exec-once = [
         "ags -b hypr"
         "hyprctl setcursor Qogir 24"
+        "hypridle"
         "[workspace 10 silent] 1password"
       ];
 
@@ -58,6 +59,7 @@ in {
       misc = {
         disable_splash_rendering = true;
         force_default_wallpaper = 1;
+        disable_hyprland_logo = true;
       };
 
       input = {
@@ -68,7 +70,7 @@ in {
           disable_while_typing = true;
           drag_lock = true;
         };
-        sensitivity = 0;
+        sensitivity = 0.5;
         float_switch_override_focus = 2;
       };
 
@@ -124,7 +126,7 @@ in {
           "SHIFT,Print,    exec, ${screenshot} --full"
           "SUPER, B, exec, firefox"
           "SUPER, T, exec, kitty"
-          "SUPER, E, exec, wezterm -e lf"
+          "SUPER, O, exec, neovide"
 
           # youtube
           ", XF86Launch1,  exec, ${yt}"
@@ -189,27 +191,19 @@ in {
       ];
 
       decoration = {
-        drop_shadow = "yes";
-        shadow_range = 8;
-        shadow_render_power = 2;
-        "col.shadow" = "rgba(00000044)";
+        shadow = {
+          enabled = false;
+        };
 
         dim_inactive = false;
 
         blur = {
           enabled = true;
-          size = 8;
-          passes = 3;
-          new_optimizations = "on";
-          noise = 0.01;
-          contrast = 0.9;
-          brightness = 0.8;
-          popups = true;
         };
       };
 
       animations = {
-        enabled = "yes";
+        enabled = true;
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
         animation = [
           "windows, 1, 5, myBezier"

@@ -35,11 +35,13 @@
   # packages
   environment = {
     systemPackages = with pkgs; [
+      cifs-utils
       git
       gh
       home-manager
       wget
       curl
+      nmap
       neovide
       zoxide
       starship
@@ -50,6 +52,12 @@
     variables.EDITOR = "nvim";
   };
 
+  fonts.packages = with pkgs; [
+    liberation_ttf
+    corefonts
+    google-fonts
+  ];
+
   programs = {
     dconf.enable = true;
     nix-ld = {
@@ -58,12 +66,20 @@
   };
 
   services = {
+    acpid.enable = true;
     xserver = {
       enable = true;
       excludePackages = [pkgs.xterm];
     };
-
+    gvfs.enable = true;
+    samba.enable = true;
+    # Printing
     printing.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
     flatpak.enable = true;
     openssh.enable = true;
     # logind
@@ -81,22 +97,35 @@
       }
     ];
     allowedUDPPortRanges = allowedTCPPortRanges;
+    extraCommands = ''
+      iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns
+    '';
   };
 
   # network
   networking.networkmanager.enable = true;
 
-  # bluetooth
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = false;
-    settings.General.Experimental = true; # for gnome-bluetooth percentage
+  hardware = {
+    enableAllFirmware = true;
+
+    # bluetooth
+    bluetooth = {
+      enable = true;
+      powerOnBoot = false;
+      settings.General.Experimental = true; # for gnome-bluetooth percentage
+    };
   };
 
   # bootloader
   boot = {
     tmp.cleanOnBoot = true;
     supportedFilesystems = ["ntfs"];
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "intel_pstate=disable"
+    ];
     loader = {
       timeout = 2;
       systemd-boot.enable = true;

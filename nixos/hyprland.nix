@@ -13,11 +13,18 @@
   config = lib.mkIf config.hyprland.enable {
     services.xserver.displayManager.startx.enable = true;
 
-    programs.hyprland = {
-      enable = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-      xwayland.enable = true;
+    programs = {
+      hyprland = {
+        enable = true;
+        package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+        portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+        xwayland.enable = true;
+      };
+
+      hyprlock = {
+        enable = true;
+        package = inputs.hyprlock.packages.${pkgs.stdenv.hostPlatform.system}.hyprlock;
+      };
     };
 
     security = {
@@ -66,19 +73,22 @@
     };
 
     services = {
-      gvfs.enable = true;
       devmon.enable = true;
       udisks2.enable = true;
       upower.enable = true;
-      power-profiles-daemon.enable = true;
+      # power-profiles-daemon.enable = true;
       accounts-daemon.enable = true;
       gnome = {
         evolution-data-server.enable = true;
         glib-networking.enable = true;
         gnome-keyring.enable = true;
         gnome-online-accounts.enable = true;
-        tracker-miners.enable = true;
-        tracker.enable = true;
+        localsearch.enable = true;
+        tinysparql.enable = true;
+      };
+      hypridle = {
+        enable = true;
+        package = inputs.hypridle.packages.${pkgs.stdenv.hostPlatform.system}.hypridle;
       };
     };
 

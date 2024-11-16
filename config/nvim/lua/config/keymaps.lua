@@ -5,5 +5,4 @@
 local map = vim.keymap.set
 local del = vim.keymap.del
 
-del('t', '<Esc><Esc>')
 map('t', '<Esc>', '<c-\\><c-n>', { desc = 'Enter Normal Mode' })

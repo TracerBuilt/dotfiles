@@ -38,6 +38,12 @@
       lazygit
       kitty
       obsidian
+      gimp
+      scribus
+      libreoffice-qt6-fresh
+      onlyoffice-bin
+      hunspell
+      hunspellDicts.en_US
     ];
   };
 

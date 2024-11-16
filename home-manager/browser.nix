@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   home = {
     sessionVariables.BROWSER = "firefox";
 
@@ -8,26 +12,28 @@
     };
   };
 
-  programs.firefox = {
-    enable = true;
-    profiles.default = {
-      name = "Default";
-      settings = {
-        "browser.tabs.loadInBackground" = true;
-        "widget.gtk.rounded-bottom-corners.enabled" = true;
-        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-        "svg.context-properties.content.enabled" = true;
-        "gnomeTheme.hideSingleTab" = true;
-        "gnomeTheme.bookmarksToolbarUnderTabs" = true;
-        "gnomeTheme.normalWidthTabs" = false;
-        "gnomeTheme.tabsAsHeaderbar" = false;
+  programs = {
+    firefox = {
+      enable = true;
+      profiles.default = {
+        name = "Default";
+        settings = {
+          "browser.tabs.loadInBackground" = true;
+          "widget.gtk.rounded-bottom-corners.enabled" = true;
+          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+          "svg.context-properties.content.enabled" = true;
+          "gnomeTheme.hideSingleTab" = true;
+          "gnomeTheme.bookmarksToolbarUnderTabs" = true;
+          "gnomeTheme.normalWidthTabs" = false;
+          "gnomeTheme.tabsAsHeaderbar" = false;
+        };
+        userChrome = ''
+          @import "firefox-gnome-theme/userChrome.css";
+        '';
+        userContent = ''
+          @import "firefox-gnome-theme/userContent.css";
+        '';
       };
-      userChrome = ''
-        @import "firefox-gnome-theme/userChrome.css";
-      '';
-      userContent = ''
-        @import "firefox-gnome-theme/userContent.css";
-      '';
     };
   };
 }
