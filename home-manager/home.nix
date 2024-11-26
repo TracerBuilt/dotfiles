@@ -4,7 +4,6 @@
   ...
 }: {
   imports = [
-    ./ags.nix
     ./browser.nix
     ./dconf.nix
     ./git.nix
@@ -40,7 +39,7 @@
       obsidian
       gimp
       scribus
-      libreoffice-qt6-fresh
+      libreoffice-qt6
       onlyoffice-bin
       hunspell
       hunspellDicts.en_US

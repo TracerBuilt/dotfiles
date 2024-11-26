@@ -2,20 +2,13 @@
   inputs,
   pkgs,
   ...
-}: let
-  hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  # plugins = inputs.hyprland-plugins.packages.${pkgs.system};
+}: {
+  home.packages = with pkgs; [
+    brightnessctl
+    pulseaudio
+    playerctl
+  ];
 
-  yt = pkgs.writeShellScript "yt" ''
-    notify-send "Opening video" "$(wl-paste)"
-    mpv "$(wl-paste)"
-  '';
-
-  playerctl = "${pkgs.playerctl}/bin/playerctl";
-  brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
-  pactl = "${pkgs.pulseaudio}/bin/pactl";
-  screenshot = import ./scripts/screenshot.nix pkgs;
-in {
   xdg.desktopEntries."org.gnome.Settings" = {
     name = "Settings";
     comment = "Gnome Control Center";
@@ -27,7 +20,7 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = hyprland;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     systemd.enable = true;
     xwayland.enable = true;
     plugins = [
@@ -39,7 +32,6 @@ in {
 
     settings = {
       exec-once = [
-        "ags -b hypr"
         "hyprctl setcursor Qogir 24"
         "hypridle"
         "[workspace 10 silent] 1password"
@@ -122,14 +114,9 @@ in {
           "SUPER, Tab,     ${e} -t overview"
           ",XF86PowerOff,  ${e} -r 'powermenu.shutdown()'"
           ",XF86Launch4,   ${e} -r 'recorder.start()'"
-          ",Print,         exec, ${screenshot}"
-          "SHIFT,Print,    exec, ${screenshot} --full"
           "SUPER, B, exec, firefox"
           "SUPER, T, exec, kitty"
           "SUPER, O, exec, neovide"
-
-          # youtube
-          ", XF86Launch1,  exec, ${yt}"
 
           "ALT, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"
@@ -172,17 +159,17 @@ in {
         arr);
 
       bindle = [
-        ",XF86MonBrightnessUp,   exec, ${brightnessctl} set +5%"
-        ",XF86MonBrightnessDown, exec, ${brightnessctl} set  5%-"
-        ",XF86KbdBrightnessUp,   exec, ${brightnessctl} -d asus::kbd_backlight set +1"
-        ",XF86KbdBrightnessDown, exec, ${brightnessctl} -d asus::kbd_backlight set  1-"
-        ",XF86AudioRaiseVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
-        ",XF86AudioLowerVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
+        ",XF86MonBrightnessUp,   exec, brightnessctl set +5%"
+        ",XF86MonBrightnessDown, exec, brightnessctl set  5%-"
+        ",XF86KbdBrightnessUp,   exec, brightnessctl -d asus::kbd_backlight set +1"
+        ",XF86KbdBrightnessDown, exec, brightnessctl -d asus::kbd_backlight set  1-"
+        ",XF86AudioRaiseVolume,  exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
+        ",XF86AudioLowerVolume,  exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
       ];
 
       bindl = [
-        ",XF86AudioPlay,    exec, ${playerctl} play-pause"
-        ",XF86AudioMicMute, exec, ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
+        ",XF86AudioPlay,    exec, playerctl play-pause"
+        ",XF86AudioMicMute, exec, pactl set-source-mute @DEFAULT_SOURCE@ toggle"
       ];
 
       bindm = [

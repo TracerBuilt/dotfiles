@@ -44,10 +44,6 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    matugen.url = "github:InioX/matugen?ref=v2.2.0";
-    ags.url = "github:Aylur/ags";
-    astal.url = "github:Aylur/astal";
-
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     firefox-gnome-theme = {
@@ -61,6 +57,16 @@
       url = "github:AdnanHodzic/auto-cpufreq";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    astal = {
+      url = "github:aylur/astal";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ags = {
+      url = "github:aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -69,11 +75,13 @@
     home-manager,
     nixos-hardware,
     auto-cpufreq,
+    astal,
+    ags,
     ...
-  } @ inputs: {
-    packages.x86_64-linux.default =
-      nixpkgs.legacyPackages.x86_64-linux.callPackage ./ags {inherit inputs;};
-
+  } @ inputs: let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in {
     # nixos config
     nixosConfigurations = {
       "Treetop" = nixpkgs.lib.nixosSystem rec {
@@ -88,6 +96,44 @@
           {networking.hostName = "Treetop";}
           nixos-hardware.nixosModules.dell-xps-15-9500
           auto-cpufreq.nixosModules.default
+        ];
+      };
+    };
+
+    packages.${system}.default = pkgs.stdenvNoCC.mkDerivation rec {
+      name = "my-shell";
+      src = ./.;
+
+      nativeBuildInputs = [
+        ags.packages.${system}.default
+        pkgs.wrapGAppsHook
+        pkgs.gobject-introspection
+      ];
+
+      buildInputs = with astal.packages.${system}; [
+        astal3
+        io
+        # any other package
+      ];
+
+      installPhase = ''
+        mkdir -p $out/bin
+        ags bundle app.ts $out/bin/${name}
+      '';
+    };
+
+    devShells.${system} = {
+      default = pkgs.mkShell {
+        buildInputs = [
+          # includes all Astal libraries
+          ags.packages.${system}.agsFull
+
+          # includes astal3 astal4 astal-io by default
+          # (ags.packages.${system}.default.override {
+          #   extraPackages = [
+          #     # cherry pick packages
+          #   ];
+          # })
         ];
       };
     };
