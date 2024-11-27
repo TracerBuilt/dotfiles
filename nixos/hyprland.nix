@@ -32,7 +32,7 @@
     };
 
     environment.systemPackages = with pkgs; [
-      (callPackage ./my-shell {})
+      inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default
       morewaita-icon-theme
       adwaita-icon-theme
       qogir-icon-theme
@@ -90,10 +90,7 @@
         enable = true;
         package = inputs.hypridle.packages.${pkgs.stdenv.hostPlatform.system}.hypridle;
       };
+      getty.autologinUser = "goose";
     };
-
-    systemd.tmpfiles.rules = [
-      "d '/var/cache/greeter' - greeter greeter - -"
-    ];
   };
 }

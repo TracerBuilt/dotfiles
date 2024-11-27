@@ -8,6 +8,7 @@
     lg = "lazygit";
     rebuild = "sudo nixos-rebuild switch";
     update = "cd /etc/nixos && sudo nix flake update && cd";
+    "ags dev" = "ags run -d ~/dotfiles/nixos/ags";
   };
 in {
   options.shellAliases = with lib;
@@ -34,8 +35,11 @@ in {
       ];
 
       initExtra = ''
-        bindkey "''${key[Up]}" up-line-or-search
+        if [ -z "''${WAYLAND_DISPLAY}" ] && [ "''${XDG_VTNR}" -eq 1 ]; then
+          dbus-run-session Hyprland
+        fi
 
+        bindkey "''${key[Up]}" up-line-or-search
       '';
     };
     nushell = {
