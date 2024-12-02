@@ -53,7 +53,9 @@
       wayshot
       pavucontrol
       brightnessctl
-      swww
+      # swww
+      waybar
+      (callPackage ./hyprlauncher.nix {})
     ];
 
     systemd = {

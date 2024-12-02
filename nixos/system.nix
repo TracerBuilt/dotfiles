@@ -56,6 +56,8 @@
     liberation_ttf
     corefonts
     google-fonts
+    noto-fonts
+    font-awesome
   ];
 
   programs = {

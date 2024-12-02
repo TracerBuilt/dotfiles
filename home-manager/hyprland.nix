@@ -4,7 +4,7 @@
   ...
 }: {
   home.packages = with pkgs; [
-    inputs.my-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # inputs.my-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
     brightnessctl
     pulseaudio
     playerctl
@@ -33,11 +33,11 @@
 
     settings = {
       exec-once = [
+        "waybar"
         "hyprlock"
         "hyprpaper"
         "hypridle"
         "hyprctl setcursor Qogir 24"
-        "my-shell"
         "[workspace 10 silent] 1password"
       ];
 

@@ -34,6 +34,12 @@
       inputs.hyprlang.follows = "hyprlang";
     };
 
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hyprland.follows = "hyprlang";
+    };
+
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
@@ -58,13 +64,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    astal = {
-      url = "github:aylur/astal";
+    ags = {
+      url = "github:aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ags = {
-      url = "github:aylur/ags";
+    my-shell = {
+      url = "path:/home/goose/dotfiles/nixos/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -75,7 +81,6 @@
     home-manager,
     nixos-hardware,
     auto-cpufreq,
-    astal,
     ags,
     ...
   } @ inputs: let
@@ -88,7 +93,6 @@
         system = "x86_64-linux";
         specialArgs = {
           inherit inputs self system;
-          asztal = self.packages.x86_64-linux.default;
         };
         modules = [
           ./nixos/nixos.nix
@@ -100,40 +104,31 @@
       };
     };
 
-    packages.${system}.default = pkgs.stdenvNoCC.mkDerivation rec {
-      name = "my-shell";
-      src = ./.;
-
-      nativeBuildInputs = [
-        ags.packages.${system}.default
-        pkgs.wrapGAppsHook
-        pkgs.gobject-introspection
-      ];
-
-      buildInputs = with astal.packages.${system}; [
-        astal3
-        io
-        # any other package
-      ];
-
-      installPhase = ''
-        mkdir -p $out/bin
-        ags bundle app.ts $out/bin/${name}
-      '';
-    };
-
     devShells.${system} = {
       default = pkgs.mkShell {
         buildInputs = [
           # includes all Astal libraries
-          ags.packages.${system}.agsFull
+          # ags.packages.${system}.agsFull
 
           # includes astal3 astal4 astal-io by default
-          # (ags.packages.${system}.default.override {
-          #   extraPackages = [
-          #     # cherry pick packages
-          #   ];
-          # })
+          (ags.packages.${system}.default.override {
+            extraPackages = [
+              #     # cherry pick packages
+              ags.packages.${system}.apps
+              ags.packages.${system}.auth
+              ags.packages.${system}.battery
+              ags.packages.${system}.bluetooth
+              # ags.packages.${system}.cava
+              ags.packages.${system}.greet
+              ags.packages.${system}.hyprland
+              ags.packages.${system}.mpris
+              ags.packages.${system}.network
+              ags.packages.${system}.notifd
+              ags.packages.${system}.powerprofiles
+              ags.packages.${system}.wireplumber
+              ags.packages.${system}.tray
+            ];
+          })
         ];
       };
     };
