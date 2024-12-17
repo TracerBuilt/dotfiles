@@ -3,25 +3,13 @@
   config,
   ...
 }: let
-  nerdfonts = pkgs.nerdfonts.override {
-    fonts = [
-      "Ubuntu"
-      "UbuntuMono"
-      "CascadiaCode"
-      "FantasqueSansMono"
-      "FiraCode"
-      "Mononoki"
-      "Recursive"
-    ];
-  };
-
   theme = {
     name = "adw-gtk3-dark";
     package = pkgs.adw-gtk3;
   };
   font = {
     name = "Recursive Nerd Font";
-    package = nerdfonts;
+    package = pkgs.nerd-fonts.recursive-mono;
     size = 12;
   };
   cursorTheme = {

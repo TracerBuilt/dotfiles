@@ -1,80 +1,6 @@
 {
   description = "TracerBuilt's Configuration";
 
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-
-    hyprlang = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprutils.follows = "hyprutils";
-    };
-
-    hyprutils = {
-      url = "github:hyprwm/hyprutils";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hypridle = {
-      url = "github:hyprwm/Hypridle";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprlang.follows = "hyprlang";
-    };
-
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprlang.follows = "hyprlang";
-    };
-
-    hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprland.follows = "hyprlang";
-    };
-
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hyprland-hyprspace = {
-      url = "github:KZDKM/Hyprspace";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-
-    firefox-gnome-theme = {
-      url = "github:rafaelmardojai/firefox-gnome-theme";
-      flake = false;
-    };
-
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
-    auto-cpufreq = {
-      url = "github:AdnanHodzic/auto-cpufreq";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    ags = {
-      url = "github:aylur/ags";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    my-shell = {
-      url = "path:/home/goose/dotfiles/nixos/ags";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-
   outputs = {
     self,
     nixpkgs,
@@ -132,5 +58,80 @@
         ];
       };
     };
+  };
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.hyprutils.follows = "hyprutils";
+    };
+
+    hyprutils = {
+      url = "github:hyprwm/hyprutils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hypridle = {
+      url = "github:hyprwm/Hypridle";
+      inputs.hyprutils.follows = "hyprutils";
+    };
+
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs.hyprutils.follows = "hyprutils";
+    };
+
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs.hyprutils.follows = "hyprutils";
+    };
+
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hyprspace = {
+      url = "github:KZDKM/Hyprspace";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hyprpicker = {
+      url = "github:hyprwm/hyprpicker";
+      inputs.hyprutils.follows = "hyprutils";
+    };
+
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
+    firefox-gnome-theme = {
+      url = "github:rafaelmardojai/firefox-gnome-theme";
+      flake = false;
+    };
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    auto-cpufreq = {
+      url = "github:AdnanHodzic/auto-cpufreq";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ags = {
+      url = "github:aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    my-shell = {
+      url = "path:/home/goose/dotfiles/nixos/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 }

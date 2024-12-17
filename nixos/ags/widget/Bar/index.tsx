@@ -1,7 +1,6 @@
 import { App } from "astal/gtk3";
 import { Variable, GLib, bind } from "astal";
 import { Astal, Gtk, Gdk } from "astal/gtk3";
-import "./style.scss";
 import Hyprland from "gi://AstalHyprland";
 import Mpris from "gi://AstalMpris";
 import Battery from "gi://AstalBattery";

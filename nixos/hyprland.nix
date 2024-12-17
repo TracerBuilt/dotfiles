@@ -15,14 +15,14 @@
     programs = {
       hyprland = {
         enable = true;
-        package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-        portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-        xwayland.enable = true;
+        # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+        # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+        # xwayland.enable = true;
       };
 
       hyprlock = {
         enable = true;
-        package = inputs.hyprlock.packages.${pkgs.stdenv.hostPlatform.system}.hyprlock;
+        # package = inputs.hyprlock.packages.${pkgs.stdenv.hostPlatform.system}.hyprlock;
       };
     };
 
@@ -32,10 +32,12 @@
     };
 
     environment.systemPackages = with pkgs; [
-      inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default
-      morewaita-icon-theme
-      adwaita-icon-theme
-      qogir-icon-theme
+      # inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default
+      # inputs.hyprpicker.packages.${pkgs.stdenv.hostPlatform.system}.default
+      hyprpaper
+      hyprpicker
+      qt5.full
+      qt6.full
       loupe
       nautilus
       baobab
@@ -53,9 +55,11 @@
       wayshot
       pavucontrol
       brightnessctl
-      # swww
+      morewaita-icon-theme
+      adwaita-icon-theme
+      qogir-icon-theme
       waybar
-      (callPackage ./hyprlauncher.nix {})
+      hyprlauncher
     ];
 
     systemd = {
@@ -90,7 +94,7 @@
       };
       hypridle = {
         enable = true;
-        package = inputs.hypridle.packages.${pkgs.stdenv.hostPlatform.system}.hypridle;
+        # package = inputs.hypridle.packages.${pkgs.stdenv.hostPlatform.system}.hypridle;
       };
       getty.autologinUser = "goose";
     };

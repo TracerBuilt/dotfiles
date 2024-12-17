@@ -29,12 +29,48 @@
         extraPackages = [
           # ags.packages.${system}.battery
           # pkgs.fzf
+          ags.packages.${system}.apps
+          ags.packages.${system}.auth
+          ags.packages.${system}.battery
+          ags.packages.${system}.bluetooth
+          # ags.packages.${system}.cava
+          ags.packages.${system}.greet
           ags.packages.${system}.hyprland
           ags.packages.${system}.mpris
-          ags.packages.${system}.battery
-          ags.packages.${system}.wp
           ags.packages.${system}.network
+          ags.packages.${system}.notifd
+          ags.packages.${system}.powerprofiles
+          ags.packages.${system}.wireplumber
           ags.packages.${system}.tray
+        ];
+      };
+    };
+
+    devShells.${system} = {
+      default = pkgs.mkShell {
+        buildInputs = [
+          # includes all Astal libraries
+          # ags.packages.${system}.agsFull
+
+          # includes astal3 astal4 astal-io by default
+          (ags.packages.${system}.default.override {
+            extraPackages = [
+              #     # cherry pick packages
+              ags.packages.${system}.apps
+              ags.packages.${system}.auth
+              ags.packages.${system}.battery
+              ags.packages.${system}.bluetooth
+              # ags.packages.${system}.cava
+              ags.packages.${system}.greet
+              ags.packages.${system}.hyprland
+              ags.packages.${system}.mpris
+              ags.packages.${system}.network
+              ags.packages.${system}.notifd
+              ags.packages.${system}.powerprofiles
+              ags.packages.${system}.wireplumber
+              ags.packages.${system}.tray
+            ];
+          })
         ];
       };
     };

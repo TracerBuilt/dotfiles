@@ -46,7 +46,12 @@
       zoxide
       starship
       helix
+      evolution
+      geary
+      okular
+      zathura
       inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+      inputs.zen-browser.packages."${system}".specific
     ];
 
     variables.EDITOR = "nvim";
@@ -58,6 +63,10 @@
     google-fonts
     noto-fonts
     font-awesome
+    recursive
+    nerd-fonts.recursive-mono
+    nerd-fonts.fira-code
+    nerd-fonts.victor-mono
   ];
 
   programs = {

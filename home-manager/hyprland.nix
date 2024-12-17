@@ -10,6 +10,10 @@
     playerctl
   ];
 
+  services = {
+    mako.enable = true;
+  };
+
   xdg.desktopEntries."org.gnome.Settings" = {
     name = "Settings";
     comment = "Gnome Control Center";
@@ -25,7 +29,7 @@
     systemd.enable = true;
     xwayland.enable = true;
     plugins = [
-      # inputs.hyprland-hyprspace.packages.${pkgs.system}.default
+      inputs.hyprspace.packages.${pkgs.system}.Hyprspace
       # plugins.hyprexpo
       # plugins.hyprbars
       # plugins.borderspp
@@ -48,8 +52,36 @@
       ];
 
       general = {
-        layout = "dwindle";
+        gaps_in = 7;
+        gaps_out = 7;
+        border_size = 1;
+        "col.active_border" = "rgba(FBEFD9F9) rgba(FB7867F9) 45deg";
+        "col.inactive_border" = "rgba(EEEEEEa1)";
         resize_on_border = true;
+        layout = "dwindle";
+      };
+
+      decoration = {
+        rounding = 7;
+
+        active_opacity = 1.0;
+        inactive_opacity = 1.0;
+
+        shadow = {
+          enabled = true;
+        };
+
+        dim_inactive = false;
+
+        blur = {
+          enabled = true;
+
+          vibrancy = 0.1696;
+        };
+      };
+
+      animations = {
+        enabled = true;
       };
 
       misc = {
@@ -62,7 +94,7 @@
         kb_layout = "us";
         follow_mouse = 1;
         touchpad = {
-          natural_scroll = "yes";
+          natural_scroll = true;
           disable_while_typing = true;
           drag_lock = true;
         };
@@ -75,9 +107,8 @@
       };
 
       dwindle = {
-        pseudotile = "yes";
-        preserve_split = "yes";
-        # no_gaps_when_only = "yes";
+        pseudotile = true;
+        smart_split = true;
       };
 
       gestures = {
@@ -102,6 +133,22 @@
         (f "com.github.Aylur.ags")
       ];
 
+      # "Smart gaps" / "No gaps when only"
+      workspace = [
+        "w[t1], gapsout:0, gapsin:0"
+        "w[tg1], gapsout:0, gapsin:0"
+        "f[1], gapsout:0, gapsin:0"
+      ];
+
+      windowrulev2 = [
+        "bordersize 0, floating:0, onworkspace:w[t1]"
+        "rounding 0, floating:0, onworkspace:w[t1]"
+        "bordersize 0, floating:0, onworkspace:w[tg1]"
+        "rounding 0, floating:0, onworkspace:w[tg1]"
+        "bordersize 0, floating:0, onworkspace:f[1]"
+        "rounding 0, floating:0, onworkspace:f[1]"
+      ];
+
       bind = let
         binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
         mvfocus = binding "SUPER" "movefocus";
@@ -109,16 +156,18 @@
         resizeactive = binding "SUPER CTRL" "resizeactive";
         mvwindow = binding "SUPER SHIFT" "movewindow";
         mvtows = binding "SUPER SHIFT" "movetoworkspace";
-        e = "exec, ags -b hypr";
+        # e = "exec, ags -b hypr";
         arr = [1 2 3 4 5 6 7 8 9 0];
       in
         [
-          "SUPER SHIFT, R,  ${e} quit; ags -b hypr"
-          "SUPER, SPACE,       ${e} -t launcher"
-          "SUPER, Tab,     ${e} -t overview"
-          ",XF86PowerOff,  ${e} -r 'powermenu.shutdown()'"
-          ",XF86Launch4,   ${e} -r 'recorder.start()'"
-          "SUPER, B, exec, firefox"
+          # "SUPER SHIFT, R,  ${e} quit; ags -b hypr"
+          # "SUPER, SPACE,       ${e} -t launcher"
+          # "SUPER, Tab,     ${e} -t overview"
+          # ",XF86PowerOff,  ${e} -r 'powermenu.shutdown()'"
+          # ",XF86Launch4,   ${e} -r 'recorder.start()'"
+          "SUPER, SPACE, exec, hyprlauncher"
+          "SUPER, Tab, overview:toggle"
+          "SUPER, B, exec, zen"
           "SUPER, T, exec, kitty"
           "SUPER, O, exec, neovide"
 
@@ -181,30 +230,6 @@
         "SUPER, mouse:272, movewindow"
       ];
 
-      decoration = {
-        shadow = {
-          enabled = false;
-        };
-
-        dim_inactive = false;
-
-        blur = {
-          enabled = true;
-        };
-      };
-
-      animations = {
-        enabled = true;
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-        animation = [
-          "windows, 1, 5, myBezier"
-          "windowsOut, 1, 7, default, popin 80%"
-          "border, 1, 10, default"
-          "fade, 1, 7, default"
-          "workspaces, 1, 6, default"
-        ];
-      };
-
       plugin = {
         overview = {
           centerAligned = true;
@@ -215,19 +240,6 @@
           exitOnSwitch = true;
           drawActiveWorkspace = true;
           reverseSwipe = true;
-        };
-        hyprbars = {
-          bar_color = "rgb(2a2a2a)";
-          bar_height = 28;
-          col_text = "rgba(ffffffdd)";
-          bar_text_size = 11;
-          bar_text_font = "Ubuntu Nerd Font";
-
-          buttons = {
-            button_size = 0;
-            "col.maximize" = "rgba(ffffff11)";
-            "col.close" = "rgba(ff111133)";
-          };
         };
       };
     };

@@ -13,6 +13,7 @@ in {
     ./audio.nix
     ./hyprland.nix
     ./gnome.nix
+    ./steam.nix
   ];
 
   hyprland.enable = true;
@@ -66,12 +67,14 @@ in {
       enable = true;
       polkitPolicyOwners = ["goose"];
     };
+  };
 
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-      localNetworkGameTransfers.openFirewall = true;
+  environment.etc = {
+    "1password/custom_allowed_browsers" = {
+      text = ''
+        .zen-wrapped
+      '';
+      mode = "0755";
     };
   };
 }
