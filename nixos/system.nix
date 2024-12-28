@@ -12,6 +12,9 @@
     experimental-features = ["nix-command" "flakes"];
     auto-optimise-store = true;
     warn-dirty = false;
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    download-buffer-size = 256000000;
   };
 
   # Set your time zone.
@@ -50,8 +53,9 @@
       geary
       okular
       zathura
+      cachix
       inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
-      inputs.zen-browser.packages."${system}".specific
+      inputs.zen-browser.packages."${system}".default
     ];
 
     variables.EDITOR = "nvim";
@@ -101,6 +105,8 @@
 
   # kde connect
   networking.firewall = rec {
+    allowedTCPPorts = [24642];
+    allowedUDPPorts = allowedTCPPorts;
     allowedTCPPortRanges = [
       {
         from = 1714;
@@ -122,10 +128,12 @@
     # bluetooth
     bluetooth = {
       enable = true;
-      powerOnBoot = false;
+      powerOnBoot = true;
       settings.General.Experimental = true; # for gnome-bluetooth percentage
     };
   };
+
+  services.blueman.enable = true;
 
   # bootloader
   boot = {

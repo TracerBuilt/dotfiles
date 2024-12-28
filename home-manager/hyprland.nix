@@ -51,6 +51,22 @@
         ",preferred,auto,2"
       ];
 
+      xwayland = {
+        force_zero_scaling = true;
+      };
+
+      env = [
+        "LIBVA_DRIVER_NAME,nvidia"
+        "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+        "NVD_BACKEND,direct"
+        "GDK_SCALE,2"
+        "XCURSOR_SIZE,32"
+      ];
+
+      cursor = {
+        no_hardware_cursors = true;
+      };
+
       general = {
         gaps_in = 7;
         gaps_out = 7;
@@ -95,7 +111,7 @@
         follow_mouse = 1;
         touchpad = {
           natural_scroll = true;
-          disable_while_typing = true;
+          disable_while_typing = false;
           drag_lock = true;
         };
         sensitivity = 0.5;

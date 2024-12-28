@@ -25,6 +25,7 @@
           home-manager.nixosModules.home-manager
           {networking.hostName = "Treetop";}
           nixos-hardware.nixosModules.dell-xps-15-9500
+          nixos-hardware.nixosModules.dell-xps-15-9500-nvidia
           auto-cpufreq.nixosModules.default
         ];
       };
@@ -68,30 +69,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.hyprutils.follows = "hyprutils";
-    };
+    hyprland.url = "github:hyprwm/Hyprland";
 
-    hyprutils = {
-      url = "github:hyprwm/hyprutils";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hypridle.url = "github:hyprwm/Hypridle";
 
-    hypridle = {
-      url = "github:hyprwm/Hypridle";
-      inputs.hyprutils.follows = "hyprutils";
-    };
+    hyprlock.url = "github:hyprwm/hyprlock";
 
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
-      inputs.hyprutils.follows = "hyprutils";
-    };
-
-    hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
-      inputs.hyprutils.follows = "hyprutils";
-    };
+    hyprpaper.url = "github:hyprwm/hyprpaper";
 
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
@@ -103,10 +87,7 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    hyprpicker = {
-      url = "github:hyprwm/hyprpicker";
-      inputs.hyprutils.follows = "hyprutils";
-    };
+    hyprpicker.url = "github:hyprwm/hyprpicker";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
