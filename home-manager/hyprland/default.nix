@@ -3,14 +3,15 @@
   pkgs,
   ...
 }: {
-  imports = [../walker];
-
   home.packages = with pkgs; [
     # inputs.my-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
     brightnessctl
     pulseaudio
     playerctl
   ];
+
+  # imports = [../walker];
+  imports = [../anyrun];
 
   services = {
     mako.enable = true;
@@ -183,7 +184,7 @@
           # "SUPER, Tab,     ${e} -t overview"
           # ",XF86PowerOff,  ${e} -r 'powermenu.shutdown()'"
           # ",XF86Launch4,   ${e} -r 'recorder.start()'"
-          "SUPER, SPACE, exec, walker"
+          "SUPER, SPACE, exec, anyrun"
           "SUPER, Tab, overview:toggle"
           "SUPER, B, exec, zen"
           "SUPER, T, exec, kitty"

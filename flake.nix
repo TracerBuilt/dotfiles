@@ -111,5 +111,10 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
     walker.url = "github:abenz1267/walker";
+
+    anyrun = {
+      url = "github:anyrun-org/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
