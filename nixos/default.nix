@@ -8,12 +8,12 @@
 in {
   imports = [
     ../hardware-configuration.nix
-    ./system.nix
-    ./laptop.nix
-    ./audio.nix
-    ./hyprland.nix
-    ./gnome.nix
-    ./steam.nix
+    ./system
+    ./laptop
+    ./audio
+    ./hyprland
+    ./gnome
+    ./steam
     ./overlays
   ];
 
@@ -42,7 +42,7 @@ in {
       home.username = username;
       home.homeDirectory = "/home/${username}";
       imports = [
-        ../home-manager/home.nix
+        ../home-manager
       ];
     };
   };
