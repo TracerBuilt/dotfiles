@@ -13,19 +13,19 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in {
-    # packages.${system}.default = ags.lib.bundle {
-    #   inherit pkgs;
-    #   src = ./.;
-    #   name = "my-shell"; # name of executable
-    #   entry = "app.ts";
-    #   gtk4 = false;
-    #
-    #   # additional libraries and executables to add to gjs' runtime
-    #   extraPackages = [
-    #     # ags.packages.${system}.battery
-    #     # pkgs.fzf
-    #   ];
-    # };
+    packages.${system}.default = ags.lib.bundle {
+      inherit pkgs;
+      src = ./.;
+      name = "my-shell"; # name of executable
+      entry = "app.ts";
+      gtk4 = false;
+
+      # additional libraries and executables to add to gjs' runtime
+      extraPackages = [
+        # ags.packages.${system}.battery
+        # pkgs.fzf
+      ];
+    };
     # nixos config
     nixosConfigurations = {
       "Treetop" = nixpkgs.lib.nixosSystem rec {
@@ -34,7 +34,7 @@
           inherit inputs self system;
         };
         modules = [
-          ./nixos/nixos.nix
+          ./nixos
           home-manager.nixosModules.home-manager
           {networking.hostName = "Treetop";}
           nixos-hardware.nixosModules.dell-xps-15-9500
@@ -44,16 +44,16 @@
       };
     };
 
-    # devShells.${system}.default = pkgs.mkShell {
-    #   buildInputs = [
-    #     # includes astal3 astal4 astal-io by default
-    #     (ags.packages.${system}.default.override {
-    #       extraPackages = [
-    #         # cherry pick packages
-    #       ];
-    #     })
-    #   ];
-    # };
+    devShells.${system}.default = pkgs.mkShell {
+      buildInputs = [
+        # includes astal3 astal4 astal-io by default
+        (ags.packages.${system}.default.override {
+          extraPackages = [
+            # cherry pick packages
+          ];
+        })
+      ];
+    };
   };
 
   inputs = {
@@ -110,9 +110,6 @@
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
-    walker = {
-      url = "github:abenz1267/walker";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    walker.url = "github:abenz1267/walker";
   };
 }
