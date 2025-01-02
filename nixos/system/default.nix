@@ -64,6 +64,7 @@
       cachix
       inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
       inputs.zen-browser.packages."${system}".default
+      google-chrome
     ];
 
     variables.EDITOR = "nvim";
