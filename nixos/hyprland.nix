@@ -58,7 +58,7 @@
       adwaita-icon-theme
       qogir-icon-theme
       waybar
-      hyprlauncher
+      inputs.walker.packages.${system}.default
     ];
 
     systemd = {

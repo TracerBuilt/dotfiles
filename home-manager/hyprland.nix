@@ -42,6 +42,7 @@
         "hyprpaper"
         "hypridle"
         "hyprctl setcursor Qogir 24"
+        "walker --gapplication-service"
         "[workspace 10 silent] 1password"
       ];
 
@@ -124,7 +125,7 @@
 
       dwindle = {
         pseudotile = true;
-        smart_split = true;
+        # smart_split = true;
       };
 
       gestures = {
@@ -181,7 +182,7 @@
           # "SUPER, Tab,     ${e} -t overview"
           # ",XF86PowerOff,  ${e} -r 'powermenu.shutdown()'"
           # ",XF86Launch4,   ${e} -r 'recorder.start()'"
-          "SUPER, SPACE, exec, hyprlauncher"
+          "SUPER, SPACE, exec, walker"
           "SUPER, Tab, overview:toggle"
           "SUPER, B, exec, zen"
           "SUPER, T, exec, kitty"

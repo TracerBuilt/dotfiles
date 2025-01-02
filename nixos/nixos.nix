@@ -14,6 +14,7 @@ in {
     ./hyprland.nix
     ./gnome.nix
     ./steam.nix
+    ./overlays
   ];
 
   hyprland.enable = true;
