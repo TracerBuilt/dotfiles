@@ -4,15 +4,15 @@
   ...
 }: {
   imports = [
-    ./browser.nix
-    ./dconf.nix
-    ./git.nix
-    ./helix.nix
-    ./hyprland.nix
+    ./browser
+    ./dconf
+    ./git
+    ./helix
+    ./hyprland
     ./nvim
-    ./shell.nix
-    ./theme.nix
-    ./wezterm.nix
+    ./shell
+    ./theme
+    ./wezterm
   ];
 
   home = {
