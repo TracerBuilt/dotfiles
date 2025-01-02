@@ -20,14 +20,6 @@ return {
 			end,
 		})
 
-		vim.api.nvim_create_autocmd('User', {
-			pattern = 'MiniFilesBufferCreate',
-			desc = 'Disable cmp in mini.files',
-			callback = function()
-				require('cmp').setup.buffer { enabled = false, completion = { autocomplete = false } }
-			end,
-		})
-
 		-- Mapping for setting cwd
 		local files_set_cwd = function(path)
 			-- Works only if cursor is on the valid file system entry
@@ -118,7 +110,7 @@ return {
 	keys = function()
 		return {
 			{
-				'<leader>n',
+				'<leader>e',
 				function()
 					local mini_files = require 'mini.files'
 					if not mini_files.close() then
@@ -128,7 +120,7 @@ return {
 				desc = 'Toggle file tree',
 			},
 			{
-				'<leader>N',
+				'<leader>E',
 				function()
 					require('mini.files').open(vim.api.nvim_buf_get_name(0), true)
 				end,
