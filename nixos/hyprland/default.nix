@@ -58,7 +58,6 @@
       adwaita-icon-theme
       qogir-icon-theme
       waybar
-      inputs.walker.packages.${system}.default
     ];
 
     systemd = {

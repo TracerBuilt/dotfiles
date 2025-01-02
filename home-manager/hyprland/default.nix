@@ -3,6 +3,8 @@
   pkgs,
   ...
 }: {
+  imports = [../walker];
+
   home.packages = with pkgs; [
     # inputs.my-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
     brightnessctl
@@ -42,7 +44,6 @@
         "hyprpaper"
         "hypridle"
         "hyprctl setcursor Qogir 24"
-        "walker --gapplication-service"
         "[workspace 10 silent] 1password"
       ];
 

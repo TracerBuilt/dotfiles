@@ -65,6 +65,8 @@
       inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
       inputs.zen-browser.packages."${system}".default
       google-chrome
+      ladybird
+      vivaldi
     ];
 
     variables.EDITOR = "nvim";
@@ -87,6 +89,7 @@
     nix-ld = {
       enable = true;
     };
+    ladybird.enable = true;
   };
 
   services = {
