@@ -10,13 +10,6 @@
     playerctl
   ];
 
-  # imports = [../walker];
-  imports = [../anyrun];
-
-  services = {
-    mako.enable = true;
-  };
-
   xdg.desktopEntries."org.gnome.Settings" = {
     name = "Settings";
     comment = "Gnome Control Center";

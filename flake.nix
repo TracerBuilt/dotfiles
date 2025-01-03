@@ -7,25 +7,8 @@
     home-manager,
     nixos-hardware,
     auto-cpufreq,
-    ags,
     ...
-  } @ inputs: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    packages.${system}.default = ags.lib.bundle {
-      inherit pkgs;
-      src = ./.;
-      name = "my-shell"; # name of executable
-      entry = "app.ts";
-      gtk4 = false;
-
-      # additional libraries and executables to add to gjs' runtime
-      extraPackages = [
-        # ags.packages.${system}.battery
-        # pkgs.fzf
-      ];
-    };
+  } @ inputs: {
     # nixos config
     nixosConfigurations = {
       "Treetop" = nixpkgs.lib.nixosSystem rec {
@@ -42,17 +25,6 @@
           auto-cpufreq.nixosModules.default
         ];
       };
-    };
-
-    devShells.${system}.default = pkgs.mkShell {
-      buildInputs = [
-        # includes astal3 astal4 astal-io by default
-        (ags.packages.${system}.default.override {
-          extraPackages = [
-            # cherry pick packages
-          ];
-        })
-      ];
     };
   };
 
@@ -98,23 +70,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ags = {
-      url = "github:aylur/ags";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     my-shell = {
       url = "path:/home/goose/dotfiles/nixos/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
-
-    walker.url = "github:abenz1267/walker";
-
-    anyrun = {
-      url = "github:anyrun-org/anyrun";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 }

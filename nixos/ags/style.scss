@@ -1,3 +1,3 @@
-@use "./widget/Bar/bar.scss";
-@use "./widget/Launcher/launcher.scss";
-@use "./widget/Notifications/notifications.scss";
+@use './widgets/Bar/style' as bar-style;
+@use './widgets/Launcher/style' as launcher-style;
+@use './widgets/Notifications/style' as notifications-style;
