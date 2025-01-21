@@ -28,13 +28,15 @@
 
     security = {
       polkit.enable = true;
-      pam.services.ags = {};
+      pam.services.astal-auth = {};
+      #   pam.services.ags = {};
     };
 
     environment.systemPackages = with pkgs; [
       inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default
       inputs.hyprpicker.packages.${pkgs.stdenv.hostPlatform.system}.default
-      inputs.my-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
+      # hyprpaper
+      # hyprpicker
       qt5.full
       qt6.full
       loupe

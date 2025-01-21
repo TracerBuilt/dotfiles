@@ -1,8 +1,8 @@
 {
-  description = "My Awesome Desktop Shell";
+  description = "TracerBuilt's Desktop Shell";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     ags = {
       url = "github:aylur/ags";
@@ -19,10 +19,10 @@
     pkgs = nixpkgs.legacyPackages.${system};
   in {
     packages.${system} = {
-      default = ags.lib.bundle {
+      shell = ags.lib.bundle {
         inherit pkgs;
         src = ./.;
-        name = "my-shell";
+        name = "shell";
         entry = "app.ts";
 
         # additional libraries and executables to add to gjs' runtime
@@ -34,9 +34,11 @@
           ags.packages.${system}.wireplumber
           ags.packages.${system}.network
           ags.packages.${system}.tray
+          ags.packages.${system}.notifd
           # pkgs.fzf
         ];
       };
+      astal = ags.packages.${pkgs.system}.io;
     };
 
     devShells.${system} = {
@@ -53,6 +55,7 @@
               ags.packages.${system}.wireplumber
               ags.packages.${system}.network
               ags.packages.${system}.tray
+              ags.packages.${system}.notifd
             ];
           })
         ];

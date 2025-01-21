@@ -70,8 +70,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    my-shell = {
+    shell = {
       url = "path:/home/goose/dotfiles/nixos/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    astal = {
+      url = "github:aylur/astal";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

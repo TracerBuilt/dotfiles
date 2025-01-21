@@ -4,7 +4,8 @@
   ...
 }: {
   home.packages = with pkgs; [
-    # inputs.my-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.shell.packages.${pkgs.system}.shell
+    inputs.shell.packages.${pkgs.system}.astal
     brightnessctl
     pulseaudio
     playerctl
@@ -21,11 +22,11 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     systemd.enable = true;
     xwayland.enable = true;
     plugins = [
-      inputs.hyprspace.packages.${pkgs.system}.Hyprspace
+      # inputs.hyprspace.packages.${pkgs.stdenv.hostPlatform.system}.Hyprspace
       # plugins.hyprexpo
       # plugins.hyprbars
       # plugins.borderspp
@@ -33,7 +34,7 @@
 
     settings = {
       exec-once = [
-        "waybar"
+        "shell"
         "hyprlock"
         "hyprpaper"
         "hypridle"
@@ -44,7 +45,7 @@
       monitor = [
         # "eDP-1, 1920x1080, 0x0, 1"
         # "HDMI-A-1, 2560x1440, 1920x0, 1"
-        ",preferred,auto,2"
+        ",highres,auto,2"
       ];
 
       xwayland = {
@@ -68,7 +69,7 @@
         gaps_out = 7;
         border_size = 1;
         "col.active_border" = "rgba(FBEFD9F9) rgba(FB7867F9) 45deg";
-        "col.inactive_border" = "rgba(EEEEEEa1)";
+        "col.inactive_border" = "rgba(EEEEEEa1) rgba(EEEEEE31) 135deg";
         resize_on_border = true;
         layout = "dwindle";
       };
@@ -172,16 +173,19 @@
         arr = [1 2 3 4 5 6 7 8 9 0];
       in
         [
-          # "SUPER SHIFT, R,  ${e} quit; ags -b hypr"
+          "SUPER SHIFT, R, exec, astal -q; shell"
           # "SUPER, SPACE,       ${e} -t launcher"
           # "SUPER, Tab,     ${e} -t overview"
           # ",XF86PowerOff,  ${e} -r 'powermenu.shutdown()'"
           # ",XF86Launch4,   ${e} -r 'recorder.start()'"
-          "SUPER, SPACE, exec, anyrun"
-          "SUPER, Tab, overview:toggle"
-          "SUPER, B, exec, zen"
-          "SUPER, T, exec, kitty"
+          "SUPER, SPACE, exec, astal -t launcher"
+          # "SUPER, Tab, overview:toggle"
+          "SUPER,  B, exec, firefox"
+          "SUPER SHIFT, B, exec, google-chrome-stable"
+          "SUPER, T, exec, ghostty"
+          "SUPER SHIFT, T, exec, kitty"
           "SUPER, O, exec, neovide"
+          "SUPER, F, exec, nautilus"
 
           "ALT, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"

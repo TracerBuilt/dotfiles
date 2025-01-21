@@ -40,6 +40,10 @@
       stylua
       svelte-language-server
       typescript-language-server
+      gopls
+      delve
+      hyprls
+      marksman
     ];
   };
 }

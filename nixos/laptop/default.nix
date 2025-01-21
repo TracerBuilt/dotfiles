@@ -38,6 +38,8 @@
     tlp = {
       enable = false;
     };
+
+    rpcbind.enable = true; # needed for NFS
   };
 
   programs = {
@@ -54,5 +56,31 @@
         };
       };
     };
+  };
+  systemd = let
+    what = "10.75.0.7:/Storage";
+    where = "/home/goose/Storage";
+  in {
+    mounts = [
+      {
+        type = "nfs";
+        mountConfig = {
+          Options = "noatime";
+        };
+        what = "${what}";
+        where = "${where}";
+      }
+    ];
+
+    automounts = [
+      {
+        wantedBy = ["multi-user.target"];
+        automountConfig = {
+          TimeoutIdleSec = "600";
+        };
+
+        where = "${where}";
+      }
+    ];
   };
 }

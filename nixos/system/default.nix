@@ -14,11 +14,9 @@
     warn-dirty = false;
     substituters = [
       "https://hyprland.cachix.org"
-      "https://walker.cachix.org"
     ];
     trusted-public-keys = [
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
     ];
     download-buffer-size = 256000000;
   };
@@ -51,6 +49,9 @@
       wget
       curl
       nmap
+      iperf
+      nwg-look
+      fontconfig
       neovide
       zoxide
       starship
@@ -65,6 +66,9 @@
       google-chrome
       ladybird
       vivaldi
+      ghostty
+      font-manager
+      remmina
     ];
 
     variables.EDITOR = "nvim";
@@ -88,6 +92,7 @@
       enable = true;
     };
     ladybird.enable = true;
+    wavemon.enable = true;
   };
 
   services = {

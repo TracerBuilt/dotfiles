@@ -3,7 +3,7 @@ title-hidden = true
 
 [font]
 normal = ["RecMonoLinear Nerd Font"]
-size = 10
+size = 11
 
 [font.bold]
 family = "RecMonoLinear Nerd Font"

@@ -43,7 +43,7 @@ function Wifi() {
 					wifi && (
 						<icon
 							tooltipText={bind(wifi, 'ssid').as(String)}
-							className="Wifi"
+							className="wifi"
 							icon={bind(wifi, 'iconName')}
 						/>
 					)
@@ -71,12 +71,10 @@ function BatteryLevel() {
 	const bat = Battery.get_default()
 
 	return (
-		<box className="Battery" visible={bind(bat, 'isPresent')}>
-			<icon icon={bind(bat, 'batteryIconName')} />
+		<box className="battery" visible={bind(bat, 'isPresent')}>
+			<icon className="battery-icon" icon={bind(bat, 'batteryIconName')} />
 			<label
-				label={bind(bat, 'percentage').as(
-					(p) => `${Math.floor(p * 100)} %`
-				)}
+				label={bind(bat, 'percentage').as((p) => `${Math.floor(p * 100)}%`)}
 			/>
 		</box>
 	)
@@ -122,9 +120,12 @@ function Workspaces() {
 					.sort((a, b) => a.id - b.id)
 					.map((ws) => (
 						<button
-							className={bind(hypr, 'focusedWorkspace').as((fw) =>
-								ws === fw ? 'focused' : ''
-							)}
+							className={
+								'workspace ' +
+								bind(hypr, 'focusedWorkspace').as((fw) =>
+									ws === fw ? 'focused' : ''
+								)
+							}
 							onClicked={() => ws.focus()}
 						>
 							{ws.id}
@@ -149,14 +150,44 @@ function FocusedClient() {
 	)
 }
 
-function Time({ format = '%H:%M - %A %e.' }) {
-	const time = Variable<string>('').poll(
-		1000,
-		() => GLib.DateTime.new_now_local().format(format)!
+function Time() {
+	const date = Variable<string>('').poll(1000, () => {
+		const date_string = GLib.DateTime.new_now_local().format('%A, %B %e')!
+		const day = parseInt(date_string.slice(-1))
+
+		const suffix = () => {
+			const lastDigit = day % 10
+			const lastTwoDigits = day % 100
+
+			if (lastTwoDigits >= 11 && lastTwoDigits <= 13) {
+				return 'th'
+			}
+
+			switch (lastDigit) {
+				case 1:
+					return 'st'
+				case 2:
+					return 'nd'
+				case 3:
+					return 'rd'
+				default:
+					return 'th'
+			}
+		}
+
+		return date_string + suffix()
+	})
+
+	const time = Variable<string>('').poll(1000, () =>
+		GLib.DateTime.new_now_local().format('%l:%M%P')!.trimStart()
 	)
 
 	return (
-		<label className="Time" onDestroy={() => time.drop()} label={time()} />
+		<box className="date-time">
+			<label className="date" onDestroy={() => date.drop()} label={date()} />
+			<label className="separator" label={'-'} />
+			<label className="time" onDestroy={() => time.drop()} label={time()} />
+		</box>
 	)
 }
 
@@ -172,18 +203,16 @@ export default function Bar(monitor: Gdk.Monitor) {
 		>
 			<centerbox>
 				<box hexpand halign={Gtk.Align.START}>
-					<Workspaces />
-					<FocusedClient />
+					<Time />
 				</box>
 				<box>
-					<Media />
+					<Workspaces />
 				</box>
 				<box hexpand halign={Gtk.Align.END}>
 					<SysTray />
-					<Wifi />
 					<AudioSlider />
+					<Wifi />
 					<BatteryLevel />
-					<Time />
 				</box>
 			</centerbox>
 		</window>
