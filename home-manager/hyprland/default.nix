@@ -11,6 +11,22 @@
     playerctl
   ];
 
+  imports = [
+    ./hypridle
+    ./hyprlock
+  ];
+
+  services = {
+    hyprpaper = {
+      enable = true;
+      settings = {
+        preload = ["~/dotfiles/images/small-memory.png"];
+
+        wallpaper = ["eDP-1, ~/dotfiles/images/small-memory.png"];
+      };
+    };
+  };
+
   xdg.desktopEntries."org.gnome.Settings" = {
     name = "Settings";
     comment = "Gnome Control Center";
@@ -23,7 +39,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    systemd.enable = true;
+    systemd.enable = false;
     xwayland.enable = true;
     plugins = [
       # inputs.hyprspace.packages.${pkgs.stdenv.hostPlatform.system}.Hyprspace
@@ -34,12 +50,9 @@
 
     settings = {
       exec-once = [
+        "hyprctl setcursor Qogir 32"
         "shell"
         "hyprlock"
-        "hyprpaper"
-        "hypridle"
-        "hyprctl setcursor Qogir 24"
-        "[workspace 10 silent] 1password"
       ];
 
       monitor = [
@@ -186,6 +199,7 @@
           "SUPER SHIFT, T, exec, kitty"
           "SUPER, O, exec, neovide"
           "SUPER, F, exec, nautilus"
+          "SUPER, M, exec, Cider-2"
 
           "ALT, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"

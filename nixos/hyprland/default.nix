@@ -10,7 +10,24 @@
   };
 
   config = lib.mkIf config.hyprland.enable {
-    services.xserver.displayManager.startx.enable = true;
+    services = {
+      xserver.displayManager.startx.enable = true;
+      devmon.enable = true;
+      udisks2.enable = true;
+      upower.enable = true;
+      # power-profiles-daemon.enable = true;
+      accounts-daemon.enable = true;
+      gnome = {
+        evolution-data-server.enable = true;
+        glib-networking.enable = true;
+        gnome-keyring.enable = true;
+        gnome-online-accounts.enable = true;
+        localsearch.enable = true;
+        tinysparql.enable = true;
+      };
+
+      getty.autologinUser = "goose";
+    };
 
     programs = {
       hyprland = {
@@ -18,25 +35,24 @@
         package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
         portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
         xwayland.enable = true;
+        withUWSM = true;
       };
 
-      hyprlock = {
-        enable = true;
-        package = inputs.hyprlock.packages.${pkgs.stdenv.hostPlatform.system}.hyprlock;
-      };
+      uwsm.enable = true;
     };
 
     security = {
       polkit.enable = true;
-      pam.services.astal-auth = {};
+      pam.services = {
+        hyprlock.enableGnomeKeyring = true;
+        astal-auth = {};
+      };
       #   pam.services.ags = {};
     };
 
     environment.systemPackages = with pkgs; [
       inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default
       inputs.hyprpicker.packages.${pkgs.stdenv.hostPlatform.system}.default
-      # hyprpaper
-      # hyprpicker
       qt5.full
       qt6.full
       loupe
@@ -56,10 +72,10 @@
       wl-clipboard
       wayshot
       pavucontrol
-      brightnessctl
       morewaita-icon-theme
       adwaita-icon-theme
       qogir-icon-theme
+      cider-2
     ];
 
     systemd = {
@@ -76,27 +92,6 @@
           TimeoutStopSec = 10;
         };
       };
-    };
-
-    services = {
-      devmon.enable = true;
-      udisks2.enable = true;
-      upower.enable = true;
-      # power-profiles-daemon.enable = true;
-      accounts-daemon.enable = true;
-      gnome = {
-        evolution-data-server.enable = true;
-        glib-networking.enable = true;
-        gnome-keyring.enable = true;
-        gnome-online-accounts.enable = true;
-        localsearch.enable = true;
-        tinysparql.enable = true;
-      };
-      hypridle = {
-        enable = true;
-        package = inputs.hypridle.packages.${pkgs.stdenv.hostPlatform.system}.hypridle;
-      };
-      getty.autologinUser = "goose";
     };
   };
 }

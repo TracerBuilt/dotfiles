@@ -1,5 +1,5 @@
 {
-  config,
+  inputs,
   pkgs,
   ...
 }: {
@@ -13,6 +13,7 @@
     ./shell
     ./theme
     ./wezterm
+    inputs.wayland-pipewire-idle-inhibit.homeModules.default
   ];
 
   home = {
@@ -46,13 +47,6 @@
     ];
   };
 
-  services = {
-    kdeconnect = {
-      enable = true;
-      indicator = true;
-    };
-  };
-
   home.stateVersion = "24.05";
 
   programs = {
@@ -63,5 +57,15 @@
       nix-direnv.enable = true;
     };
     home-manager.enable = true;
+  };
+
+  services.wayland-pipewire-idle-inhibit = {
+    enable = true;
+    systemdTarget = "graphical-session.target";
+    settings = {
+      verbosity = "INFO";
+      media_minimum_duration = 10;
+      idle_inhibitor = "d-bus";
+    };
   };
 }

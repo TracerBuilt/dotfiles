@@ -8,13 +8,20 @@
     nixos-hardware,
     auto-cpufreq,
     ...
-  } @ inputs: {
+  } @ inputs: let
+    inherit (self) outputs;
+    systems = ["x86_64-linux"];
+    forAllSystems = nixpkgs.lib.genAttrs systems;
+  in {
+    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+
+    overlays = import ./overlays {inherit inputs;};
     # nixos config
     nixosConfigurations = {
       "Treetop" = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         specialArgs = {
-          inherit inputs self system;
+          inherit inputs self system outputs;
         };
         modules = [
           ./nixos
@@ -81,5 +88,10 @@
     };
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
+    wayland-pipewire-idle-inhibit = {
+      url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
