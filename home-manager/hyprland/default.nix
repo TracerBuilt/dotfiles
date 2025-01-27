@@ -19,10 +19,11 @@
   services = {
     hyprpaper = {
       enable = true;
+      package = inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default;
       settings = {
-        preload = ["~/dotfiles/images/small-memory.png"];
+        preload = ["/home/goose/dotfiles/images/small-memory.png"];
 
-        wallpaper = ["eDP-1, ~/dotfiles/images/small-memory.png"];
+        wallpaper = ["eDP-1, /home/goose/dotfiles/images/small-memory.png"];
       };
     };
   };
@@ -51,8 +52,8 @@
     settings = {
       exec-once = [
         "hyprctl setcursor Qogir 32"
-        "shell"
-        "hyprlock"
+        "uwsm app -- shell"
+        "uwsm app -- hyprlock"
       ];
 
       monitor = [
@@ -71,6 +72,8 @@
         "NVD_BACKEND,direct"
         "GDK_SCALE,2"
         "XCURSOR_SIZE,32"
+        "HYPRCURSOR_SIZE,32"
+        "HYPRSHOT_DIR,/home/goose/Pictures/Screenshots"
       ];
 
       cursor = {
@@ -84,11 +87,13 @@
         "col.active_border" = "rgba(FBEFD9F9) rgba(FB7867F9) 45deg";
         "col.inactive_border" = "rgba(EEEEEEa1) rgba(EEEEEE31) 135deg";
         resize_on_border = true;
+        allow_tearing = false;
         layout = "dwindle";
       };
 
       decoration = {
         rounding = 7;
+        rounding_power = 2;
 
         active_opacity = 1.0;
         inactive_opacity = 1.0;
@@ -108,6 +113,43 @@
 
       animations = {
         enabled = true;
+
+        #   bezier = [
+        #     "easeOutQuint,0.23,1,0.32,1"
+        #     "easeInOutCubic,0.65,0.05,0.36,1"
+        #     "linear,0,0,1,1"
+        #     "almostLinear,0.5,0.5,0.75,1.0"
+        #     "quick,0.15,0,0.1,1"
+        #   ];
+        #
+        #   animation = [
+        #     "global, 1, 10, default"
+        #     "border, 1, 5.39, easeOutQuint"
+        #     "windows, 1, 4.79, easeOutQuint"
+        #     "windowsIn, 1, 4.1, easeOutQuint, popin 87%"
+        #     "windowsOut, 1, 1.49, linear, popin 87%"
+        #     "fadeIn, 1, 1.73, almostLinear"
+        #     "fadeOut, 1, 1.46, almostLinear"
+        #     "fade, 1, 3.03, quick"
+        #     "layers, 1, 3.81, easeOutQuint"
+        #     "layersIn, 1, 4, easeOutQuint, fade"
+        #     "layersOut, 1, 1.5, linear, fade"
+        #     "fadeLayersIn, 1, 1.79, almostLinear"
+        #     "fadeLayersOut, 1, 1.39, almostLinear"
+        #     "workspaces, 1, 1.94, almostLinear, fade"
+        #     "workspacesIn, 1, 1.21, almostLinear, fade"
+        #     "workspacesOut, 1, 1.94, almostLinear, fade"
+        #   ];
+      };
+
+      dwindle = {
+        pseudotile = true;
+        preserve_split = true;
+        # smart_split = true;
+      };
+
+      master = {
+        new_status = "master";
       };
 
       misc = {
@@ -130,11 +172,6 @@
 
       binds = {
         allow_workspace_cycles = true;
-      };
-
-      dwindle = {
-        pseudotile = true;
-        # smart_split = true;
       };
 
       gestures = {
@@ -186,27 +223,34 @@
         arr = [1 2 3 4 5 6 7 8 9 0];
       in
         [
-          "SUPER SHIFT, R, exec, astal -q; shell"
+          "SUPER SHIFT, R, exec, uwsm app -- astal -q; shell"
           # "SUPER, SPACE,       ${e} -t launcher"
           # "SUPER, Tab,     ${e} -t overview"
           # ",XF86PowerOff,  ${e} -r 'powermenu.shutdown()'"
           # ",XF86Launch4,   ${e} -r 'recorder.start()'"
-          "SUPER, SPACE, exec, astal -t launcher"
+          "SUPER, SPACE, exec, uwsm app -- astal -t launcher"
           # "SUPER, Tab, overview:toggle"
-          "SUPER,  B, exec, firefox"
-          "SUPER SHIFT, B, exec, google-chrome-stable"
-          "SUPER, T, exec, ghostty"
-          "SUPER SHIFT, T, exec, kitty"
-          "SUPER, O, exec, neovide"
-          "SUPER, F, exec, nautilus"
-          "SUPER, M, exec, Cider-2"
+          "SUPER,  B, exec, uwsm app -- firefox"
+          "SUPER SHIFT, B, exec, uwsm app -- google-chrome-stable"
+          "SUPER, T, exec, uwsm app -- ghostty"
+          "SUPER SHIFT, T, exec, uwsm app -- kitty"
+          "SUPER, O, exec, uwsm app -- neovide"
+          "SUPER, F, exec, uwsm app -- nautilus"
+          "SUPER, M, exec, uwsm app -- Cider-2"
+          "SUPER, I, togglesplit"
+          ", PRINT, exec, hyprshot-m output"
+          "SUPER, PRINT, exec, hyprshot -m window"
+          "SUPER SHIFT, PRINT, exec, hyprshot -m region"
+          "SUPER, N, exec, uwsm app -- NexusMods.App"
+          "SUPER, S, exec, uwsm app -- steam"
+          "SUPER, P, exec, uwsm app -- 1password"
+          "SUPER CTRL SHIFT, X, exec, uwsm stop"
 
           "ALT, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"
           "ALT, W, killactive"
           "SUPER, V, togglefloating"
           "SUPER, RETURN, fullscreen"
-          "SUPER, P, togglesplit"
 
           # Scratchpad
           "SUPER, S, togglespecialworkspace, magic"

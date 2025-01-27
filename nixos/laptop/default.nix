@@ -1,14 +1,10 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   hardware = {
     graphics = {
       enable = true;
-      # extraPackages = with pkgs; [
-      #   nvidia-vaapi-driver
-      # ];
+      extraPackages = with pkgs; [
+        nvidia-vaapi-driver
+      ];
     };
 
     nvidia = {
@@ -21,6 +17,8 @@
       nvidiaSettings = true;
     };
   };
+
+  boot.kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
 
   services.xserver.videoDrivers = ["nvidia"];
 
