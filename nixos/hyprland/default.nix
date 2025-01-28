@@ -10,6 +10,10 @@
   };
 
   config = lib.mkIf config.hyprland.enable {
+    environment.sessionVariables = {
+      NIXOS_OZONE_WL = 1;
+    };
+
     services = {
       xserver.displayManager.startx.enable = true;
       devmon.enable = true;

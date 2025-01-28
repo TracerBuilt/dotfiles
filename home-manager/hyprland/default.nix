@@ -62,20 +62,6 @@
         ",highres,auto,2"
       ];
 
-      xwayland = {
-        force_zero_scaling = true;
-      };
-
-      env = [
-        "LIBVA_DRIVER_NAME,nvidia"
-        "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-        "NVD_BACKEND,direct"
-        "GDK_SCALE,2"
-        "XCURSOR_SIZE,32"
-        "HYPRCURSOR_SIZE,32"
-        "HYPRSHOT_DIR,/home/goose/Pictures/Screenshots"
-      ];
-
       cursor = {
         no_hardware_cursors = true;
       };
@@ -242,7 +228,7 @@
           "SUPER, PRINT, exec, hyprshot -m window"
           "SUPER SHIFT, PRINT, exec, hyprshot -m region"
           "SUPER, N, exec, uwsm app -- NexusMods.App"
-          "SUPER, S, exec, uwsm app -- steam"
+          "SUPER CTRL, S, exec, uwsm app -- steam"
           "SUPER, P, exec, uwsm app -- 1password"
           "SUPER CTRL SHIFT, X, exec, uwsm stop"
 

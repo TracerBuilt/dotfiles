@@ -36,7 +36,7 @@ in {
 
       initExtra = ''
         if uwsm check may-start; then
-            exec uwsm start hyprland.desktop
+            exec uwsm start hyprland-uwsm.desktop
         fi
 
         bindkey "''${key[Up]}" up-line-or-search
