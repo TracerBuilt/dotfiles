@@ -35,8 +35,8 @@ in {
       ];
 
       initExtra = ''
-        if [ -z "''${WAYLAND_DISPLAY}" ] && [ "''${XDG_VTNR}" -eq 1 ]; then
-          dbus-run-session Hyprland
+        if uwsm check may-start; then
+            exec uwsm start hyprland.desktop
         fi
 
         bindkey "''${key[Up]}" up-line-or-search
