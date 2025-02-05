@@ -9,6 +9,7 @@
     brightnessctl
     pulseaudio
     playerctl
+    inputs.walker.packages.${pkgs.system}.default
   ];
 
   imports = [
@@ -54,6 +55,7 @@
         "hyprctl setcursor Qogir 32"
         "uwsm app -- shell"
         "uwsm app -- hyprlock"
+        "uwsm app -- walker --gapplication-service"
       ];
 
       monitor = [
@@ -149,7 +151,7 @@
         follow_mouse = 1;
         touchpad = {
           natural_scroll = true;
-          disable_while_typing = false;
+          disable_while_typing = true;
           drag_lock = true;
         };
         sensitivity = 0.5;
@@ -214,13 +216,14 @@
           # "SUPER, Tab,     ${e} -t overview"
           # ",XF86PowerOff,  ${e} -r 'powermenu.shutdown()'"
           # ",XF86Launch4,   ${e} -r 'recorder.start()'"
-          "SUPER, SPACE, exec, uwsm app -- astal -t launcher"
+          "SUPER, SPACE, exec, uwsm app -- walker"
           # "SUPER, Tab, overview:toggle"
           "SUPER,  B, exec, uwsm app -- firefox"
           "SUPER SHIFT, B, exec, uwsm app -- google-chrome-stable"
           "SUPER, T, exec, uwsm app -- ghostty"
           "SUPER SHIFT, T, exec, uwsm app -- kitty"
-          "SUPER, O, exec, uwsm app -- neovide"
+          "SUPER, Q, exec, uwsm app -- neovide"
+          "SUPER, O, exec, uwsm app -- obsidian"
           "SUPER, F, exec, uwsm app -- nautilus"
           "SUPER, M, exec, uwsm app -- Cider-2"
           "SUPER, I, togglesplit"

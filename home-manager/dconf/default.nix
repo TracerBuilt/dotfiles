@@ -16,7 +16,6 @@ with lib.hm.gvariant; {
     };
 
     "org/gnome/desktop/search-providers" = {
-      disabled = ["org.gnome.Boxes.desktop"];
       enabled = ["org.gnome.Weather.desktop"];
       sort-order = [
         "org.gnome.Contacts.desktop"
@@ -91,12 +90,6 @@ with lib.hm.gvariant; {
 
       home = ["<Super>e"];
       www = ["<Super>w"];
-    };
-
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      binding = "<Super>Return";
-      command = "xterm";
-      name = "term";
     };
 
     "org/gnome/settings-daemon/plugins/power" = {

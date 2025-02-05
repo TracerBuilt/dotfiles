@@ -8,7 +8,6 @@ App.start({
 	css: style,
 	main() {
 		App.get_monitors().map(Bar)
-		Launcher()
 		App.get_monitors().map(Notifications)
 	},
 	requestHandler(request: string, res: (response: any) => void) {

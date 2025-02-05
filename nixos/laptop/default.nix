@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   hardware = {
     graphics = {
       enable = true;
@@ -8,6 +12,7 @@
     };
 
     nvidia = {
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
       modesetting.enable = true;
       powerManagement = {
         enable = true;
@@ -54,31 +59,5 @@
         };
       };
     };
-  };
-  systemd = let
-    what = "10.75.0.7:/Storage";
-    where = "/home/goose/Storage";
-  in {
-    mounts = [
-      {
-        type = "nfs";
-        mountConfig = {
-          Options = "noatime";
-        };
-        what = "${what}";
-        where = "${where}";
-      }
-    ];
-
-    automounts = [
-      {
-        wantedBy = ["multi-user.target"];
-        automountConfig = {
-          TimeoutIdleSec = "600";
-        };
-
-        where = "${where}";
-      }
-    ];
   };
 }
