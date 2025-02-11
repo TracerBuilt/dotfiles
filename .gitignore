@@ -47,3 +47,10 @@ config/google-chrome
 config/qalculate
 config/nvim/lazy-lock.json
 config/hypr
+config/ags
+config/font-manager
+config/fontconfig/conf.d
+config/geary
+config/git
+config/nushell
+config/starship.toml

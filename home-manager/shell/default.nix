@@ -10,6 +10,9 @@
     update = "cd /etc/nixos && sudo nix flake update && cd";
     "ags dev" = "ags run -d ~/dotfiles/nixos/ags";
   };
+  sessionVariables = {
+    EDITOR = "neovide";
+  };
 in {
   options.shellAliases = with lib;
     mkOption {
@@ -20,6 +23,7 @@ in {
     zoxide.enable = true;
     zsh = {
       enable = true;
+      sessionVariables = sessionVariables;
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
@@ -40,6 +44,8 @@ in {
         fi
 
         bindkey "''${key[Up]}" up-line-or-search
+
+        export HUGGINGFACE_INFERENCE_TOKEN=$(cat ${config.sops.secrets.HUGGINGFACE_INFERENCE_TOKEN.path})
       '';
     };
     nushell = {

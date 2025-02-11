@@ -34,7 +34,7 @@ Order=1007
 
 [Alarms]
 IncludeMe=true
-LastNotified=2024-08-23T15:55:00Z
+LastNotified=2024-10-10T21:45:00Z
 ForEveryEvent=false
 
 [Calendar]

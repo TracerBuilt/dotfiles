@@ -1,20 +1,20 @@
 [Data Source]
-DisplayName=tyler@dextersmpls.com
+DisplayName=tyler.t.ward@icloud.com
 Enabled=true
-Parent=7e316e2f41f451a4608ea00d3476c435730ef2c3
+Parent=4fe91c991d9050a6ed8af8157608a208988e59c8
 
 [Authentication]
-Host=smtp.gmail.com
-Method=Google
-Port=465
+Host=smtp.mail.me.com
+Method=LOGIN
+Port=587
 ProxyUid=system-proxy
 RememberPassword=true
-User=tyler@dextersmpls.com
+User=tyler.t.ward@icloud.com
 CredentialName=
 IsExternal=false
 
 [Security]
-Method=ssl-on-alternate-port
+Method=starttls-on-standard-port
 
 [Mail Transport]
 BackendName=smtp

@@ -4,11 +4,9 @@
   appimageTools,
 }:
 appimageTools.wrapType2 rec {
-  pname = "Cider-2";
-
-  version = "2.6.1";
-
-  src = ./cider-linux-x64.AppImage;
+  pname = "WorkFlowy";
+  version = "2023.09.21";
+  src = ./WorkFlowy-x86_64.AppImage;
 
   extraInstallCommands = ''
 
@@ -23,13 +21,9 @@ appimageTools.wrapType2 rec {
   meta = with lib; {
     description = "New look into listening and enjoying Apple Music in style and performance";
 
-    homepage = "https://github.com/ciderapp/Cider";
+    homepage = "https://workflowy.com";
 
-    license = licenses.agpl3Only;
-
-    mainProgram = "cider";
-
-    maintainers = [maintainers.cigrainger];
+    mainProgram = "workflowy";
 
     platforms = ["x86_64-linux"];
   };

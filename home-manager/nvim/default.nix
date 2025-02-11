@@ -1,16 +1,13 @@
 {
   pkgs,
   inputs,
-  buildNpmPackage,
-  fetchFromGithub,
   ...
 }: {
-  home.sessionVariables.EDITOR = "nvim";
+  home.sessionVariables.EDITOR = "neovide";
 
   programs.neovim = {
     enable = true;
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-    defaultEditor = true;
     withNodeJs = true;
     withPython3 = true;
     viAlias = true;
@@ -44,6 +41,7 @@
       delve
       hyprls
       marksman
+      rust-analyzer
     ];
   };
 }

@@ -81,6 +81,7 @@
       qogir-icon-theme
       cider-2
       hyprshot
+      workflowy
     ];
 
     systemd = {

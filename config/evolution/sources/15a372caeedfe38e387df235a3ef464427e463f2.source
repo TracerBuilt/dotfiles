@@ -1,18 +1,18 @@
 [Data Source]
-DisplayName=tyler@dextersmpls.com
+DisplayName=tyler.t.ward@icloud.com
 Enabled=true
-Parent=7e316e2f41f451a4608ea00d3476c435730ef2c3
+Parent=4fe91c991d9050a6ed8af8157608a208988e59c8
 
 [Mail Submission]
-SentFolder=folder://local/Sent
-TransportUid=16a776725032d722d740dbdea27d950a59692ee2
+SentFolder=folder://4fe91c991d9050a6ed8af8157608a208988e59c8/Sent%20Messages
+TransportUid=2dedd208299cdc82dff2ad2eb6712619ddbf4431
 RepliesToOriginFolder=false
 UseSentFolder=true
 
 [Mail Composition]
 Bcc=
 Cc=
-DraftsFolder=folder://8856336c587832dffb236f5806b9aa4587996477/%5bGmail%5d/Drafts
+DraftsFolder=folder://4fe91c991d9050a6ed8af8157608a208988e59c8/Drafts
 ReplyStyle=default
 SignImip=true
 TemplatesFolder=folder://local/Templates
@@ -21,7 +21,7 @@ TopSignature=inconsistent
 Language=
 
 [Mail Identity]
-Address=tyler@dextersmpls.com
+Address=tyler.t.ward@icloud.com
 Aliases=
 Name=Tyler Ward
 Organization=

@@ -12,7 +12,7 @@ UseSentFolder=true
 [Mail Composition]
 Bcc=
 Cc=
-DraftsFolder=folder://local/Drafts
+DraftsFolder=folder://1a02f72d0d9b923f2ca508536e04ce45979859de/%5bGmail%5d/Drafts
 ReplyStyle=default
 SignImip=true
 TemplatesFolder=

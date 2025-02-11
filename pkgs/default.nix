@@ -3,4 +3,5 @@
 pkgs: {
   # example = pkgs.callPackage ./example { };
   cider-2 = pkgs.callPackage ./cider {};
+  workflowy = pkgs.callPackage ./workflowy {};
 }

@@ -11,6 +11,7 @@
     ./hyprland
     ./nvim
     ./shell
+    ./sops
     ./theme
     inputs.wayland-pipewire-idle-inhibit.homeModules.default
   ];
@@ -20,7 +21,7 @@
       NIXPKGS_ALLOW_UNFREE = "1";
       NIXPKGS_ALLOW_INSECURE = "1";
       BAT_THEME = "base16";
-      EDITOR = "nvim";
+      EDITOR = "neovide";
       TERMINAL = "ghostty";
     };
 
@@ -29,6 +30,8 @@
     ];
 
     packages = with pkgs; [
+      age
+      sops
       fragments
       nodejs
       bat
@@ -44,6 +47,7 @@
       onlyoffice-bin
       hunspell
       hunspellDicts.en_US
+      teams-for-linux
     ];
   };
 

@@ -10,6 +10,16 @@ return {
 	},
 	-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 	build = 'make',
+
+	provider = 'huggingface',
+	vendors = {
+		openrouter = {
+			__inherited_from = 'openai',
+			endpoint = 'https://api-inference.huggingface.co/models/',
+			model = 'deepseek-ai/DeepSeek-V3',
+			api_key_name = 'HUGGINGFACE_INFERENCE_TOKEN',
+		},
+	},
 	-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
 	dependencies = {
 		'stevearc/dressing.nvim',
