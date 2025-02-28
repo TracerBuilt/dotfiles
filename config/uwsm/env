@@ -1,7 +1,33 @@
+# Toolkit Backends
 
-export LIBVA_DRIVER_NAME=nvidia
-export __GLX_VENDOR_LIBRARY_NAME=nvidia
-export NVD_BACKEND=direct
+export GDK_BACKEND=wayland,x11,*
+export SDL_VIDEODRIVER=wayland
+export CLUTTER_BACKEND=wayland
 export ELECTRON_OZONE_PLATFORM_HINT=auto
+
+# XDG Specifications 
+
+export XDG_CURRENT_DESKTOP=Hyprland
+export XDG_SESSION_TYPE=wayland
+export XDG_SESSION_DESKTOP=Hyprland
+
+# Qt
+
+env = QT_AUTO_SCREEN_SCALE_FACTOR,1
+export QT_QPA_PLATFORM=wayland;xcb
+
+# NVIDIA Specific
+
+export GBM_BACKEND=nvidia-drm
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export LIBVA_DRIVER_NAME=nvidia
+export __GL_VRR_ALLOWED=0
+export __GL_GSYNC_ALLOWED=1
+export NVD_BACKEND=direct
+
+# Theming Related
+
 export XCURSOR_SIZE=32
+
+# Misc
 export HYPRSHOT_DIR=/home/goose/Pictures/Screenshots

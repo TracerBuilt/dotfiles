@@ -42,6 +42,7 @@ in {
       size = cursorTheme.size;
       package = cursorTheme.package;
       gtk.enable = true;
+      x11.enable = true;
       hyprcursor = {
         enable = true;
         size = cursorTheme.size;

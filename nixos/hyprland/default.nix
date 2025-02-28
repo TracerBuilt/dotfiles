@@ -57,6 +57,7 @@
     environment.systemPackages = with pkgs; [
       inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default
       inputs.hyprpicker.packages.${pkgs.stdenv.hostPlatform.system}.default
+      inputs.walker.packages.${pkgs.system}.default
       qt5.full
       qt6.full
       loupe

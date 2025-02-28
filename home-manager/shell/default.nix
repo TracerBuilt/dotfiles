@@ -38,14 +38,19 @@ in {
       plugins = [
       ];
 
+      envExtra = ''
+        export HUGGINGFACE_INFERENCE_TOKEN=$(cat ${config.sops.secrets.HUGGINGFACE_INFERENCE_TOKEN.path})
+        export GEMINI_API_KEY=$(cat ${config.sops.secrets.GEMINI_API_KEY.path})
+        export GOOGLE_SEARCH_ENGINE_ID=$(cat ${config.sops.secrets.GOOGLE_SEARCH_ENGINE_ID.path})
+        export GOOGLE_SEARCH_API_KEY=$(cat ${config.sops.secrets.GOOGLE_SEARCH_API_KEY.path})
+      '';
+
       initExtra = ''
         if uwsm check may-start; then
             exec uwsm start hyprland-uwsm.desktop
         fi
 
         bindkey "''${key[Up]}" up-line-or-search
-
-        export HUGGINGFACE_INFERENCE_TOKEN=$(cat ${config.sops.secrets.HUGGINGFACE_INFERENCE_TOKEN.path})
       '';
     };
     nushell = {

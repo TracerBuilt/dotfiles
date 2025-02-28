@@ -67,14 +67,7 @@
       url = "github:AdnanHodzic/auto-cpufreq";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    shell = {
-      url = "path:/home/goose/dotfiles/nixos/ags";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    astal = {
-      url = "github:aylur/astal";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     wayland-pipewire-idle-inhibit = {
       url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";

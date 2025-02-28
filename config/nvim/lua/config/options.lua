@@ -6,6 +6,7 @@ local opt = vim.opt
 local g = vim.g
 
 if vim.g.neovide then
+	vim.env.PATH = '/home/goose/.zshenv:' .. vim.env.PATH
 	opt.winblend = 50
 	opt.pumblend = 50
 

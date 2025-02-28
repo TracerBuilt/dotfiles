@@ -4,30 +4,29 @@
   ...
 }: {
   home.packages = with pkgs; [
-    inputs.shell.packages.${pkgs.system}.shell
-    inputs.shell.packages.${pkgs.system}.astal
     brightnessctl
     pulseaudio
     playerctl
-    inputs.walker.packages.${pkgs.system}.default
+    hyprsunset
   ];
 
   imports = [
     ./hypridle
     ./hyprlock
+    ./hyprpanel
   ];
 
-  services = {
-    hyprpaper = {
-      enable = true;
-      package = inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      settings = {
-        preload = ["/home/goose/dotfiles/images/small-memory.png"];
-
-        wallpaper = ["eDP-1, /home/goose/dotfiles/images/small-memory.png"];
-      };
-    };
-  };
+  # services = {
+  #   hyprpaper = {
+  #     enable = true;
+  #     package = inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  #     settings = {
+  #       preload = ["/home/goose/dotfiles/images/small-memory.png"];
+  #
+  #       wallpaper = ["eDP-1, /home/goose/dotfiles/images/small-memory.png"];
+  #     };
+  #   };
+  # };
 
   xdg.desktopEntries."org.gnome.Settings" = {
     name = "Settings";
@@ -52,8 +51,8 @@
 
     settings = {
       exec-once = [
-        "hyprctl setcursor Qogir 32"
-        "uwsm app -- shell"
+        "hyprsunset"
+        "uwsm app -- hyprpanel"
         "uwsm app -- hyprlock"
         "uwsm app -- walker --gapplication-service"
       ];
@@ -230,7 +229,7 @@
           ", PRINT, exec, hyprshot-m output"
           "SUPER, PRINT, exec, hyprshot -m window"
           "SUPER SHIFT, PRINT, exec, hyprshot -m region"
-          "SUPER, N, exec, uwsm app -- NexusMods.App"
+          "SUPER, N, exec, uwsm app -- chromium --app=https://icloud.com/notes"
           "SUPER CTRL, S, exec, uwsm app -- steam"
           "SUPER, P, exec, uwsm app -- 1password"
           "SUPER CTRL SHIFT, X, exec, uwsm stop"

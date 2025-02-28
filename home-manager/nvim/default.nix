@@ -26,7 +26,7 @@
       ripgrep
       fd
       fzf
-      cargo
+      rustup
       python3
       go
 

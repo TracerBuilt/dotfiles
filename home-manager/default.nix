@@ -33,7 +33,6 @@
       age
       sops
       fragments
-      nodejs
       bat
       fd
       ripgrep
@@ -48,7 +47,13 @@
       hunspell
       hunspellDicts.en_US
       teams-for-linux
+      spotify
     ];
+  };
+
+  xdg.desktopEntries.notes = {
+    name = "Notes";
+    exec = "google-chrome-stable --app=https://icloud.com/notes";
   };
 
   home.stateVersion = "24.05";
@@ -60,6 +65,7 @@
       enableZshIntegration = true;
       nix-direnv.enable = true;
     };
+    bash.enable = true;
     home-manager.enable = true;
   };
 

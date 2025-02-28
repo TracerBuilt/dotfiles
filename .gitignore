@@ -54,3 +54,4 @@ config/geary
 config/git
 config/nushell
 config/starship.toml
+config/walker/themes

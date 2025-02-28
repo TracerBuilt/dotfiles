@@ -64,21 +64,27 @@
       helix
       evolution
       geary
-      okular
+      kdePackages.okular
       zathura
       cachix
       inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
       inputs.zen-browser.packages."${system}".default
       google-chrome
+      ungoogled-chromium
       ladybird
       vivaldi
       ghostty
       font-manager
       remmina
+      eslint
     ];
 
     variables.EDITOR = "neovide";
   };
+
+  users.users.goose.packages = with pkgs; [
+    discord-ptb
+  ];
 
   fonts.packages = with pkgs; [
     liberation_ttf
@@ -110,7 +116,17 @@
     gvfs.enable = true;
     samba.enable = true;
     # Printing
-    printing.enable = true;
+    printing = {
+      enable = true;
+      drivers = with pkgs; [
+        gutenprint
+        gutenprintBin
+        brlaser
+        brgenml1lpr
+        brgenml1cupswrapper
+        cups-brother-hll2340dw
+      ];
+    };
     avahi = {
       enable = true;
       nssmdns4 = true;
@@ -209,8 +225,6 @@
       settings.General.Experimental = true; # for gnome-bluetooth percentage
     };
   };
-
-  services.blueman.enable = true;
 
   # bootloader
   boot = {
