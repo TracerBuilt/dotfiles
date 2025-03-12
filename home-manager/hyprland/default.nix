@@ -2,7 +2,9 @@
   inputs,
   pkgs,
   ...
-}: {
+}: let
+  prefix = "uwsm app --";
+in {
   home.packages = with pkgs; [
     brightnessctl
     pulseaudio
@@ -51,10 +53,10 @@
 
     settings = {
       exec-once = [
-        "hyprsunset"
-        "uwsm app -- hyprpanel"
-        "uwsm app -- hyprlock"
-        "uwsm app -- walker --gapplication-service"
+        "${prefix} hyprlock"
+        "${prefix} hyprpanel"
+        "${prefix} hyprsunset"
+        "${prefix} walker --gapplication-service"
       ];
 
       monitor = [
@@ -210,28 +212,28 @@
         arr = [1 2 3 4 5 6 7 8 9 0];
       in
         [
-          "SUPER SHIFT, R, exec, uwsm app -- astal -q; shell"
+          # "SUPER SHIFT, R, exec, uwsm app -- astal -q; shell"
           # "SUPER, SPACE,       ${e} -t launcher"
           # "SUPER, Tab,     ${e} -t overview"
           # ",XF86PowerOff,  ${e} -r 'powermenu.shutdown()'"
           # ",XF86Launch4,   ${e} -r 'recorder.start()'"
-          "SUPER, SPACE, exec, uwsm app -- walker"
+          "SUPER, SPACE, exec, ${prefix} walker"
           # "SUPER, Tab, overview:toggle"
-          "SUPER,  B, exec, uwsm app -- firefox"
-          "SUPER SHIFT, B, exec, uwsm app -- google-chrome-stable"
-          "SUPER, T, exec, uwsm app -- ghostty"
-          "SUPER SHIFT, T, exec, uwsm app -- kitty"
-          "SUPER, Q, exec, uwsm app -- neovide"
-          "SUPER, O, exec, uwsm app -- obsidian"
-          "SUPER, F, exec, uwsm app -- nautilus"
-          "SUPER, M, exec, uwsm app -- Cider-2"
+          "SUPER,  B, exec, ${prefix} firefox"
+          "SUPER SHIFT, B, exec, ${prefix} google-chrome-stable"
+          "SUPER, T, exec, ${prefix} ghostty"
+          "SUPER SHIFT, T, exec, ${prefix} kitty"
+          "SUPER, Q, exec, ${prefix} neovide"
+          "SUPER, O, exec, ${prefix} obsidian"
+          "SUPER, F, exec, ${prefix} nautilus"
+          "SUPER, M, exec, ${prefix} Cider-2"
           "SUPER, I, togglesplit"
           ", PRINT, exec, hyprshot-m output"
           "SUPER, PRINT, exec, hyprshot -m window"
           "SUPER SHIFT, PRINT, exec, hyprshot -m region"
-          "SUPER, N, exec, uwsm app -- chromium --app=https://icloud.com/notes"
-          "SUPER CTRL, S, exec, uwsm app -- steam"
-          "SUPER, P, exec, uwsm app -- 1password"
+          "SUPER, N, exec, ${prefix} chromium --app=https://icloud.com/notes"
+          "SUPER CTRL, S, exec, ${prefix} steam"
+          "SUPER, P, exec, ${prefix} 1password"
           "SUPER CTRL SHIFT, X, exec, uwsm stop"
 
           "ALT, Tab, focuscurrentorlast"

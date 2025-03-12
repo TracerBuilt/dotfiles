@@ -83,6 +83,12 @@
       cider-2
       hyprshot
       workflowy
+      noi
+      python312Packages.pyxdg
+      python312Packages.dbus-python
+      util-linux
+      newt
+      libnotify
     ];
 
     systemd = {

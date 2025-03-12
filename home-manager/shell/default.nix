@@ -38,14 +38,15 @@ in {
       plugins = [
       ];
 
-      envExtra = ''
-        export HUGGINGFACE_INFERENCE_TOKEN=$(cat ${config.sops.secrets.HUGGINGFACE_INFERENCE_TOKEN.path})
-        export GEMINI_API_KEY=$(cat ${config.sops.secrets.GEMINI_API_KEY.path})
-        export GOOGLE_SEARCH_ENGINE_ID=$(cat ${config.sops.secrets.GOOGLE_SEARCH_ENGINE_ID.path})
-        export GOOGLE_SEARCH_API_KEY=$(cat ${config.sops.secrets.GOOGLE_SEARCH_API_KEY.path})
-      '';
-
       initExtra = ''
+
+        export HUGGINGFACE_INFERENCE_TOKEN="$(cat ${config.sops.secrets.huggingface_inference_token.path})"
+        export GEMINI_API_KEY="$(cat ${config.sops.secrets.gemini_api_key.path})"
+        export GOOGLE_SEARCH_ENGINE_ID="$(cat ${config.sops.secrets.google_search_engine_id.path})"
+        export GOOGLE_SEARCH_API_KEY="$(cat ${config.sops.secrets.google_search_api_key.path})"
+        export GROQ_API_KEY="$(cat ${config.sops.secrets.groq_api_key.path})"
+        export OPENROUTER_API_KEY="$(cat ${config.sops.secrets.openrouter_api_key.path})"
+
         if uwsm check may-start; then
             exec uwsm start hyprland-uwsm.desktop
         fi

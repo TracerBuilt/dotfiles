@@ -48,6 +48,16 @@
       hunspellDicts.en_US
       teams-for-linux
       spotify
+      ladybird
+      vivaldi
+      ollama
+      private-gpt
+      windsurf
+      vscodium
+      code-cursor
+      zed-editor
+      dmidecode
+      pciutils
     ];
   };
 

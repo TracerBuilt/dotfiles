@@ -6,21 +6,31 @@
     defaultSymlinkPath = "/run/user/1000/secrets";
     defaultSecretsMountPoint = "/run/user/1000/secrets.d";
 
-    secrets.HUGGINGFACE_INFERENCE_TOKEN = {
-      # sopsFile = ./secrets.yml.enc; # optionally define per-secret files
-      path = "${config.sops.defaultSymlinkPath}/HUGGINGFACE_INFERENCE_TOKEN";
-    };
+    secrets = {
+      huggingface_inference_token = {
+        # sopsFile = ./secrets.yml.enc; # optionally define per-secret files
+        path = "${config.sops.defaultSymlinkPath}/huggingface_inference_token";
+      };
 
-    secrets.GEMINI_API_KEY = {
-      path = "${config.sops.defaultSymlinkPath}/GEMINI_API_KEY";
-    };
+      gemini_api_key = {
+        path = "${config.sops.defaultSymlinkPath}/gemini_api_key";
+      };
 
-    secrets.GOOGLE_SEARCH_ENGINE_ID = {
-      path = "${config.sops.defaultSymlinkPath}/GOOGLE_SEARCH_ENGINE_ID";
-    };
+      google_search_engine_id = {
+        path = "${config.sops.defaultSymlinkPath}/google_search_engine_id";
+      };
 
-    secrets.GOOGLE_SEARCH_API_KEY = {
-      path = "${config.sops.defaultSymlinkPath}/GOOGLE_SEARCH_API_KEY";
+      google_search_api_key = {
+        path = "${config.sops.defaultSymlinkPath}/google_search_api_key";
+      };
+
+      groq_api_key = {
+        path = "${config.sops.defaultSymlinkPath}/grok_api_key";
+      };
+
+      openrouter_api_key = {
+        path = "${config.sops.defaultSymlinkPath}/openrouter_api_key";
+      };
     };
   };
 }
