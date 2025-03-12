@@ -80,10 +80,8 @@
       morewaita-icon-theme
       adwaita-icon-theme
       qogir-icon-theme
-      cider-2
+      cider
       hyprshot
-      workflowy
-      noi
       python312Packages.pyxdg
       python312Packages.dbus-python
       util-linux
