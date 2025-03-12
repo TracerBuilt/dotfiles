@@ -14,6 +14,7 @@ in {
     ./audio
     ./hyprland
     ./gnome
+    ./deepin
     ./steam
   ];
 
@@ -80,6 +81,11 @@ in {
       system.nixos.tags = ["Gnome"];
       hyprland.enable = lib.mkForce false;
       gnome.enable = true;
+    };
+    deepin.configuration = {
+      system.nixos.taggs = ["Deepin"];
+      hyprland.enable = lib.mkForce false;
+      deepin.enable = true;
     };
   };
 
