@@ -25,7 +25,7 @@
       };
 
       groq_api_key = {
-        path = "${config.sops.defaultSymlinkPath}/grok_api_key";
+        path = "${config.sops.defaultSymlinkPath}/groq_api_key";
       };
 
       openrouter_api_key = {
