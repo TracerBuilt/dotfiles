@@ -29,6 +29,7 @@
       rustup
       python3
       go
+      nixd
 
       alejandra
       eslint

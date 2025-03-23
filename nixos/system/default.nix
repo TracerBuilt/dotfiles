@@ -6,7 +6,6 @@
   inputs,
   ...
 }: {
-  nixpkgs.config.allowUnfree = true;
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
     auto-optimise-store = true;
@@ -55,25 +54,17 @@
       curl
       nmap
       iperf
-      nwg-look
-      fontconfig
-      neovide
-      zoxide
-      starship
-      helix
       evolution
       geary
       kdePackages.okular
       zathura
       cachix
-      inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
       inputs.zen-browser.packages."${system}".default
       google-chrome
       ungoogled-chromium
-      ghostty
       font-manager
       remmina
-      cider
+
       # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
       (let
         base = pkgs.appimageTools.defaultFhsEnvArgs;
@@ -108,18 +99,6 @@
     discord-ptb
   ];
 
-  fonts.packages = with pkgs; [
-    liberation_ttf
-    corefonts
-    google-fonts
-    noto-fonts
-    font-awesome
-    recursive
-    nerd-fonts.recursive-mono
-    nerd-fonts.fira-code
-    nerd-fonts.victor-mono
-  ];
-
   programs = {
     dconf.enable = true;
     nix-ld = {
@@ -135,7 +114,6 @@
       enable = true;
       excludePackages = [pkgs.xterm];
     };
-    gvfs.enable = true;
     samba.enable = true;
     # Printing
     printing = {
@@ -159,30 +137,6 @@
     # logind
     logind.extraConfig = ''
       HandlePowerKey=ignore
-    '';
-
-    ollama = {
-      enable = true;
-      acceleration = "cuda";
-    };
-    private-gpt = {
-      enable = true;
-    };
-  };
-
-  # kde connect
-  networking.firewall = rec {
-    allowedTCPPorts = [24642];
-    allowedUDPPorts = allowedTCPPorts;
-    allowedTCPPortRanges = [
-      {
-        from = 1714;
-        to = 1764;
-      }
-    ];
-    allowedUDPPortRanges = allowedTCPPortRanges;
-    extraCommands = ''
-      iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns
     '';
   };
 
@@ -259,7 +213,6 @@
   # bootloader
   boot = {
     tmp.cleanOnBoot = true;
-    supportedFilesystems = ["ntfs"];
     kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "quiet"

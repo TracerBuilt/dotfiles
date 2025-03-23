@@ -3,7 +3,7 @@ return {
 	lazy = false,
 	priority = 1000,
 	opts = {
-		transparent = true,
+		transparent = false,
 
 		colors = {
 			theme = {
@@ -40,6 +40,14 @@ return {
 				-- set their background accordingly if you wish to keep them dark and borderless
 				LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
 				MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+
+				RainbowDelimiterRed = { fg = palette.autumnRed },
+				RainbowDelimiterOrange = { fg = palette.surimiOrange },
+				RainbowDelimiterYellow = { fg = palette.boatYellow2 },
+				RainbowDelimiterGreen = { fg = palette.autumnGreen },
+				RainbowDelimiterCyan = { fg = palette.waveAqua1 },
+				RainbowDelimiterBlue = { fg = palette.crystalBlue },
+				RainbowDelimiterViolet = { fg = palette.oniViolet },
 			}
 		end,
 	},

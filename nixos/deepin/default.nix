@@ -23,7 +23,7 @@
         deepin-anything.enable = true;
         dde-daemon.enable = true;
         dde-api.enable = true;
-        app-service.enable = true;
+        app-services.enable = true;
       };
     };
   };

@@ -12,19 +12,20 @@
   } @ inputs: let
     inherit (self) outputs;
     system = "x86_64-linux";
-    systems = [system];
-    forAllSystems = nixpkgs.lib.genAttrs systems;
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
   in {
-    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-
-    overlays = import ./overlays {inherit inputs;};
     # nixos config
     nixosConfigurations = {
-      "Treetop" = nixpkgs.lib.nixosSystem rec {
+      "Treetop" = nixpkgs.lib.nixosSystem {
         inherit system;
+
         specialArgs = {
           inherit inputs self system outputs;
         };
+
         modules = [
           ./nixos
           sops-nix.nixosModules.sops
@@ -75,5 +76,9 @@
     };
     walker.url = "github:abenz1267/walker";
     sops-nix.url = "github:Mic92/sops-nix";
+    morewaita = {
+      url = "github:somepaulo/MoreWaita";
+      flake = false;
+    };
   };
 }

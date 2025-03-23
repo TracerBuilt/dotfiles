@@ -1,25 +1,13 @@
 {inputs, ...}: {
-  additions = final: _prev: import ../pkgs final.pkgs;
-
   modifications = final: prev: {
-    # until #369069 gets merged: https://nixpk.gs/pr-tracker.html?pr=369069
-    gnome-extension-manager = prev.gnome-extension-manager.overrideAttrs (old: {
+    nwg-look = prev.nwg-look.overrideAttrs (oldAttrs: rec {
+      version = "1.0.3";
       src = prev.fetchFromGitHub {
-        owner = "mjakeman";
-        repo = "extension-manager";
-        rev = "v0.6.0";
-        hash = "sha256-AotIzFCx4k7XLdk+2eFyJgrG97KC1wChnSlpLdk90gE=";
+        owner = "Niapollab";
+        repo = "nwg-look";
+        rev = "v${version}";
+        sha256 = "sha256-gX92gL+m0huD1Wq7JoGNqsGrUjiBrwpOf8G6wt5xztI=";
       };
-      patches = [];
-      buildInputs = with prev; [
-        blueprint-compiler
-        gtk4
-        json-glib
-        libadwaita
-        libsoup_3
-        libbacktrace
-        libxml2
-      ];
     });
   };
 }

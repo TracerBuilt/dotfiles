@@ -7,21 +7,83 @@
 // from the command palette.
 [
   {
-    "context": "Workspace",
+    "context": "Editor",
     "bindings": {
-      // "shift shift": "file_finder::Toggle"
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-shift-h": "pane::SplitLeft",
+      "ctrl-shift-j": "pane::SplitDown",
+      "ctrl-shift-k": "pane::SplitUp",
+      "ctrl-shift-l": "pane::SplitRight",
+      "alt-w": "pane::CloseActiveItem"
     }
   },
   {
-    "context": "Editor",
+    "context": "Dock",
     "bindings": {
-      "shift h": "editor::MoveLeft"
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight"
+    }
+  },
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "space f": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {
+      "space f": "file_finder::Toggle"
     }
   },
   {
     "context": "vim_mode == insert",
     "bindings": {
       "j k": "vim::NormalBefore" // In insert mode, make jk escape to normal mode.
+    }
+  },
+  {
+    "context": "vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      "s": "vim::PushSneak",
+      "shift-s": "vim::PushSneakBackward",
+      "j": ["workspace::SendKeystrokes", "g j"],
+      "k": ["workspace::SendKeystrokes", "g k"]
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
+    "bindings": {
+      "space e": "workspace::ToggleLeftDock",
+      "ctrl-/": "workspace::ToggleBottomDock",
+      "space t": "tab_switcher::Toggle",
+      "shift-h": ["workspace::SendKeystrokes", ": tabprev enter"],
+      "shift-l": ["workspace::SendKeystrokes", ": tabnext enter"]
+    }
+  },
+  {
+    "context": "TabSwitcher",
+    "bindings": {
+      "escape": "menu::Cancel",
+      "q": "menu::Cancel"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "escape": "workspace::ToggleLeftDock",
+      "q": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-/": "workspace::ToggleBottomDock"
     }
   }
 ]

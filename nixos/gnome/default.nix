@@ -11,14 +11,12 @@
   config = lib.mkIf config.gnome.enable {
     environment = {
       systemPackages = with pkgs; [
-        morewaita-icon-theme
-        qogir-icon-theme
         gnome-extension-manager
         wl-clipboard
       ];
 
       gnome.excludePackages = with pkgs; [
-        # gnome-text-editor
+        gnome-text-editor
         gnome-console
         gnome-photos
         gnome-tour
@@ -27,8 +25,8 @@
         gedit
         cheese # webcam tool
         epiphany # web browser
-        geary # email reader
-        evince # document viewer
+        # geary # email reader
+        # evince # document viewer
         totem # video player
         yelp # Help view
         gnome-font-viewer
@@ -42,6 +40,15 @@
         gnome-initial-setup
         gnome-shell-extensions
         gnome-maps
+      ];
+    };
+
+    xdg.portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-gnome
       ];
     };
 

@@ -4,7 +4,7 @@
   appimageTools,
 }:
 appimageTools.wrapType2 rec {
-  pname = "Cider-2";
+  pname = "Cider";
 
   version = "2.6.1";
 

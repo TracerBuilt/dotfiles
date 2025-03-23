@@ -5,9 +5,9 @@
     enable = true;
     overlay.enable = true;
     overwrite.enable = true;
-    theme = "monochrome_vivid";
     settings = {
       scalingPriority = "both";
+      tear = true;
       bar = {
         autoHide = "never";
         launcher.icon = "";
@@ -51,24 +51,25 @@
       };
       theme = {
         bar = {
-          buttons.background_opacity = 80;
-          opacity = 75;
-          scaling = 75;
+          buttons.background_opacity = 75;
+          transparent = true;
         };
         font = {
-          name = "RecMono Nerd Font Linear";
-          size = "1.1rem";
+          name = "RecMonoLinear Nerd Font Propo Regular";
+          size = "0.9rem";
           weight = 400;
         };
         matugen = true;
         matugen_settings = {
-          contrast = 1;
-          scheme_type = "tonal-spot";
+          contrast = 0;
+          scheme_type = "fidelity";
           variation = "standard_1";
         };
       };
-      wallpaper.enable = true;
-      wallpaper.image = "/home/goose/dotfiles/images/small-memory.png";
+      wallpaper = {
+        enable = true;
+        image = "/home/goose/dotfiles/images/small-memory.png";
+      };
     };
   };
 }

@@ -16,19 +16,8 @@ in {
     ./hypridle
     ./hyprlock
     ./hyprpanel
+    ./walker
   ];
-
-  # services = {
-  #   hyprpaper = {
-  #     enable = true;
-  #     package = inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default;
-  #     settings = {
-  #       preload = ["/home/goose/dotfiles/images/small-memory.png"];
-  #
-  #       wallpaper = ["eDP-1, /home/goose/dotfiles/images/small-memory.png"];
-  #     };
-  #   };
-  # };
 
   xdg.desktopEntries."org.gnome.Settings" = {
     name = "Settings";
@@ -41,11 +30,12 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    package = null;
+    portalPackage = null;
     systemd.enable = false;
     xwayland.enable = true;
     plugins = [
-      # inputs.hyprspace.packages.${pkgs.stdenv.hostPlatform.system}.Hyprspace
+      inputs.hyprspace.packages.${pkgs.stdenv.hostPlatform.system}.Hyprspace
       # plugins.hyprexpo
       # plugins.hyprbars
       # plugins.borderspp
@@ -56,7 +46,6 @@ in {
         "${prefix} hyprlock"
         "${prefix} hyprpanel"
         "${prefix} hyprsunset"
-        "${prefix} walker --gapplication-service"
       ];
 
       monitor = [
@@ -88,13 +77,13 @@ in {
         inactive_opacity = 1.0;
 
         shadow = {
-          enabled = true;
+          enabled = false;
         };
 
         dim_inactive = false;
 
         blur = {
-          enabled = true;
+          enabled = false;
 
           vibrancy = 0.1696;
         };
@@ -145,6 +134,7 @@ in {
         disable_splash_rendering = true;
         force_default_wallpaper = 1;
         disable_hyprland_logo = true;
+        vfr = true;
       };
 
       input = {
@@ -168,22 +158,22 @@ in {
         workspace_swipe_use_r = true;
       };
 
-      windowrule = let
-        f = regex: "float, ^(${regex})$";
-      in [
-        (f "org.gnome.Calculator")
-        (f "org.gnome.Nautilus")
-        (f "pavucontrol")
-        (f "nm-connection-editor")
-        (f "blueberry.py")
-        (f "org.gnome.Settings")
-        (f "org.gnome.design.Palette")
-        (f "Color Picker")
-        (f "xdg-desktop-portal")
-        (f "xdg-desktop-portal-gnome")
-        (f "de.haeckerfelix.Fragments")
-        (f "com.github.Aylur.ags")
-      ];
+      # windowrule = let
+      #   f = regex: "float, ^(${regex})$";
+      # in [
+      #   (f "org.gnome.Calculator")
+      #   (f "org.gnome.Nautilus")
+      #   (f "pavucontrol")
+      #   (f "nm-connection-editor")
+      #   (f "blueberry.py")
+      #   (f "org.gnome.Settings")
+      #   (f "org.gnome.design.Palette")
+      #   (f "Color Picker")
+      #   (f "xdg-desktop-portal")
+      #   (f "xdg-desktop-portal-gnome")
+      #   (f "de.haeckerfelix.Fragments")
+      #   (f "com.github.Aylur.ags")
+      # ];
 
       # "Smart gaps" / "No gaps when only"
       workspace = [
@@ -208,19 +198,15 @@ in {
         resizeactive = binding "SUPER CTRL" "resizeactive";
         mvwindow = binding "SUPER SHIFT" "movewindow";
         mvtows = binding "SUPER SHIFT" "movetoworkspace";
-        # e = "exec, ags -b hypr";
         arr = [1 2 3 4 5 6 7 8 9 0];
       in
         [
           # "SUPER SHIFT, R, exec, uwsm app -- astal -q; shell"
-          # "SUPER, SPACE,       ${e} -t launcher"
-          # "SUPER, Tab,     ${e} -t overview"
-          # ",XF86PowerOff,  ${e} -r 'powermenu.shutdown()'"
-          # ",XF86Launch4,   ${e} -r 'recorder.start()'"
           "SUPER, SPACE, exec, ${prefix} walker"
-          # "SUPER, Tab, overview:toggle"
+          "SUPER, Tab, overview:toggle"
           "SUPER,  B, exec, ${prefix} firefox"
           "SUPER SHIFT, B, exec, ${prefix} google-chrome-stable"
+          "SUPER SHIFT CTRL, B, exec, ${prefix} chromium"
           "SUPER, T, exec, ${prefix} ghostty"
           "SUPER SHIFT, T, exec, ${prefix} kitty"
           "SUPER, Q, exec, ${prefix} neovide"
@@ -276,17 +262,17 @@ in {
         arr);
 
       bindle = [
+        ",XF86AudioRaiseVolume,  exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
+        ",XF86AudioLowerVolume,  exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
         ",XF86MonBrightnessUp,   exec, brightnessctl set +5%"
         ",XF86MonBrightnessDown, exec, brightnessctl set  5%-"
         ",XF86KbdBrightnessUp,   exec, brightnessctl -d asus::kbd_backlight set +1"
         ",XF86KbdBrightnessDown, exec, brightnessctl -d asus::kbd_backlight set  1-"
-        ",XF86AudioRaiseVolume,  exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
-        ",XF86AudioLowerVolume,  exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
       ];
 
       bindl = [
         ",XF86AudioPlay,    exec, playerctl play-pause"
-        ",XF86AudioMicMute, exec, pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+        ",XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle"
       ];
 
       bindm = [
@@ -297,12 +283,12 @@ in {
       plugin = {
         overview = {
           centerAligned = true;
-          hideTopLayers = true;
-          hideOverlayLayers = true;
-          showNewWorkspace = true;
+
+          autoDrag = true;
           exitOnClick = true;
+          hideTopLayers = false;
+          hideOverlayLayers = false;
           exitOnSwitch = true;
-          drawActiveWorkspace = true;
           reverseSwipe = true;
         };
       };

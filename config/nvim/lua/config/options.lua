@@ -6,19 +6,18 @@ local opt = vim.opt
 local g = vim.g
 
 if vim.g.neovide then
-	vim.env.PATH = '/home/goose/.zshenv:' .. vim.env.PATH
-	opt.winblend = 50
-	opt.pumblend = 50
+	opt.winblend = 10
+	opt.pumblend = 10
 
-	g.neovide_floating_blur_amount_x = 3.0
-	g.neovide_floating_blur_amount_y = 3.0
+	g.neovide_floating_blur_amount_x = 5.0
+	g.neovide_floating_blur_amount_y = 5.0
 
 	g.neovide_floating_shadow = true
-	g.neovide_floating_z_height = 10
+	g.neovide_floating_z_height = 15
 	g.neovide_light_angle_degrees = 45
-	g.neovide_light_radius = 5
+	g.neovide_light_radius = 10
 
-	g.neovide_transparency = 0.8
+	g.neovide_transparency = 0.95
 
 	g.neovide_padding_top = 0
 	g.neovide_padding_bottom = 0

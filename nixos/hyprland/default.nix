@@ -16,6 +16,7 @@
 
     services = {
       xserver.displayManager.startx.enable = true;
+      gvfs.enable = true;
       devmon.enable = true;
       udisks2.enable = true;
       upower.enable = true;
@@ -31,6 +32,11 @@
       };
 
       getty.autologinUser = "goose";
+    };
+
+    xdg.portal = {
+      enable = true;
+      extraPortals = with pkgs; lib.mkForce [xdg-desktop-portal-gtk];
     };
 
     programs = {
@@ -49,22 +55,15 @@
       polkit.enable = true;
       pam.services = {
         hyprlock.enableGnomeKeyring = true;
-        astal-auth = {};
       };
-      #   pam.services.ags = {};
     };
 
     environment.systemPackages = with pkgs; [
       inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default
       inputs.hyprpicker.packages.${pkgs.stdenv.hostPlatform.system}.default
-      inputs.walker.packages.${pkgs.system}.default
-      qt5.full
-      qt6.full
       loupe
-      nautilus
-      baobab
+      glib
       gnome-bluetooth
-      gnome-text-editor
       gnome-calendar
       gnome-boxes
       gnome-system-monitor
@@ -73,13 +72,11 @@
       gnome-calculator
       gnome-clocks
       gnome-software # for flatpak
+      nautilus
       wl-gammactl
       wl-clipboard
       wayshot
       pavucontrol
-      morewaita-icon-theme
-      adwaita-icon-theme
-      qogir-icon-theme
       hyprshot
       python312Packages.pyxdg
       python312Packages.dbus-python
@@ -87,21 +84,5 @@
       newt
       libnotify
     ];
-
-    systemd = {
-      user.services.polkit-gnome-authentication-agent-1 = {
-        description = "polkit-gnome-authentication-agent-1";
-        wantedBy = ["graphical-session.target"];
-        wants = ["graphical-session.target"];
-        after = ["graphical-session.target"];
-        serviceConfig = {
-          Type = "simple";
-          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-          Restart = "on-failure";
-          RestartSec = 1;
-          TimeoutStopSec = 10;
-        };
-      };
-    };
   };
 }

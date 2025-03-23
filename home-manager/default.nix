@@ -18,8 +18,6 @@
 
   home = {
     sessionVariables = {
-      NIXPKGS_ALLOW_UNFREE = "1";
-      NIXPKGS_ALLOW_INSECURE = "1";
       BAT_THEME = "base16";
       EDITOR = "neovide";
       TERMINAL = "ghostty";
@@ -33,12 +31,6 @@
       age
       sops
       fragments
-      bat
-      fd
-      ripgrep
-      fzf
-      lazygit
-      kitty
       obsidian
       gimp
       scribus
@@ -50,8 +42,6 @@
       spotify
       ladybird
       vivaldi
-      ollama
-      private-gpt
       windsurf
       vscodium
       code-cursor
@@ -65,8 +55,6 @@
     name = "Notes";
     exec = "google-chrome-stable --app=https://icloud.com/notes";
   };
-
-  home.stateVersion = "24.05";
 
   programs = {
     direnv = {
@@ -88,4 +76,6 @@
       idle_inhibitor = "d-bus";
     };
   };
+
+  home.stateVersion = "24.05";
 }
