@@ -30,7 +30,7 @@
         localsearch.enable = true;
         tinysparql.enable = true;
       };
-
+      geoclue2.enable = true;
       getty.autologinUser = "goose";
     };
 

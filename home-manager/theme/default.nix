@@ -59,6 +59,7 @@ in {
       xcur2png
       nwg-look
       darkman
+      neovim-remote
     ];
     sessionVariables = {
       XCURSOR_THEME = cursorTheme.name;
@@ -95,4 +96,37 @@ in {
     [Context]
     filesystems=${builtins.concatStringsSep ";" dirs}
   '';
+
+  services = {
+    darkman = {
+      enable = true;
+      darkModeScripts = {
+        gtk-theme = ''
+          ${pkgs.dconf}/bin/dconf write \
+            /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+        '';
+        neovim-remote = ''
+          for server in $(nvr --serverlist); do
+              nvr --servername "$server" -cc 'set background=dark'
+          done
+        '';
+      };
+      lightModeScripts = {
+        gtk-theme = ''
+          ${pkgs.dconf}/bin/dconf write \
+            /org/gnome/desktop/interface/color-scheme "'prefer-light'"
+        '';
+        neovim-remote = ''
+          for server in $(nvr --serverlist); do
+              nvr --servername "$server" -cc 'set background=light'
+          done
+        '';
+      };
+      settings = {
+        lat = 44.97418581134208;
+        lng = -93.07898839053586;
+        usegeoclue = true;
+      };
+    };
+  };
 }

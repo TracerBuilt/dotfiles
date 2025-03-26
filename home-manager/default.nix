@@ -13,6 +13,7 @@
     ./shell
     ./sops
     ./theme
+    ./zed
     inputs.wayland-pipewire-idle-inhibit.homeModules.default
   ];
 

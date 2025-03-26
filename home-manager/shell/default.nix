@@ -29,6 +29,8 @@ in {
       lazygit
       ghostty
       kitty
+      warp-terminal
+      waveterm
       zoxide
       neovide
       nixd
