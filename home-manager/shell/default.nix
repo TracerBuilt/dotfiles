@@ -63,6 +63,7 @@ in {
           export GOOGLE_SEARCH_API_KEY="$(cat ${config.sops.secrets.google_search_api_key.path})"
           export GROQ_API_KEY="$(cat ${config.sops.secrets.groq_api_key.path})"
           export OPENROUTER_API_KEY="$(cat ${config.sops.secrets.openrouter_api_key.path})"
+          export TAVILY_API_KEY="$(cat ${config.sops.secrets.tavily_api_key.path})"
 
           if uwsm check may-start; then
               exec uwsm start hyprland-uwsm.desktop

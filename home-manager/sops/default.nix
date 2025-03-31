@@ -31,6 +31,9 @@
       openrouter_api_key = {
         path = "${config.sops.defaultSymlinkPath}/openrouter_api_key";
       };
+      tavily_api_key = {
+        path = "${config.sops.defaultSymlinkPath}/tavily_api_key";
+      };
     };
   };
 }
