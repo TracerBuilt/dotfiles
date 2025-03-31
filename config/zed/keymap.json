@@ -32,13 +32,19 @@
   {
     "context": "VimControl && !menu",
     "bindings": {
-      "space f": "file_finder::Toggle"
+      "space f": "file_finder::Toggle",
+      "space f f": "file_finder::Toggle",
+      "space e": "workspace::ToggleLeftDock",
+      "space t": "tab_switcher::Toggle"
     }
   },
   {
     "context": "EmptyPane || SharedScreen",
     "bindings": {
-      "space f": "file_finder::Toggle"
+      "space f": "file_finder::Toggle",
+      "space f f": "file_finder::Toggle",
+      "space e": "workspace::ToggleLeftDock",
+      "space t": "tab_switcher::Toggle"
     }
   },
   {
@@ -59,11 +65,46 @@
   {
     "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
     "bindings": {
+      // Original bindings
       "space e": "workspace::ToggleLeftDock",
       "ctrl-/": "workspace::ToggleBottomDock",
       "space t": "tab_switcher::Toggle",
       "shift-h": ["workspace::SendKeystrokes", ": tabprev enter"],
-      "shift-l": ["workspace::SendKeystrokes", ": tabnext enter"]
+      "shift-l": ["workspace::SendKeystrokes", ": tabnext enter"],
+
+      // <space> + b: Buffer operations
+      "space b d": ["workspace::SendKeystrokes", ": q enter"],
+      "space b n": ["workspace::SendKeystrokes", ": tabnext enter"],
+      "space b p": ["workspace::SendKeystrokes", ": tabprev enter"],
+
+      // <space> + c: Code operations
+      "space c a": "editor::ToggleComments",
+      "space g d": "editor::GoToDefinition",
+      "space c r": "editor::Rename",
+      "space c f": "editor::Format",
+      "] d": "editor::GoToDiagnostic",
+      "[": "editor::GoToPreviousDiagnostic",
+
+      // <space> + f: File operations (expanding existing space f)
+      "space f f": "file_finder::Toggle",
+      "space f n": "workspace::NewFile",
+      "space f s": "workspace::Save",
+      "space f w": ["workspace::SendKeystrokes", ": w enter"],
+
+      // <space> + g: Git operations
+      "space g g": "git_panel::ToggleFocus",
+
+      // <space> + s: Search operations
+      "space s g": "workspace::NewSearch",
+      "space s r": "search::ToggleReplace",
+
+      // <space> + w: Window/workspace operations
+      "space w v": "pane::SplitRight",
+      "space w s": "pane::SplitDown",
+      "space w h": "workspace::ActivatePaneLeft",
+      "space w j": "workspace::ActivatePaneDown",
+      "space w k": "workspace::ActivatePaneUp",
+      "space w l": "workspace::ActivatePaneRight"
     }
   },
   {
@@ -80,10 +121,25 @@
       "q": "workspace::ToggleLeftDock"
     }
   },
+
   {
     "context": "Terminal",
     "bindings": {
       "ctrl-/": "workspace::ToggleBottomDock"
+    }
+  },
+  {
+    "context": "Search",
+    "bindings": {
+      "escape": "workspace::ToggleBottomDock",
+      "q": "workspace::ToggleBottomDock"
+    }
+  },
+  {
+    "context": "SourceControl",
+    "bindings": {
+      "escape": "workspace::ToggleBottomDock",
+      "q": "workspace::ToggleBottomDock"
     }
   }
 ]

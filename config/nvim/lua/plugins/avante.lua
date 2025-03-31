@@ -2,21 +2,29 @@ return {
 
 	'yetone/avante.nvim',
 	event = 'VeryLazy',
-	lazy = false,
 	version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
 	opts = {
 
-		provider = 'gemini',
-		cursor_applying_provider = 'gemini',
+		provider = 'gemini_flash',
+		auto_suggestions_provider = 'gemini_flash_lite',
+		cursor_applying_provider = 'gemini_flash_lite',
 
 		web_search_engine = {
-			provider = 'google',
+			provider = 'tavily',
 		},
 
 		vendors = {
 			gemini = {
 				__inherited_from = 'gemini',
+				model = 'gemini-2.5-pro-exp-03-25',
+			},
+			gemini_flash = {
+				__inherited_from = 'gemini',
 				model = 'gemini-2.0-flash',
+			},
+			gemini_flash_lite = {
+				__inherited_from = 'gemini',
+				model = 'gemini-2.0-flash-lite',
 			},
 			openrouter_deepseek = {
 				__inherited_from = 'openai',
@@ -65,13 +73,21 @@ return {
 
 		dual_boost = {
 			enabled = false,
-			first_provider = 'groq_deepseek_distill_llama',
-			second_provider = 'groq_deepseek_distill_qwen',
+			first_provider = 'gemini',
+			second_provider = 'gemini_flash',
 		},
 
 		behaviour = {
 			auto_suggestions = false,
 			enable_cursor_planning_mode = true,
+		},
+
+		mappings = {
+			suggestion = {
+				accept = '<Tab>',
+				next = '<M-l>',
+				previous = '<M-h>',
+			},
 		},
 
 		file_selector = {
@@ -87,9 +103,28 @@ return {
 
 	-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
 	dependencies = {
+		'nvim-treesitter/nvim-treesitter',
 		'stevearc/dressing.nvim',
 		'nvim-lua/plenary.nvim',
 		'MunifTanjim/nui.nvim',
+		{
+			'saghen/blink.cmp',
+			dependencies = {
+				'Kaiser-Yang/blink-cmp-avante',
+			},
+			opts = {
+				sources = {
+					default = { 'avante' },
+					providers = {
+						avante = {
+							module = 'blink-cmp-avante',
+							name = 'Avante',
+							opts = {},
+						},
+					},
+				},
+			},
+		},
 		{
 			-- support for image pasting
 			'HakonHarnes/img-clip.nvim',

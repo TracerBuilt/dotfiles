@@ -1,7 +1,6 @@
 return {
 	'akinsho/bufferline.nvim',
 	opts = {
-
 		options = {
 			themable = true,
 			hover = {

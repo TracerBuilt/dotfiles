@@ -3,9 +3,9 @@ font-family-bold = RecMonoLinear Nerd Font Bold
 font-family-italic = RecMonoCasual Nerd Font Italic
 font-family-bold-italic = RecMonoSmCasual Nerd Font Bold Italic
 
-theme = Kanagawa Wave
+theme = dark:catppuccin-mocha,light:catppuccin-latte
 
-background-opacity = 0.85
+background-opacity = 0.96
 
-cursor-opacity = 0.9
+cursor-opacity = 0.98
 window-decoration = false

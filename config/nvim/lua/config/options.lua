@@ -30,3 +30,4 @@ end
 
 g.trouble_lualine = false
 opt.mousemoveevent = true
+opt.laststatus = 3

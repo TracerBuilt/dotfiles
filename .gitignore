@@ -55,3 +55,9 @@ config/git
 config/nushell
 config/starship.toml
 config/walker/themes
+config/darkman
+config/environment.d
+config/helix
+config/hyprpanel
+config/sops/age
+config/systemd/user
