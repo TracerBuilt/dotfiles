@@ -5,9 +5,8 @@ return {
 	version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
 	opts = {
 
-		provider = 'gemini_flash',
-		auto_suggestions_provider = 'gemini_flash_lite',
-		cursor_applying_provider = 'gemini_flash_lite',
+		provider = 'openrouter_gemini_pro',
+		cursor_applying_provider = 'openrouter_deepseek',
 
 		web_search_engine = {
 			provider = 'tavily',
@@ -30,19 +29,13 @@ return {
 				__inherited_from = 'openai',
 				endpoint = 'https://openrouter.ai/api/v1',
 				api_key_name = 'OPENROUTER_API_KEY',
-				model = 'deepseek/deepseek-r1-zero:free',
+				model = 'deepseek/deepseek-chat-v3-0324:free',
 			},
-			openrouter_qemini_flash_lite = {
+			openrouter_gemini_pro = {
 				__inherited_from = 'openai',
 				endpoint = 'https://openrouter.ai/api/v1',
 				api_key_name = 'OPENROUTER_API_KEY',
-				model = 'google/gemini-2.0-flash-lite-preview-02-05:free',
-			},
-			openrouter_qemini_pro = {
-				__inherited_from = 'openai',
-				endpoint = 'https://openrouter.ai/api/v1',
-				api_key_name = 'OPENROUTER_API_KEY',
-				model = 'google/gemini-2.0-pro-exp-02-05:free',
+				model = 'google/gemini-2.5-pro-exp-03-25:free',
 			},
 			openrouter_qwq = {
 				__inherited_from = 'openai',
@@ -69,6 +62,13 @@ return {
 				endpoint = 'https://api.groq.com/openai/v1/',
 				model = 'deepseek-r1-distill-llama-70b',
 			},
+		},
+
+		rag_service = {
+			enabled = false,
+			host_mount = os.getenv 'HOME' .. '/Projects',
+			provider = 'ollama',
+			endpoint = 'http://localhost:11434',
 		},
 
 		dual_boost = {
