@@ -4,3 +4,4 @@ config/darkman
 config/environment.d
 config/hyprpanel
 config/sops/age
+config/raycast
