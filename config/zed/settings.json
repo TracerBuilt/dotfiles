@@ -42,9 +42,9 @@
   "soft_wrap": "preferred_line_length",
 
   "ui_font_family": "Recursive Sans Linear Static",
-  "ui_font_size": 17,
+  "ui_font_size": 16,
   "buffer_font_family": "Recursive Mono Linear Static",
-  "buffer_font_size": 17,
+  "buffer_font_size": 16,
   "buffer_line_height": { "custom": 1.65 },
   "theme": {
     "mode": "system",

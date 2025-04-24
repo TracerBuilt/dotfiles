@@ -25,6 +25,9 @@ for _rc in ${ZDOTDIR:-$HOME}/.zshrc.d/*.zsh; do
 done
 unset _rc
 
+
+eval "$($(brew --prefix)/bin/brew shellenv)"
+
 eval "$(fnm env --use-on-cd --shell zsh)"
 
 export PNPM_HOME="/var/home/goose/.local/share/pnpm"
@@ -35,4 +38,13 @@ esac
 
 export PATH="/home/linuxbrew/.linuxbrew/opt/rustup/bin:$PATH"
 
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
+### bling.sh source start
+test -f /usr/share/ublue-os/bling/bling.sh && source /usr/share/ublue-os/bling/bling.sh
+### bling.sh source end
+
 eval "$(starship init zsh)"
+

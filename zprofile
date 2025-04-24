@@ -7,7 +7,12 @@ if ! [[ "$PATH" =~ "$HOME/.local/bin:" ]]
 then
     PATH="$HOME/.local/bin:$PATH"
 fi
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
 export PATH
 
-nvim=$(which nvim)
-echo "neovim-bin = 'flatpak-spawn --host $nvim'" | tee ~/.var/app/dev.neovide.neovide/config/neovide/config.toml
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
