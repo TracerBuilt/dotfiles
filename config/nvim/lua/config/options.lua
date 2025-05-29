@@ -5,7 +5,9 @@
 local opt = vim.opt
 local g = vim.g
 
-if vim.g.neovide then
+g.guifont = 'RecMonoLinear Nerd Font Mono'
+
+if g.neovide then
 	opt.winblend = 10
 	opt.pumblend = 10
 
@@ -17,7 +19,7 @@ if vim.g.neovide then
 	g.neovide_light_angle_degrees = 45
 	g.neovide_light_radius = 10
 
-	g.neovide_transparency = 0.95
+	g.neovide_opacity = 0.90
 
 	g.neovide_padding_top = 0
 	g.neovide_padding_bottom = 0

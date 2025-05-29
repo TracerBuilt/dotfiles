@@ -5,15 +5,15 @@ return {
 	version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
 	opts = {
 
-		provider = 'openrouter_gemini_pro',
-		cursor_applying_provider = 'openrouter_deepseek',
+		provider = 'gemini_pro',
+		cursor_applying_provider = 'gemini_flash_lite',
 
 		web_search_engine = {
 			provider = 'tavily',
 		},
 
 		vendors = {
-			gemini = {
+			gemini_pro = {
 				__inherited_from = 'gemini',
 				model = 'gemini-2.5-pro-exp-03-25',
 			},
@@ -65,10 +65,11 @@ return {
 		},
 
 		rag_service = {
-			enabled = false,
+			enabled = true,
 			host_mount = os.getenv 'HOME' .. '/Projects',
 			provider = 'ollama',
-			endpoint = 'http://localhost:11434',
+			llm_model = 'llama3.1',
+			endpoint = 'http://localhost:8080',
 		},
 
 		dual_boost = {
@@ -90,7 +91,7 @@ return {
 			},
 		},
 
-		file_selector = {
+		selector = {
 			provider = 'snacks',
 		},
 		suggestion = {
