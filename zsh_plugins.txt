@@ -15,13 +15,13 @@ belak/zsh-utils path:editor
 belak/zsh-utils path:history
 
 # Utilities
-zshzoo/macos conditional:is-macos
 belak/zsh-utils path:utility
 romkatv/zsh-bench kind:path
+getantidote/use-omz        # handle OMZ dependencies
 ohmyzsh/ohmyzsh path:plugins/extract
+ohmyzsh/ohmyzsh path:plugins/asdf
 
 # Other Fish-like features
-mattmc3/zfunctions
 zdharma-continuum/fast-syntax-highlighting  # Syntax highlighting
 zsh-users/zsh-autosuggestions               # Auto-suggestions
 zsh-users/zsh-history-substring-search      # Up/Down to search history

@@ -1,7 +1,6 @@
-neovim-bin = 'flatpak-spawn --host /home/linuxbrew/.linuxbrew/bin/nvim'
-
 frame = "none"
 title-hidden = true
+neovim-bin = "/home/linuxbrew/.linuxbrew/bin/nvim"
 
 [font]
 normal = ["RecMonoLinear Nerd Font"]
