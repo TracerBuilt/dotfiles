@@ -4,14 +4,55 @@ return {
 		vim.cmd [[cab cc CodeCompanion]]
 	end,
 	opts = {
+		adapters = {
+			openrouter = function()
+				return require('codecompanion.adapters').extend('openai_compatible', {
+					env = {
+						url = 'https://openrouter.ai/api',
+						api_key = 'OPENROUTER_API_KEY',
+						chat_url = '/v1/chat/completions',
+					},
+					schema = {
+						model = {
+							default = 'openrouter/sonoma-sky-alpha',
+						},
+					},
+				})
+			end,
+		},
+
 		strategies = {
 			chat = {
-				adapter = 'gemini',
+				adapter = 'openrouter',
+				tools = {
+					opts = {
+						default_tools = {
+							'',
+						},
+					},
+				},
+				opts = {
+					---Decorate the user message before it's sent to the LLM
+					---@param message string
+					---@param adapter CodeCompanion.Adapter
+					---@param context table
+					---@return string
+					prompt_decorator = function(message, adapter, context)
+						return string.format([[<prompt>%s</prompt>]], message)
+					end,
+				},
 			},
 			inline = {
-				adapter = 'gemini',
+				adapter = 'openrouter',
 			},
 		},
+
+		display = {
+			chat = {
+				show_settings = true,
+			},
+		},
+
 		extensions = {
 			mcphub = {
 				callback = 'mcphub.extensions.codecompanion',
@@ -25,11 +66,6 @@ return {
 				enabled = true,
 				picker = 'snacks',
 			},
-			-- vectorcode = {
-			-- 	opts = {
-			-- 		add_tool = true,
-			-- 	},
-			-- },
 		},
 	},
 
